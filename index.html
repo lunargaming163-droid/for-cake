@@ -105,29 +105,32 @@
         .polaroid img { width: 100%; height: 140px; object-fit: cover; background: #fff5f8; }
         .polaroid-text { font-family: 'Caveat', cursive; font-size: 1rem; color: var(--text-sub); margin-top: 8px; }
 
-        /* แก้ไขส่วน Fieldset และ Table ให้ Responsive */
+        /* Responsive Table Style */
         fieldset { 
             border: 2px dashed var(--accent); 
             border-radius: 20px; 
-            padding: 15px 10px; 
+            padding: 15px; 
             background: rgba(255, 255, 255, 0.2); 
             margin-bottom: 20px; 
             width: 100%;
-            max-width: 100%;
-            overflow-x: auto; /* เปิดให้เลื่อนนิ้วในมือถือได้ถ้าตารางกว้างเกิน */
-            -webkit-overflow-scrolling: touch;
         }
         legend { background: var(--accent); color: white; padding: 4px 18px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; margin: 0 auto; }
-        
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            font-size: 0.7rem; 
-            min-width: 400px; /* บังคับความกว้างขั้นต่ำของตารางเพื่อให้ข้อมูลไม่เบียด */
-            margin: 0 auto;
+
+        table { width: 100%; border-collapse: collapse; }
+        th { color: var(--text-main); border-bottom: 2px solid var(--accent); padding: 8px 4px; font-size: 0.75rem; }
+        td { padding: 8px 4px; color: var(--text-sub); border-bottom: 1px solid rgba(255, 193, 227, 0.2); font-size: 0.75rem; }
+
+        @media (max-width: 600px) {
+            table thead { display: none; }
+            table, table tbody, table tr, table td { display: block; width: 100%; }
+            table tr { margin-bottom: 15px; padding: 10px; background: rgba(255,255,255,0.5); border-radius: 15px; border: 1px solid var(--accent); }
+            table td { text-align: right; padding-left: 50%; position: relative; border-bottom: 1px solid rgba(255,193,227,0.3); font-size: 0.85rem; min-height: 35px; display: flex; align-items: center; justify-content: flex-end; }
+            table td::before {
+                content: attr(data-label);
+                position: absolute; left: 10px; width: 45%; font-weight: 600; text-align: left; color: var(--text-main);
+            }
+            table td:last-child { border-bottom: none; }
         }
-        th { color: var(--text-main); border-bottom: 2px solid var(--accent); padding: 8px 4px; text-align: center; white-space: nowrap; }
-        td { padding: 8px 4px; color: var(--text-sub); border-bottom: 1px solid rgba(255, 193, 227, 0.2); text-align: center; }
 
         .playlist-container { display: flex; flex-direction: column; gap: 10px; margin-top: 5px; }
         .song-card { background: rgba(255, 255, 255, 0.4); border-radius: 15px; padding: 10px; display: flex; align-items: center; gap: 12px; border: 1px solid rgba(255, 255, 255, 0.8); cursor: pointer; }
@@ -161,7 +164,7 @@
     <div class="container">
         <div class="card">
             <div class="image-container">
-                <img src="images.png" class="cat-image" onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSADGc854o4-04exHOD4cUdJDQPCe0-5hjSTQ&s'">
+                <img src="แฟน.png" class="cat-image" onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSADGc854o4-04exHOD4cUdJDQPCe0-5hjSTQ&s'">
             </div>
             
             <h1 id="greeting">CAKE (ไอ้อ้วนน)</h1>
@@ -253,12 +256,54 @@
                 <table>
                     <thead><tr><th>Color</th><th>Food</th><th>Flower</th><th>Hobby</th><th>Song</th><th>Animal</th></tr></thead>
                     <tbody>
-                        <tr><td>ฟ้าอ่อน</td><td>ไม่กินปลา</td><td>ลาเวนเดอร์</td><td>วาดรูป</td><td>DMMA</td><td>หมา</td></tr>
-                        <tr><td>ชมพูอ่อน</td><td>ขนมทุกอย่าง</td><td>ทิวลิป</td><td>ส่องป่า</td><td>ทางของฝุ่น</td><td>แมว</td></tr>
-                        <tr><td>ม่วง</td><td>-</td><td>ทานตะวัน</td><td>อ่านนิยาย</td><td>ไม่รู้ทำไม</td><td>กระต่าย</td></tr>
-                        <tr><td>เหลือง</td><td>-</td><td>เดซี่</td><td>นอน</td><td>baby tee</td><td>แมวน้ำ</td></tr>
-                        <tr><td>เขียว</td><td>-</td><td>แดนดิไลออน</td><td>ดนตรี/ดาว</td><td>pretty girl</td><td>เพนกวิ้น</td></tr>
-                        <tr><td>น้ำตาลไม้</td><td>-</td><td>-</td><td>-</td><td>Sorry</td><td>โคอาร่า</td></tr>
+                        <tr>
+                            <td data-label="Color">ฟ้าอ่อน</td>
+                            <td data-label="Food">ไม่กินปลา</td>
+                            <td data-label="Flower">ลาเวนเดอร์</td>
+                            <td data-label="Hobby">วาดรูป</td>
+                            <td data-label="Song">DMMA</td>
+                            <td data-label="Animal">หมา</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Color">ชมพูอ่อน</td>
+                            <td data-label="Food">ขนมทุกอย่าง</td>
+                            <td data-label="Flower">ทิวลิป</td>
+                            <td data-label="Hobby">ส่องป่า</td>
+                            <td data-label="Song">ทางของฝุ่น</td>
+                            <td data-label="Animal">แมว</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Color">ม่วง</td>
+                            <td data-label="Food">-</td>
+                            <td data-label="Flower">ทานตะวัน</td>
+                            <td data-label="Hobby">อ่านนิยาย</td>
+                            <td data-label="Song">ไม่รู้ทำไม</td>
+                            <td data-label="Animal">กระต่าย</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Color">เหลือง</td>
+                            <td data-label="Food">-</td>
+                            <td data-label="Flower">เดซี่</td>
+                            <td data-label="Hobby">นอน</td>
+                            <td data-label="Song">baby tee</td>
+                            <td data-label="Animal">แมวน้ำ</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Color">เขียว</td>
+                            <td data-label="Food">-</td>
+                            <td data-label="Flower">แดนดิไลออน</td>
+                            <td data-label="Hobby">ดนตรี/ดาว</td>
+                            <td data-label="Song">pretty girl</td>
+                            <td data-label="Animal">เพนกวิ้น</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Color">น้ำตาลไม้</td>
+                            <td data-label="Food">-</td>
+                            <td data-label="Flower">-</td>
+                            <td data-label="Hobby">-</td>
+                            <td data-label="Song">Sorry</td>
+                            <td data-label="Animal">โคอาร่า</td>
+                        </tr>
                     </tbody>
                 </table>
             </fieldset>
