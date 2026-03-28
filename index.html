@@ -26,7 +26,6 @@
             --border-color: #4a4a6a;
         }
 
-
         * { margin: 0; padding: 0; box-sizing: border-box; transition: background 0.4s, color 0.4s; user-select: none; -webkit-tap-highlight-color: transparent; }
 
         body {
@@ -82,15 +81,24 @@
         .mood-btn { font-size: 1.6rem; cursor: pointer; transition: 0.2s; }
         .mood-btn:hover { transform: scale(1.3); }
 
+        /* Mood Calendar Styles */
+        .calendar-box { background: rgba(255, 255, 255, 0.4); border-radius: 25px; padding: 15px; margin-bottom: 20px; border: 2px solid var(--border-color); }
+        .calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; color: var(--text-main); font-weight: 600; font-size: 0.85rem; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
+        .calendar-day-label { font-size: 0.6rem; color: var(--text-sub); font-weight: 600; }
+        .day-cell { aspect-ratio: 1; background: rgba(255, 255, 255, 0.5); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #888; position: relative; border: 1px solid rgba(255,255,255,0.3); }
+        .day-cell.today { border: 2px solid var(--accent); font-weight: bold; color: var(--text-main); }
+        .mood-dot { width: 80%; height: 80%; border-radius: 50%; position: absolute; opacity: 0.6; filter: blur(2px); z-index: 0; }
+        .dot-happy { background: #ffeb3b; }
+        .dot-sad { background: #64b5f6; }
+        .dot-angry { background: #ff5252; }
+        .dot-hungry { background: #ffb74d; }
+
         .bio-section { background: rgba(255, 255, 255, 0.4); border-radius: 20px; padding: 15px; margin-bottom: 20px; text-align: left; }
         .bio-item { font-size: 0.85rem; color: var(--text-sub); margin-bottom: 6px; display: flex; flex-wrap: wrap; }
         .bio-label { font-weight: 600; min-width: 100px; color: var(--text-main); }
 
-        .daily-box {
-            background: var(--accent); color: white; border-radius: 15px;
-            padding: 12px; margin-bottom: 12px; cursor: pointer; border: 2px solid white;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 100%;
-        }
+        .daily-box { background: var(--accent); color: white; border-radius: 15px; padding: 12px; margin-bottom: 12px; cursor: pointer; border: 2px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 100%; }
         .daily-label { font-size: 0.75rem; opacity: 0.9; margin-bottom: 4px; display: block; font-weight: 600; }
 
         .garden-box { background: rgba(255, 255, 255, 0.4); border-radius: 20px; padding: 15px; margin-bottom: 20px; border: 2px dashed #81c784; width: 100%; }
@@ -106,15 +114,7 @@
         .polaroid img { width: 100%; height: 140px; object-fit: cover; background: #fff5f8; }
         .polaroid-text { font-family: 'Caveat', cursive; font-size: 1rem; color: var(--text-sub); margin-top: 8px; }
 
-        /* Responsive Table Style */
-        fieldset { 
-            border: 2px dashed var(--accent); 
-            border-radius: 20px; 
-            padding: 15px; 
-            background: rgba(255, 255, 255, 0.2); 
-            margin-bottom: 20px; 
-            width: 100%;
-        }
+        fieldset { border: 2px dashed var(--accent); border-radius: 20px; padding: 15px; background: rgba(255, 255, 255, 0.2); margin-bottom: 20px; width: 100%; }
         legend { background: var(--accent); color: white; padding: 4px 18px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; margin: 0 auto; }
 
         table { width: 100%; border-collapse: collapse; }
@@ -126,11 +126,7 @@
             table, table tbody, table tr, table td { display: block; width: 100%; }
             table tr { margin-bottom: 15px; padding: 10px; background: rgba(255,255,255,0.5); border-radius: 15px; border: 1px solid var(--accent); }
             table td { text-align: right; padding-left: 50%; position: relative; border-bottom: 1px solid rgba(255,193,227,0.3); font-size: 0.85rem; min-height: 35px; display: flex; align-items: center; justify-content: flex-end; }
-            table td::before {
-                content: attr(data-label);
-                position: absolute; left: 10px; width: 45%; font-weight: 600; text-align: left; color: var(--text-main);
-            }
-            table td:last-child { border-bottom: none; }
+            table td::before { content: attr(data-label); position: absolute; left: 10px; width: 45%; font-weight: 600; text-align: left; color: var(--text-main); }
         }
 
         .playlist-container { display: flex; flex-direction: column; gap: 10px; margin-top: 5px; }
@@ -143,12 +139,7 @@
         .btn-main { background: linear-gradient(45deg, #ff4081, #ba68c8); color: white; border: none; padding: 12px; border-radius: 50px; width: 100%; font-weight: 600; cursor: pointer; margin-top: 10px; }
         
         .floating-item { position: absolute; animation: floatUp 5s linear forwards; pointer-events: none; z-index: 0; }
-        @keyframes floatUp {
-            0% { transform: translateY(110vh) scale(0.5); opacity: 0; }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.8; }
-            100% { transform: translateY(-10vh) scale(1.2) rotate(360deg); opacity: 0; }
-        }
+        @keyframes floatUp { 0% { transform: translateY(110vh) scale(0.5); opacity: 0; } 10% { opacity: 0.8; } 100% { transform: translateY(-10vh) scale(1.2) rotate(360deg); opacity: 0; } }
         .click-heart { position: absolute; animation: clickPop 0.8s ease-out forwards; pointer-events: none; z-index: 100; font-size: 24px; }
         @keyframes clickPop { 0% { transform: scale(0); opacity: 1; } 100% { transform: scale(1.5) translateY(-40px); opacity: 0; } }
 
@@ -192,6 +183,16 @@
                 <p id="mood-reply" style="font-size: 0.8rem; margin-top: 5px; color: var(--text-sub); min-height: 1.2rem;"></p>
             </div>
 
+            <div class="calendar-box">
+                <div class="calendar-header">
+                    <span id="month-name">-- 2569</span>
+                    <span style="font-size: 0.65rem; opacity: 0.7;">Mood Diary ✨</span>
+                </div>
+                <div class="calendar-grid" id="calendar-grid">
+                    <div class="calendar-day-label">S</div><div class="calendar-day-label">M</div><div class="calendar-day-label">T</div><div class="calendar-day-label">W</div><div class="calendar-day-label">T</div><div class="calendar-day-label">F</div><div class="calendar-day-label">S</div>
+                </div>
+            </div>
+
             <div class="bio-section">
                 <div class="bio-item"><span class="bio-label">วันที่คบกัน:</span><span>25 มีนาคม 2569 ✨</span></div>
                 <div class="bio-item"><span class="bio-label">วันเกิด:</span><span>7 ก.ย. 52 (05:00-06:00 น.)</span></div>
@@ -214,41 +215,23 @@
                 <p style="font-size: 0.75rem; color: #4caf50; font-weight: 600;">🪴 สวนดอกไม้ของอ้วน</p>
                 <div id="tree-icon" class="tree-display">🌰</div>
                 <div class="progress-container"><div id="growth-bar" class="progress-bar"></div></div>
-                <p id="tree-status" style="font-size: 0.65rem; color: #777; margin-bottom: 8px;">น้องกำลังโต... (รดน้ำได้วันละครั้งนะ)</p>
+                <p id="tree-status" style="font-size: 0.65rem; color: #777; margin-bottom: 8px;">น้องกำลังโต...</p>
                 <button id="water-btn" class="water-btn" onclick="waterTree()">💧 รดน้ำต้นไม้</button>
             </div>
 
             <fieldset>
                 <legend> 🖼️ OUR MEMORIES 🖼️ </legend>
                 <div class="grid-gallery">
-                    <div class="polaroid" style="--r: -2deg;">
-                        <img src="แฟน.png" onerror="this.src='https://via.placeholder.com/150?text=My+Cake'">
-                        <div class="polaroid-text">My Cake 🍰</div>
-                    </div>
-                    <div class="polaroid" style="--r: 3deg;">
-                        <img src="แฟน2.png" onerror="this.src='https://via.placeholder.com/150?text=Happy+Day'">
-                        <div class="polaroid-text">Happy Day ✨</div>
-                    </div>
+                    <div class="polaroid" style="--r: -2deg;"><img src="แฟน.png" onerror="this.src='https://via.placeholder.com/150?text=My+Cake'"><div class="polaroid-text">My Cake 🍰</div></div>
+                    <div class="polaroid" style="--r: 3deg;"><img src="แฟน2.png" onerror="this.src='https://via.placeholder.com/150?text=Happy+Day'"><div class="polaroid-text">Happy Day ✨</div></div>
                 </div>
             </fieldset>
 
             <fieldset>
                 <legend> 🎵 OUR PLAYLIST 🎵 </legend>
                 <div class="playlist-container">
-                    <div class="song-card" onclick="toggleMusic()">
-                        <div class="song-cover">🌸</div>
-                        <div class="song-info">
-                            <div class="song-title">Proud - fellow fellow</div>
-                            <div class="song-desc">เพลงที่เค้าตั้งใจเปิดให้อ้วนฟัง 🌸</div>
-                        </div>
-                    </div>
-                    <div class="song-card" onclick="mood('😊')">
-                        <div class="song-cover">☀️</div>
-                        <div class="song-info">
-                            <div class="song-title">เวลาเธอยิ้ม - Polycat</div>
-                            <div class="song-desc">ฟังตอนอ้วนยิ้มแล้วโลกสดใส</div>
-                        </div>
-                    </div>
+                    <div class="song-card" onclick="toggleMusic()"><div class="song-cover">🌸</div><div class="song-info"><div class="song-title">Proud - fellow fellow</div><div class="song-desc">เพลงที่เค้าตั้งใจเปิดให้อ้วนฟัง 🌸</div></div></div>
+                    <div class="song-card" onclick="mood('😊')"><div class="song-cover">☀️</div><div class="song-info"><div class="song-title">เวลาเธอยิ้ม - Polycat</div><div class="song-desc">ฟังตอนอ้วนยิ้มแล้วโลกสดใส</div></div></div>
                 </div>
             </fieldset>
 
@@ -257,54 +240,9 @@
                 <table>
                     <thead><tr><th>Color</th><th>Food</th><th>Flower</th><th>Hobby</th><th>Song</th><th>Animal</th></tr></thead>
                     <tbody>
-                        <tr>
-                            <td data-label="Color">ฟ้าอ่อน</td>
-                            <td data-label="Food">ไม่กินปลา</td>
-                            <td data-label="Flower">ลาเวนเดอร์</td>
-                            <td data-label="Hobby">วาดรูป</td>
-                            <td data-label="Song">DMMA</td>
-                            <td data-label="Animal">หมา</td>
-                        </tr>
-                        <tr>
-                            <td data-label="Color">ชมพูอ่อน</td>
-                            <td data-label="Food">ขนมทุกอย่าง</td>
-                            <td data-label="Flower">ทิวลิป</td>
-                            <td data-label="Hobby">ส่องป่า</td>
-                            <td data-label="Song">ทางของฝุ่น</td>
-                            <td data-label="Animal">แมว</td>
-                        </tr>
-                        <tr>
-                            <td data-label="Color">ม่วง</td>
-                            <td data-label="Food">-</td>
-                            <td data-label="Flower">ทานตะวัน</td>
-                            <td data-label="Hobby">อ่านนิยาย</td>
-                            <td data-label="Song">ไม่รู้ทำไม</td>
-                            <td data-label="Animal">กระต่าย</td>
-                        </tr>
-                        <tr>
-                            <td data-label="Color">เหลือง</td>
-                            <td data-label="Food">-</td>
-                            <td data-label="Flower">เดซี่</td>
-                            <td data-label="Hobby">นอน</td>
-                            <td data-label="Song">baby tee</td>
-                            <td data-label="Animal">แมวน้ำ</td>
-                        </tr>
-                        <tr>
-                            <td data-label="Color">เขียว</td>
-                            <td data-label="Food">-</td>
-                            <td data-label="Flower">แดนดิไลออน</td>
-                            <td data-label="Hobby">ดนตรี/ดาว</td>
-                            <td data-label="Song">pretty girl</td>
-                            <td data-label="Animal">เพนกวิ้น</td>
-                        </tr>
-                        <tr>
-                            <td data-label="Color">น้ำตาลไม้</td>
-                            <td data-label="Food">-</td>
-                            <td data-label="Flower">-</td>
-                            <td data-label="Hobby">-</td>
-                            <td data-label="Song">Sorry</td>
-                            <td data-label="Animal">โคอาร่า</td>
-                        </tr>
+                        <tr><td data-label="Color">ฟ้าอ่อน</td><td data-label="Food">ไม่กินปลา</td><td data-label="Flower">ลาเวนเดอร์</td><td data-label="Hobby">วาดรูป</td><td data-label="Song">DMMA</td><td data-label="Animal">หมา</td></tr>
+                        <tr><td data-label="Color">ชมพูอ่อน</td><td data-label="Food">ขนมทุกอย่าง</td><td data-label="Flower">ทิวลิป</td><td data-label="Hobby">ส่องป่า</td><td data-label="Song">ทางของฝุ่น</td><td data-label="Animal">แมว</td></tr>
+                        <tr><td data-label="Color">ม่วง</td><td data-label="Food">-</td><td data-label="Flower">ทานตะวัน</td><td data-label="Hobby">อ่านนิยาย</td><td data-label="Song">ไม่รู้ทำไม</td><td data-label="Animal">กระต่าย</td></tr>
                     </tbody>
                 </table>
             </fieldset>
@@ -325,64 +263,77 @@
         const mySong = document.getElementById('mySong');
         const happySong = document.getElementById('happySong');
         let isPlaying = false;
+        const startDate = new Date('2026-03-25T00:00:00');
+        const getTodayStr = () => new Date().toISOString().slice(0, 10);
+
+        // --- Mood Calendar Logic ---
+        let moodData = JSON.parse(localStorage.getItem('moodHistory')) || {};
+        
+        function initCalendar() {
+            const grid = document.getElementById('calendar-grid');
+            const monthName = document.getElementById('month-name');
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = now.getMonth();
+            
+            monthName.innerText = new Intl.DateTimeFormat('th-TH', { month: 'long', year: 'numeric' }).format(now);
+            
+            // Clear days but keep labels
+            const labels = Array.from(grid.querySelectorAll('.calendar-day-label'));
+            grid.innerHTML = '';
+            labels.forEach(l => grid.appendChild(l));
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            for (let i = 0; i < firstDay; i++) grid.appendChild(document.createElement('div'));
+
+            for (let d = 1; d <= daysInMonth; d++) {
+                const cell = document.createElement('div');
+                cell.className = 'day-cell';
+                if (d === now.getDate()) cell.classList.add('today');
+                cell.innerText = d;
+
+                const dateKey = `${year}-${month + 1}-${d}`;
+                if (moodData[dateKey]) {
+                    const dot = document.createElement('div');
+                    dot.className = `mood-dot dot-${moodData[dateKey]}`;
+                    cell.appendChild(dot);
+                }
+                grid.appendChild(cell);
+            }
+        }
 
         function updateGreeting() {
             const hour = new Date().getHours();
             const greetElement = document.getElementById('greeting');
             const isNight = (hour < 6 || hour >= 18);
-            
             if (hour >= 5 && hour < 12) greetElement.innerText = "อรุณสวัสดิ์นะไอ้อ้วน ☀️";
             else if (hour >= 12 && hour < 18) greetElement.innerText = "เที่ยงแล้ว หาไรกินยัง? 🍰";
             else if (hour >= 18 && hour < 22) greetElement.innerText = "เย็นแล้ว พักผ่อนนะอ้วน 🌸";
             else greetElement.innerText = "ดึกแล้ว ฝันดีนะไอ้อ้วน 🌙";
-
             if (isNight) document.body.classList.add('night-mode');
             else document.body.classList.remove('night-mode');
         }
 
         function updateBirthday() {
             const today = new Date();
-            const year = today.getFullYear();
-            let bday = new Date(year, 8, 7); 
-            
-            if (today > bday && (today.getDate() !== 7 || today.getMonth() !== 8)) {
-                bday.setFullYear(year + 1);
-            }
-
+            let bday = new Date(today.getFullYear(), 8, 7);
+            if (today > bday && (today.getDate() !== 7 || today.getMonth() !== 8)) bday.setFullYear(today.getFullYear() + 1);
             const diff = bday - today;
             const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-            const timerEl = document.getElementById('bday-timer');
-            const boxEl = document.getElementById('birthday-box');
-
-            if (today.getMonth() === 8 && today.getDate() === 7) {
-                timerEl.innerHTML = "🎉 สุขสันต์วันเกิดนะไอ้อ้วน! 🎂";
-                boxEl.style.background = "linear-gradient(135deg, #ff4081, #f48fb1)";
-                confetti({ particleCount: 2, spread: 60, origin: { y: 0.8 }, colors:['#ff4081', '#fff'] }); 
-            } else {
-                timerEl.innerHTML = `เหลืออีก ${days} วัน 🎈`;
-            }
+            document.getElementById('bday-timer').innerText = (today.getMonth() === 8 && today.getDate() === 7) ? "🎉 สุขสันต์วันเกิดนะไอ้อ้วน! 🎂" : `เหลืออีก ${days} วัน 🎈`;
         }
 
         function toggleMusic() {
             const status = document.getElementById('music-status');
-            happySong.pause(); 
+            happySong.pause();
             if (!isPlaying) {
-                mySong.play().then(() => {
-                    status.innerText = "กำลังเล่น: Proud... 🌸";
-                    isPlaying = true;
-                }).catch(err => {
-                    console.log("Error playing music:", err);
-                    alert("อย่าลืมอัปโหลดไฟล์ 015 Proud.mp3 ขึ้น GitHub นะครับ!");
-                });
+                mySong.play().then(() => { status.innerText = "กำลังเล่น: Proud... 🌸"; isPlaying = true; }).catch(() => alert("ใส่ไฟล์เพลงด้วยนะอ้วน!"));
             } else {
-                mySong.pause();
-                status.innerText = "กดเพื่อเปิดเพลง Proud 🌸";
-                isPlaying = false;
+                mySong.pause(); status.innerText = "กดเพื่อเปิดเพลง Proud 🌸"; isPlaying = false;
             }
         }
-
-        const startDate = new Date('2026-03-25T00:00:00');
-        const getTodayStr = () => new Date().toISOString().slice(0, 10);
 
         function updateUI() {
             const diff = new Date() - startDate;
@@ -391,10 +342,28 @@
             const m = Math.floor((diff/1000/60)%60);
             const s = Math.floor((diff/1000)%60);
             document.getElementById('timer').innerHTML = `เราเดินมาด้วยกันแล้ว: ${d} วัน ${h} ชม. ${m} นาที ${s} วิ`;
-            updateGreeting();
-            updateBirthday();
+            updateGreeting(); updateBirthday();
         }
-        setInterval(updateUI, 1000);
+
+        function mood(type) {
+            const replies = { '😊':"ดีมาก! ฟังเพลง 'เวลาเธอออม' นะ 🎶", '😔':"โอ๋ๆ เดี๋ยวเค้ากอดปลอบนะ", '😤':"ใจเย็นๆ เดี๋ยวพาไปกินขนม", '😋':"หิวหรอ? ไปกินของอร่อยกัน!" };
+            document.getElementById('mood-reply').innerText = replies[type];
+            
+            // Save to Calendar
+            const now = new Date();
+            const dateKey = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
+            const typeMap = { '😊': 'happy', '😔': 'sad', '😤': 'angry', '😋': 'hungry' };
+            moodData[dateKey] = typeMap[type];
+            localStorage.setItem('moodHistory', JSON.stringify(moodData));
+            initCalendar();
+
+            if (type === '😊') {
+                mySong.pause(); isPlaying = false;
+                document.getElementById('music-status').innerText = "กดเพื่อเปิดเพลง Proud 🌸";
+                happySong.play().catch(() => {});
+                confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+            }
+        }
 
         let treeProgress = parseInt(localStorage.getItem('treeProgress')) || 0;
         let lastWaterDate = localStorage.getItem('lastWaterDate');
@@ -405,19 +374,13 @@
             const icon = document.getElementById('tree-icon');
             const status = document.getElementById('tree-status');
             const btn = document.getElementById('water-btn');
-            
             bar.style.width = treeProgress + '%';
             let current = treeStages[0];
             treeStages.forEach(s => { if(treeProgress >= s.p) current = s; });
             icon.innerText = current.i;
-
-            if(treeProgress >= 100) {
-                status.innerText = "ดอกทิวลิปบานแล้ว! ❤️"; btn.innerText = "✨ บานสะพรั่ง ✨"; btn.classList.add('disabled');
-            } else if(lastWaterDate === getTodayStr()) {
-                status.innerText = "วันนี้รดน้ำแล้ว (รอพรุ่งนี้นะ)"; btn.innerText = "💧 พักผ่อนก่อน"; btn.classList.add('disabled');
-            } else {
-                status.innerText = `ความโต: ${treeProgress}% (หิวน้ำแล้ว)`; btn.classList.remove('disabled');
-            }
+            if(treeProgress >= 100) { status.innerText = "ดอกทิวลิปบานแล้ว! ❤️"; btn.classList.add('disabled'); }
+            else if(lastWaterDate === getTodayStr()) { status.innerText = "วันนี้รดน้ำแล้ว"; btn.classList.add('disabled'); }
+            else { status.innerText = `ความโต: ${treeProgress}%`; btn.classList.remove('disabled'); }
         }
 
         function waterTree() {
@@ -427,31 +390,19 @@
             localStorage.setItem('treeProgress', treeProgress);
             localStorage.setItem('lastWaterDate', lastWaterDate);
             updateTreeUI();
-            confetti({ particleCount: 40, spread: 50, colors: ['#2196f3', '#bbdefb'], origin: { y: 0.8 } });
-            if(treeProgress === 100) confetti({ particleCount: 150, spread: 100 });
-        }
-
-        function mood(type) {
-            const replies = { '😊':"ดีมาก! ฟังเพลง 'เวลาเธอยิ้ม' นะ 🎶", '😔':"โอ๋ๆ เดี๋ยวเค้ากอดปลอบนะ", '😤':"ใจเย็นๆ เดี๋ยวพาไปกินขนม", '😋':"หิวหรอ? ไปกินของอร่อยกัน!" };
-            document.getElementById('mood-reply').innerText = replies[type];
-            if (type === '😊') {
-                mySong.pause(); isPlaying = false;
-                document.getElementById('music-status').innerText = "กดเพื่อเปิดเพลง Proud 🌸";
-                happySong.play().catch(() => {});
-                confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-            }
+            confetti({ particleCount: 40, colors: ['#2196f3'], origin: { y: 0.8 } });
         }
 
         function showSecret() {
             if (localStorage.getItem('lastSecret') === getTodayStr()) { alert("วันนี้อ่านไปแล้วน้า ❤️"); return; }
-            const quotes = ["วันนี้อ้วนน่ารักจัง","รักอ้วนที่สุดเลย","ดีใจที่มีอ้วนนะ","สู้ๆ นะคนเก่ง"];
+            const quotes = ["วันนี้อ้วนน่ารักจัง","รักอ้วนที่สุดเลย","ดีใจที่มีอ้วนนะ"];
             document.getElementById('secret-text').innerText = "💌 " + quotes[Math.floor(Math.random()*quotes.length)];
             localStorage.setItem('lastSecret', getTodayStr());
         }
 
         function getCoupon() {
             if (localStorage.getItem('lastCoupon') === getTodayStr()) { alert("รับไปแล้วน้า 🎫"); return; }
-            const coupons = ["ตามใจ 1 วัน ✨", "ห้ามบ่น 1 ชม. 🤫", "ขนม 1 อย่าง 🍰", "กอดฟรี 🧸"];
+            const coupons = ["ตามใจ 1 วัน ✨", "ขนม 1 อย่าง 🍰", "กอดฟรี 🧸"];
             document.getElementById('coupon-text').innerText = "🎁 คูปอง: " + coupons[Math.floor(Math.random()*coupons.length)];
             localStorage.setItem('lastCoupon', getTodayStr());
         }
@@ -461,7 +412,7 @@
 
         document.addEventListener('click', (e) => {
             const heart = document.createElement('div');
-            heart.innerHTML = ['❤️','💖','✨','🐾','🍰'][Math.floor(Math.random()*5)];
+            heart.innerHTML = ['❤️','💖','✨','🐾'][Math.floor(Math.random()*4)];
             heart.className = 'click-heart';
             heart.style.left = (e.clientX - 10) + 'px'; heart.style.top = (e.clientY - 10) + 'px';
             document.getElementById('click-container').appendChild(heart);
@@ -470,15 +421,15 @@
 
         setInterval(() => {
             const item = document.createElement('div');
-            const isNight = document.body.classList.contains('night-mode');
-            item.innerHTML = isNight ? ['⭐','🌙','✨'][Math.floor(Math.random()*3)] : ['❤️','🌸','💖'][Math.floor(Math.random()*3)];
+            item.innerHTML = document.body.classList.contains('night-mode') ? '⭐' : '❤️';
             item.className = 'floating-item';
             item.style.left = Math.random() * 100 + 'vw';
-            item.style.fontSize = Math.random() * 20 + 20 + 'px';
             document.getElementById('heart-container').appendChild(item);
             setTimeout(() => item.remove(), 5000);
         }, 600);
 
+        setInterval(updateUI, 1000);
+        initCalendar();
         updateTreeUI();
         updateGreeting();
     </script>
