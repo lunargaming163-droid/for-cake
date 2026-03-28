@@ -8,8 +8,9 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;600&family=Caveat:wght@700&display=swap');
 
-        :root {
-            --bg-gradient: radial-gradient(circle, #fff5f8 0%, #fbc2eb 100%);
+        ::root {
+            /* Default: Day Theme */
+            --bg-gradient: linear-gradient(135deg, #e0f7fa 0%, #fbc2eb 100%);
             --card-bg: rgba(255, 255, 255, 0.75);
             --text-main: #d81b60;
             --text-sub: #880e4f;
@@ -17,13 +18,31 @@
             --border-color: #ffffff;
         }
 
-        body.night-mode {
+        /* ธีมรุ่งเช้า (Dawn) */
+        body.theme-dawn {
+            --bg-gradient: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            --text-main: #e91e63; --accent: #ff80ab;
+        }
+
+        /* ธีมเย็น (Sunset) */
+        body.theme-sunset {
+            --bg-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --text-main: #bf360c; --accent: #ff5722;
+        }
+
+        /* ธีมกลางคืน (Evening) */
+        body.theme-evening {
             --bg-gradient: radial-gradient(circle, #2c3e50 0%, #000000 100%);
             --card-bg: rgba(30, 30, 50, 0.85);
-            --text-main: #f48fb1;
-            --text-sub: #ce93d8;
-            --accent: #ba68c8;
-            --border-color: #4a4a6a;
+            --text-main: #f48fb1; --text-sub: #ce93d8;
+            --accent: #ba68c8; --border-color: #4a4a6a;
+        }
+
+        /* ธีมดึก (Midnight) */
+        body.theme-midnight {
+            --bg-gradient: linear-gradient(180deg, #0f0c29, #302b63, #24243e);
+            --card-bg: rgba(15, 15, 30, 0.9);
+            --text-main: #9fa8da; --accent: #7986cb;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; transition: background 0.4s, color 0.4s; user-select: none; -webkit-tap-highlight-color: transparent; }
