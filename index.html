@@ -184,6 +184,123 @@
         }
         .capsule-empty { text-align: center; color: #bcaaa4; padding: 30px; font-size: 0.85rem; }
 
+        /* ===== Gift Box ===== */
+        .gift-section {
+            width: 100%; margin-bottom: 20px;
+            display: flex; flex-direction: column; gap: 10px;
+        }
+        .gift-btn {
+            width: 100%; border: none; border-radius: 22px; padding: 14px 18px;
+            cursor: pointer; font-family: 'Anuphan', sans-serif; font-weight: 700;
+            font-size: 0.9rem; display: flex; align-items: center; gap: 10px;
+            transition: transform 0.15s, box-shadow 0.15s; position: relative; overflow: hidden;
+        }
+        .gift-btn:active { transform: scale(0.97); }
+        .gift-btn-icon { font-size: 1.3rem; flex-shrink: 0; }
+        .gift-btn-text { text-align: left; flex: 1; }
+        .gift-btn-label { display: block; font-size: 0.65rem; opacity: 0.75; font-weight: 400; margin-top: 1px; }
+
+        .btn-gift {
+            background: linear-gradient(135deg, #7b1fa2, #9c27b0, #ce93d8);
+            color: white; box-shadow: 0 6px 20px rgba(123,31,162,0.35);
+        }
+        .btn-gift::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
+            animation: shimmer 3s infinite;
+        }
+        @keyframes shimmer { 0%,100% { transform: translateX(-30%) translateY(-30%); } 50% { transform: translateX(10%) translateY(10%); } }
+
+        .btn-coupon {
+            background: linear-gradient(135deg, #1565c0, #1976d2, #64b5f6);
+            color: white; box-shadow: 0 6px 20px rgba(21,101,192,0.35);
+        }
+
+        /* ===== Gift Modal ===== */
+        .gift-modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); }
+        .gift-modal-content {
+            background: linear-gradient(160deg, #f3e5f5, #e8eaf6, #fce4ec);
+            margin: 10% auto; padding: 0; border-radius: 32px; width: 88%; max-width: 420px;
+            border: 3px solid #ce93d8; overflow: hidden; animation: popIn 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+        }
+        @keyframes popIn { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .gift-modal-header {
+            background: linear-gradient(135deg, #7b1fa2, #9c27b0);
+            color: white; padding: 20px; text-align: center;
+        }
+        .gift-modal-header h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 2px; }
+        .gift-modal-header p { font-size: 0.7rem; opacity: 0.85; }
+        .gift-modal-body { padding: 20px; }
+        .gift-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .gift-item {
+            background: rgba(255,255,255,0.8); border-radius: 18px; padding: 14px 8px;
+            text-align: center; cursor: pointer; border: 2px solid transparent;
+            transition: all 0.2s; position: relative;
+        }
+        .gift-item:hover { border-color: #9c27b0; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(123,31,162,0.2); }
+        .gift-item.locked { opacity: 0.45; cursor: not-allowed; }
+        .gift-item-icon { font-size: 1.8rem; margin-bottom: 6px; }
+        .gift-item-name { font-size: 0.65rem; font-weight: 700; color: #4a148c; }
+        .gift-item-hint { font-size: 0.55rem; color: #7b1fa2; margin-top: 2px; opacity: 0.7; }
+        .gift-unlock-badge {
+            position: absolute; top: -6px; right: -6px; background: #ff4081; color: white;
+            border-radius: 50%; width: 18px; height: 18px; font-size: 0.55rem;
+            display: flex; align-items: center; justify-content: center; font-weight: 700;
+        }
+        .gift-modal-close { width: 100%; background: rgba(123,31,162,0.1); border: 2px solid #ce93d8; color: #7b1fa2; padding: 10px; border-radius: 20px; margin-top: 12px; font-weight: 700; font-size: 0.8rem; cursor: pointer; font-family: 'Anuphan', sans-serif; }
+
+        /* Gift Detail Modal */
+        .gift-detail-modal { display: none; position: fixed; z-index: 4000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(10px); }
+        .gift-detail-content {
+            background: white; margin: 15% auto; border-radius: 28px; width: 82%; max-width: 360px;
+            overflow: hidden; animation: popIn 0.35s cubic-bezier(0.175,0.885,0.32,1.275);
+            border: 4px solid #ce93d8;
+        }
+        .gift-detail-top { padding: 30px 20px 20px; text-align: center; }
+        .gift-detail-emoji { font-size: 4rem; margin-bottom: 10px; animation: bounceIcon 0.6s ease; }
+        @keyframes bounceIcon { 0%,100%{transform:scale(1)} 50%{transform:scale(1.3)} }
+        .gift-detail-title { font-size: 1.1rem; font-weight: 700; color: #4a148c; margin-bottom: 8px; }
+        .gift-detail-desc { font-size: 0.82rem; color: #555; line-height: 1.6; }
+        .gift-detail-btn { width: 100%; background: linear-gradient(135deg, #7b1fa2, #9c27b0); color: white; border: none; padding: 14px; font-size: 0.85rem; font-weight: 700; cursor: pointer; font-family: 'Anuphan', sans-serif; }
+
+        /* ===== Coupon System ===== */
+        .coupon-modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); }
+        .coupon-card {
+            margin: 12% auto; width: 82%; max-width: 380px;
+            animation: popIn 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+        }
+        .coupon-inner {
+            background: white; border-radius: 24px; overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .coupon-top {
+            background: linear-gradient(135deg, #1565c0, #1976d2);
+            color: white; padding: 22px 20px; text-align: center; position: relative;
+        }
+        .coupon-top::after {
+            content: ''; position: absolute; bottom: -12px; left: 0; right: 0;
+            height: 24px; background: white;
+            border-radius: 50% 50% 0 0 / 24px 24px 0 0;
+        }
+        .coupon-dots {
+            position: absolute; top: 50%; left: -8px; transform: translateY(-50%);
+            display: flex; flex-direction: column; gap: 6px;
+        }
+        .coupon-dots::after { content: ''; }
+        .coupon-stamp { font-size: 0.65rem; background: rgba(255,255,255,0.2); border-radius: 50px; padding: 3px 10px; margin-bottom: 8px; display: inline-block; letter-spacing: 1px; }
+        .coupon-emoji { font-size: 3rem; margin: 6px 0; }
+        .coupon-title { font-size: 1rem; font-weight: 700; }
+        .coupon-body { padding: 28px 22px 20px; text-align: center; }
+        .coupon-desc { font-size: 0.85rem; color: #333; line-height: 1.7; margin-bottom: 14px; }
+        .coupon-expire { font-size: 0.65rem; color: #999; margin-bottom: 14px; }
+        .coupon-notch-row { display: flex; align-items: center; gap: 0; margin-bottom: 14px; }
+        .coupon-notch-line { flex: 1; border-top: 2px dashed #ddd; }
+        .coupon-notch-circle { width: 14px; height: 14px; background: #f5f5f5; border: 2px dashed #ddd; border-radius: 50%; flex-shrink: 0; }
+        .coupon-barcode { font-size: 0.55rem; letter-spacing: 3px; color: #bbb; margin-bottom: 14px; font-family: monospace; }
+        .coupon-use-btn { width: 100%; background: linear-gradient(135deg, #1565c0, #1976d2); color: white; border: none; padding: 12px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; cursor: pointer; font-family: 'Anuphan', sans-serif; margin-bottom: 8px; }
+        .coupon-close-btn { width: 100%; background: none; border: 2px solid #ddd; color: #999; padding: 9px; border-radius: 50px; font-size: 0.75rem; cursor: pointer; font-family: 'Anuphan', sans-serif; }
+        .coupon-used-note { font-size: 0.7rem; color: #f44336; margin-top: 6px; }
+
         /* ===== Original Styles below ===== */
         .birthday-box {
             background: linear-gradient(135deg, #ff80ab, #ba68c8);
@@ -195,8 +312,86 @@
         .bday-title { font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 2px; }
         .bday-days { font-family: 'Caveat', cursive; font-size: 1.5rem; letter-spacing: 1px; }
 
-        .music-btn { margin-bottom: 1rem; background: white; border: 1px solid var(--accent); color: var(--accent); padding: 8px 15px; border-radius: 20px; font-size: 0.75rem; cursor: pointer; font-weight: 600; width: 100%; transition: 0.3s; }
-        .music-btn:hover { background: var(--accent); color: white; }
+        /* ===== Playlist Section ===== */
+        .playlist-section {
+            width: 100%; margin-bottom: 20px;
+        }
+        .playlist-header {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            margin-bottom: 14px;
+        }
+        .playlist-header-line {
+            flex: 1; height: 2px;
+            background: linear-gradient(90deg, transparent, #ffb3c6);
+        }
+        .playlist-header-line.right {
+            background: linear-gradient(90deg, #ffb3c6, transparent);
+        }
+        .playlist-header-badge {
+            background: var(--accent); border-radius: 50px;
+            padding: 6px 16px; font-size: 0.7rem; font-weight: 700;
+            color: white; white-space: nowrap; letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(255,64,129,0.3);
+        }
+        .playlist-tracks { display: flex; flex-direction: column; gap: 10px; }
+        .track-card {
+            background: white; border-radius: 20px; padding: 12px 14px;
+            display: flex; align-items: center; gap: 12px;
+            box-shadow: 0 4px 14px rgba(216,27,96,0.1);
+            border: 1.5px solid rgba(255,179,198,0.4);
+            cursor: pointer; transition: all 0.25s; position: relative; overflow: hidden;
+        }
+        .track-card:hover { transform: translateX(4px); box-shadow: 0 6px 20px rgba(216,27,96,0.18); }
+        .track-card.playing {
+            background: linear-gradient(135deg, #fff0f5, #fce4ec);
+            border-color: var(--accent);
+            box-shadow: 0 6px 20px rgba(255,64,129,0.25);
+        }
+        .track-card.playing::before {
+            content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 4px;
+            background: var(--accent); border-radius: 20px 0 0 20px;
+        }
+        .track-icon-wrap {
+            width: 46px; height: 46px; border-radius: 14px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; position: relative;
+        }
+        .track-icon-wrap.proud-color { background: linear-gradient(135deg, #ffd6e0, #ffb3c6); }
+        .track-icon-wrap.happy-color { background: linear-gradient(135deg, #fff9c4, #ffe082); }
+        .track-vinyl {
+            position: absolute; inset: 0; border-radius: 14px;
+            background: repeating-conic-gradient(rgba(255,255,255,0.15) 0deg, transparent 1deg, transparent 5deg);
+            animation: spin 3s linear infinite; opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .track-card.playing .track-vinyl { opacity: 1; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .track-info { flex: 1; text-align: left; }
+        .track-name { font-size: 0.85rem; font-weight: 700; color: #c2185b; margin-bottom: 2px; }
+        .track-sub { font-size: 0.7rem; color: #888; }
+        .track-play-btn {
+            width: 36px; height: 36px; border-radius: 50%; border: none;
+            background: linear-gradient(135deg, #ff80ab, #ff4081);
+            color: white; font-size: 0.9rem; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 3px 10px rgba(255,64,129,0.35);
+            transition: transform 0.15s; flex-shrink: 0;
+        }
+        .track-play-btn:active { transform: scale(0.9); }
+        .track-bars {
+            display: flex; align-items: flex-end; gap: 2px; height: 18px;
+            margin-right: 6px; opacity: 0; transition: opacity 0.3s;
+        }
+        .track-card.playing .track-bars { opacity: 1; }
+        .track-bar {
+            width: 3px; background: var(--accent); border-radius: 2px;
+            animation: barBounce 0.6s ease-in-out infinite alternate;
+        }
+        .track-bar:nth-child(1) { height: 8px; animation-delay: 0s; }
+        .track-bar:nth-child(2) { height: 14px; animation-delay: 0.15s; }
+        .track-bar:nth-child(3) { height: 10px; animation-delay: 0.3s; }
+        .track-bar:nth-child(4) { height: 16px; animation-delay: 0.1s; }
+        @keyframes barBounce { from { transform: scaleY(0.4); } to { transform: scaleY(1); } }
 
         .mood-box { background: rgba(255,255,255,0.3); padding: 12px; border-radius: 20px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.5); }
         .mood-btns { display: flex; justify-content: center; gap: 15px; margin-top: 8px; }
@@ -214,6 +409,55 @@
         .dot-sad { background: #64b5f6; }
         .dot-angry { background: #ff5252; }
         .dot-hungry { background: #ffb74d; }
+
+        /* ===== Memories Section ===== */
+        .memories-section {
+            width: 100%; margin-bottom: 20px;
+        }
+        .memories-header {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            margin-bottom: 14px;
+        }
+        .memories-header-line {
+            flex: 1; height: 2px;
+            background: linear-gradient(90deg, transparent, #ffb3c6);
+        }
+        .memories-header-line.right {
+            background: linear-gradient(90deg, #ffb3c6, transparent);
+        }
+        .memories-header-badge {
+            background: white; border: 2px solid #ffb3c6; border-radius: 50px;
+            padding: 5px 14px; font-size: 0.7rem; font-weight: 700;
+            color: var(--text-main); white-space: nowrap; letter-spacing: 1px;
+        }
+        .memories-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
+        }
+        .polaroid-card {
+            background: white; border-radius: 6px;
+            padding: 8px 8px 28px 8px;
+            box-shadow: 0 6px 20px rgba(216,27,96,0.12), 0 2px 6px rgba(0,0,0,0.08);
+            position: relative; transition: transform 0.3s;
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+        .polaroid-card:nth-child(odd) { transform: rotate(-1.5deg); }
+        .polaroid-card:nth-child(even) { transform: rotate(1.5deg); }
+        .polaroid-card:hover { transform: rotate(0deg) scale(1.04) translateY(-4px); z-index: 5; box-shadow: 0 14px 35px rgba(216,27,96,0.2); }
+        .polaroid-photo {
+            width: 100%; aspect-ratio: 1; object-fit: cover;
+            border-radius: 3px; display: block; background: #fff0f5;
+        }
+        .polaroid-caption {
+            position: absolute; bottom: 6px; left: 0; right: 0;
+            text-align: center; font-family: 'Caveat', cursive;
+            font-size: 0.95rem; color: #888; padding: 0 6px;
+        }
+        .polaroid-pin {
+            position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+            width: 18px; height: 18px; background: radial-gradient(circle at 40% 35%, #ff8fab, #d81b60);
+            border-radius: 50%; box-shadow: 0 2px 6px rgba(216,27,96,0.4);
+            border: 2px solid rgba(255,255,255,0.7);
+        }
 
         .bio-section { background: rgba(255, 255, 255, 0.4); border-radius: 20px; padding: 15px; margin-bottom: 20px; text-align: left; }
         .bio-item { font-size: 0.85rem; color: var(--text-sub); margin-bottom: 6px; display: flex; flex-wrap: wrap; }
@@ -317,8 +561,51 @@
 
             <audio id="mySong" loop><source src="015 Proud.mp3" type="audio/mpeg"></audio>
             <audio id="happySong" loop><source src="เวลาเธอยิ้ม.mp3" type="audio/mpeg"></audio>
-            
-            <button class="music-btn" onclick="toggleMusic()">🎵 <span id="music-status">กดเพื่อเปิดเพลง Proud 🌸</span></button>
+
+            <!-- OUR PLAYLIST -->
+            <div class="playlist-section">
+                <div class="playlist-header">
+                    <div class="playlist-header-line"></div>
+                    <div class="playlist-header-badge">🎵 OUR PLAYLIST 🎵</div>
+                    <div class="playlist-header-line right"></div>
+                </div>
+                <div class="playlist-tracks">
+                    <div class="track-card" id="track-proud" onclick="playTrack('proud')">
+                        <div class="track-icon-wrap proud-color">
+                            <div class="track-vinyl"></div>
+                            🌸
+                        </div>
+                        <div class="track-info">
+                            <div class="track-name">Proud - fellow fellow</div>
+                            <div class="track-sub">เพลงที่กำตั้งใจเปิดให้อ้วนฟัง 🌸</div>
+                        </div>
+                        <div class="track-bars">
+                            <div class="track-bar"></div>
+                            <div class="track-bar"></div>
+                            <div class="track-bar"></div>
+                            <div class="track-bar"></div>
+                        </div>
+                        <button class="track-play-btn" id="btn-proud">▶</button>
+                    </div>
+                    <div class="track-card" id="track-happy" onclick="playTrack('happy')">
+                        <div class="track-icon-wrap happy-color">
+                            <div class="track-vinyl"></div>
+                            🌟
+                        </div>
+                        <div class="track-info">
+                            <div class="track-name">เวลาเธอยิ้ม - Polycat</div>
+                            <div class="track-sub">ฟังตอนอ้วนยิ้มแล้วโลกสดใส</div>
+                        </div>
+                        <div class="track-bars">
+                            <div class="track-bar"></div>
+                            <div class="track-bar"></div>
+                            <div class="track-bar"></div>
+                            <div class="track-bar"></div>
+                        </div>
+                        <button class="track-play-btn" id="btn-happy">▶</button>
+                    </div>
+                </div>
+            </div>
 
             <div class="mood-box">
                 <p style="font-size: 0.75rem; color: var(--text-main);">วันนี้อ้วนเป็นยังไง?</p>
@@ -338,6 +625,29 @@
                 </div>
                 <div class="calendar-grid" id="calendar-grid">
                     <div class="calendar-day-label">S</div><div class="calendar-day-label">M</div><div class="calendar-day-label">T</div><div class="calendar-day-label">W</div><div class="calendar-day-label">T</div><div class="calendar-day-label">F</div><div class="calendar-day-label">S</div>
+                </div>
+            </div>
+
+            <!-- OUR MEMORIES -->
+            <div class="memories-section">
+                <div class="memories-header">
+                    <div class="memories-header-line"></div>
+                    <div class="memories-header-badge">🖼 OUR MEMORIES 🖼</div>
+                    <div class="memories-header-line right"></div>
+                </div>
+                <div class="memories-grid">
+                    <div class="polaroid-card">
+                        <div class="polaroid-pin"></div>
+                        <img class="polaroid-photo" src="แฟน.png" alt="My Cake"
+                             onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSADGc854o4-04exHOD4cUdJDQPCe0-5hjSTQ&s'">
+                        <div class="polaroid-caption">My Cake 🍰</div>
+                    </div>
+                    <div class="polaroid-card">
+                        <div class="polaroid-pin"></div>
+                        <img class="polaroid-photo" src="แฟน2.png" alt="Happy Day"
+                             onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSADGc854o4-04exHOD4cUdJDQPCe0-5hjSTQ&s'">
+                        <div class="polaroid-caption">Happy Day 🌿</div>
+                    </div>
                 </div>
             </div>
 
@@ -375,7 +685,79 @@
                 </table>
             </fieldset>
 
+            <!-- Gift & Coupon Section -->
+            <div class="gift-section">
+                <button class="gift-btn btn-gift" onclick="openGiftModal()">
+                    <span class="gift-btn-icon">🎁</span>
+                    <span class="gift-btn-text">
+                        ของขวัญพิเศษ
+                        <span class="gift-btn-label">กดเพื่อเปิดกล่องของขวัญสำหรับอ้วน ✨</span>
+                    </span>
+                    <span>›</span>
+                </button>
+                <button class="gift-btn btn-coupon" onclick="drawCoupon()">
+                    <span class="gift-btn-icon">🎟</span>
+                    <span class="gift-btn-text">
+                        สุ่มคูปองรัก
+                        <span class="gift-btn-label">วันละครั้ง — แลกได้จริงนะ! 💙</span>
+                    </span>
+                    <span>›</span>
+                </button>
+            </div>
+
             <button class="btn-main" onclick="confetti({particleCount:150, spread:70, origin:{y:0.6}})">รักอ้วนที่สุดในโลกเลยย🍰💖</button>
+        </div>
+    </div>
+
+    <!-- Gift Modal -->
+    <div id="giftModal" class="gift-modal" onclick="closeGiftOnBg(event)">
+        <div class="gift-modal-content">
+            <div class="gift-modal-header">
+                <h3>🎁 ของขวัญพิเศษสำหรับอ้วน</h3>
+                <p>เลือกกล่องที่อยากเปิด ✨</p>
+            </div>
+            <div class="gift-modal-body">
+                <div class="gift-grid" id="gift-grid"></div>
+                <button class="gift-modal-close" onclick="closeGiftModal()">ปิด</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gift Detail Modal -->
+    <div id="giftDetailModal" class="gift-detail-modal" onclick="closeGiftDetail(event)">
+        <div class="gift-detail-content">
+            <div class="gift-detail-top">
+                <div class="gift-detail-emoji" id="gift-detail-emoji">🎀</div>
+                <div class="gift-detail-title" id="gift-detail-title"></div>
+                <div class="gift-detail-desc" id="gift-detail-desc"></div>
+            </div>
+            <button class="gift-detail-btn" onclick="closeGiftDetailBtn()">รับของขวัญแล้ว 💜</button>
+        </div>
+    </div>
+
+    <!-- Coupon Modal -->
+    <div id="couponModal" class="coupon-modal" onclick="closeCouponOnBg(event)">
+        <div class="coupon-card">
+            <div class="coupon-inner">
+                <div class="coupon-top">
+                    <div class="coupon-stamp">LOVE COUPON</div>
+                    <div class="coupon-emoji" id="coupon-emoji">💙</div>
+                    <div class="coupon-title" id="coupon-title">คูปองรัก</div>
+                </div>
+                <div class="coupon-body">
+                    <div class="coupon-desc" id="coupon-desc"></div>
+                    <div class="coupon-notch-row">
+                        <div class="coupon-notch-circle"></div>
+                        <div class="coupon-notch-line"></div>
+                        <div class="coupon-notch-circle"></div>
+                    </div>
+                    <div class="coupon-expire" id="coupon-expire"></div>
+                    <div class="coupon-barcode">| || ||| | || ||| | || ||| |</div>
+                    <button class="coupon-use-btn" id="coupon-use-btn" onclick="useCoupon()">✅ ใช้คูปองนี้</button>
+                    <button class="coupon-close-btn" onclick="closeCouponModal()">เก็บไว้ก่อน</button>
+                    <div class="coupon-used-note" id="coupon-used-note" style="display:none"></div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -404,7 +786,45 @@
     <script>
         const mySong = document.getElementById('mySong');
         const happySong = document.getElementById('happySong');
-        let isPlaying = false;
+        let currentTrack = null; // 'proud' | 'happy' | null
+
+        // ===== Playlist Player =====
+        function playTrack(track) {
+            const proudCard = document.getElementById('track-proud');
+            const happyCard = document.getElementById('track-happy');
+            const btnProud = document.getElementById('btn-proud');
+            const btnHappy = document.getElementById('btn-happy');
+
+            if (currentTrack === track) {
+                // pause same track
+                mySong.pause(); happySong.pause();
+                proudCard.classList.remove('playing');
+                happyCard.classList.remove('playing');
+                btnProud.innerHTML = '▶'; btnHappy.innerHTML = '▶';
+                currentTrack = null;
+                return;
+            }
+
+            // stop both first
+            mySong.pause(); happySong.pause();
+            proudCard.classList.remove('playing');
+            happyCard.classList.remove('playing');
+            btnProud.innerHTML = '▶'; btnHappy.innerHTML = '▶';
+
+            if (track === 'proud') {
+                mySong.play().then(() => {
+                    proudCard.classList.add('playing');
+                    btnProud.innerHTML = '⏸';
+                    currentTrack = 'proud';
+                }).catch(() => {});
+            } else {
+                happySong.play().then(() => {
+                    happyCard.classList.add('playing');
+                    btnHappy.innerHTML = '⏸';
+                    currentTrack = 'happy';
+                }).catch(() => {});
+            }
+        }
         const startDate = new Date('2026-03-25T00:00:00');
         const getTodayStr = () => new Date().toISOString().slice(0, 10);
 
@@ -559,15 +979,7 @@
             document.getElementById('bday-timer').innerText = (today.getMonth() === 8 && today.getDate() === 7) ? "🎉 สุขสันต์วันเกิดนะอ้วน! 🎂" : `เหลืออีก ${days} วัน 🎈`;
         }
 
-        function toggleMusic() {
-            const status = document.getElementById('music-status');
-            happySong.pause();
-            if (!isPlaying) {
-                mySong.play().then(() => { status.innerText = "กำลังเล่น: Proud... 🌸"; isPlaying = true; }).catch(() => alert("ยังไม่ได้ใส่ไฟล์เพลง Proud นะ!"));
-            } else {
-                mySong.pause(); status.innerText = "กดเพื่อเปิดเพลง Proud 🌸"; isPlaying = false;
-            }
-        }
+        function toggleMusic() {} // legacy - replaced by playTrack
 
         function mood(type) {
             const replies = { '😊':"ดีมาก! ยิ้มเยอะๆ นะ 🎶", '😔':"โอ๋ๆ เดี๋ยวเค้ากอดนะ", '😤':"ใจเย็นๆ เดี๋ยวพาไปกินขนม", '😋':"หิวหรอ? ไปกินของอร่อยกัน!" };
@@ -579,7 +991,7 @@
             localStorage.setItem('moodHistory', JSON.stringify(moodData));
             initCalendar();
             if (type === '😊') {
-                mySong.pause(); isPlaying = false;
+                mySong.pause(); currentTrack = null; document.getElementById('track-proud').classList.remove('playing'); document.getElementById('btn-proud').innerHTML='▶';
                 happySong.play().catch(() => {});
                 confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
             }
@@ -621,6 +1033,8 @@
 
         document.addEventListener('click', (e) => {
             if (e.target.closest('.capsule-modal-content') || e.target.closest('.capsule-box')) return;
+            if (e.target.closest('.gift-modal-content') || e.target.closest('.gift-detail-content')) return;
+            if (e.target.closest('.coupon-card') || e.target.closest('.gift-section')) return;
             const heart = document.createElement('div');
             heart.innerHTML = '❤️';
             heart.className = 'click-heart';
@@ -639,7 +1053,128 @@
             setTimeout(() => item.remove(), 5000);
         }, 800);
 
-        // Init
+        // ===== Gift System =====
+        const gifts = [
+            { id: 'g1', icon: '🎀', name: 'โบว์สีชมพู', desc: 'สัญญาว่าจะผูกผมให้อ้วนทุกครั้งที่อยู่ด้วยกัน 🎀', unlockDay: 0 },
+            { id: 'g2', icon: '🍰', name: 'เค้กพิเศษ', desc: 'เค้กวันเกิดที่เค้าจะทำให้อ้วนด้วยตัวเอง 🍰 รอดูนะ!', unlockDay: 0 },
+            { id: 'g3', icon: '🌷', name: 'ช่อดอกไม้', desc: 'ดอกทิวลิปสีชมพูที่อ้วนชอบ จะซื้อให้เวลาเจอกัน 🌷', unlockDay: 0 },
+            { id: 'g4', icon: '🎬', name: 'มูวี่ไนท์', desc: 'ดูหนังด้วยกันทั้งคืน อ้วนเลือกเองเลย 🎬🍿', unlockDay: 7 },
+            { id: 'g5', icon: '🍜', name: 'คุกกิ้งเดต', desc: 'เค้าจะทำอาหารให้อ้วนกินเองเลย ไม่ว่าจะขอเมนูไหน 🍜', unlockDay: 7 },
+            { id: 'g6', icon: '⭐', name: 'ดูดาวด้วยกัน', desc: 'พาอ้วนไปดูดาวยามค่ำคืน สัญญา! ✨🌙', unlockDay: 14 },
+            { id: 'g7', icon: '🎵', name: 'เพลงพิเศษ', desc: 'จะร้องเพลงให้อ้วนฟังสักเพลง (อย่าหัวเราะนะ) 🎵', unlockDay: 14 },
+            { id: 'g8', icon: '📸', name: 'โฟโต้เดต', desc: 'พาอ้วนไปถ่ายรูปด้วยกัน เก็บความทรงจำสวยๆ 📸', unlockDay: 30 },
+            { id: 'g9', icon: '🌍', name: 'ทริปพิเศษ', desc: 'วันหนึ่งจะพาอ้วนไปเที่ยวที่อ้วนอยากไป ไม่ว่าจะที่ไหน 🌍✈️', unlockDay: 30 },
+        ];
+
+        let openedGifts = JSON.parse(localStorage.getItem('openedGifts')) || [];
+
+        function renderGifts() {
+            const now = new Date();
+            const daysTogether = Math.floor((now - startDate) / (1000*60*60*24));
+            const grid = document.getElementById('gift-grid');
+            grid.innerHTML = gifts.map(g => {
+                const isLocked = daysTogether < g.unlockDay;
+                const isOpened = openedGifts.includes(g.id);
+                return `<div class="gift-item ${isLocked ? 'locked' : ''}" onclick="${isLocked ? '' : `openGift('${g.id}')`}">
+                    ${!isLocked && !isOpened ? '<div class="gift-unlock-badge">!</div>' : ''}
+                    <div class="gift-item-icon">${isOpened ? '✅' : (isLocked ? '🔒' : g.icon)}</div>
+                    <div class="gift-item-name">${g.name}</div>
+                    <div class="gift-item-hint">${isLocked ? `ปลดล็อกวันที่ ${g.unlockDay}` : (isOpened ? 'รับแล้ว!' : 'แตะเพื่อเปิด')}</div>
+                </div>`;
+            }).join('');
+        }
+
+        function openGiftModal() {
+            renderGifts();
+            document.getElementById('giftModal').style.display = 'block';
+        }
+        function closeGiftModal() { document.getElementById('giftModal').style.display = 'none'; }
+        function closeGiftOnBg(e) { if (e.target === document.getElementById('giftModal')) closeGiftModal(); }
+
+        function openGift(id) {
+            const g = gifts.find(x => x.id === id);
+            if (!g) return;
+            document.getElementById('gift-detail-emoji').innerText = g.icon;
+            document.getElementById('gift-detail-title').innerText = g.name;
+            document.getElementById('gift-detail-desc').innerText = g.desc;
+            document.getElementById('giftDetailModal').style.display = 'block';
+            document.getElementById('giftDetailModal').dataset.currentId = id;
+            confetti({ particleCount: 80, spread: 70, origin: { y: 0.5 }, colors: ['#ce93d8','#ff80ab','#ffffff'] });
+        }
+
+        function closeGiftDetail(e) { if (e.target === document.getElementById('giftDetailModal')) closeGiftDetailBtn(); }
+        function closeGiftDetailBtn() {
+            const id = document.getElementById('giftDetailModal').dataset.currentId;
+            if (id && !openedGifts.includes(id)) {
+                openedGifts.push(id);
+                localStorage.setItem('openedGifts', JSON.stringify(openedGifts));
+            }
+            document.getElementById('giftDetailModal').style.display = 'none';
+            renderGifts();
+        }
+
+        // ===== Coupon System =====
+        const coupons = [
+            { emoji: '🤗', title: 'คูปองกอด', desc: 'สามารถขอกอดเค้าได้ 1 ครั้ง ไม่มีเงื่อนไข แลกได้ตลอด 24 ชั่วโมง 🤗' },
+            { emoji: '🍡', title: 'คูปองของหวาน', desc: 'เค้าจะพาอ้วนไปกินของหวานที่อ้วนอยากกิน เลือกเองได้เลย! 🍡🍰' },
+            { emoji: '🎮', title: 'คูปองเกมส์', desc: 'เล่นเกมอะไรก็ได้ด้วยกัน เค้าจะไม่โกง (มั้ง) 🎮😄' },
+            { emoji: '💆', title: 'คูปองนวด', desc: 'นวดไหล่ให้อ้วน 15 นาที ไม่มีข้ออ้าง แลกได้เลย! 💆' },
+            { emoji: '🌙', title: 'คูปองคุยทั้งคืน', desc: 'คืนนี้คุยด้วยกันยันเช้า ไม่ว่าจะเรื่องอะไรก็ได้ 🌙✨' },
+            { emoji: '🎁', title: 'คูปองซื้อของ', desc: 'อ้วนอยากได้อะไร บอกมาได้เลย เค้าจะซื้อให้! (ในงบนะ 555) 🎁' },
+            { emoji: '📷', title: 'คูปองถ่ายรูป', desc: 'เค้าจะถ่ายรูปให้อ้วนสวยๆ ไม่จำกัดจำนวน วันไหนก็ได้ 📷💕' },
+            { emoji: '🍳', title: 'คูปองอาหาร', desc: 'เค้าจะทำอาหารให้อ้วนกิน 1 มื้อ เมนูอะไรก็ได้ที่ทำได้นะ 🍳' },
+            { emoji: '🌈', title: 'คูปองซัพไพรส์', desc: 'เค้าจะทำสิ่งพิเศษให้อ้วน 1 อย่าง...ต้องแลกถึงจะรู้ว่าคืออะไร 🌈✨' },
+        ];
+
+        let currentCoupon = null;
+
+        function drawCoupon() {
+            const today = getTodayStr();
+            const savedCoupon = JSON.parse(localStorage.getItem('todayCoupon') || 'null');
+
+            if (savedCoupon && savedCoupon.date === today) {
+                currentCoupon = savedCoupon;
+            } else {
+                const c = coupons[Math.floor(Math.random() * coupons.length)];
+                currentCoupon = { ...c, date: today, used: false };
+                localStorage.setItem('todayCoupon', JSON.stringify(currentCoupon));
+            }
+
+            document.getElementById('coupon-emoji').innerText = currentCoupon.emoji;
+            document.getElementById('coupon-title').innerText = currentCoupon.title;
+            document.getElementById('coupon-desc').innerText = currentCoupon.desc;
+            document.getElementById('coupon-expire').innerText = `หมดอายุ: วันนี้ ${today} เท่านั้น!`;
+
+            const usedNote = document.getElementById('coupon-used-note');
+            const useBtn = document.getElementById('coupon-use-btn');
+            if (currentCoupon.used) {
+                usedNote.style.display = 'block';
+                usedNote.innerText = '✅ ใช้คูปองนี้ไปแล้ววันนี้';
+                useBtn.style.opacity = '0.4';
+                useBtn.style.pointerEvents = 'none';
+            } else {
+                usedNote.style.display = 'none';
+                useBtn.style.opacity = '1';
+                useBtn.style.pointerEvents = 'auto';
+            }
+
+            document.getElementById('couponModal').style.display = 'block';
+        }
+
+        function useCoupon() {
+            if (!currentCoupon || currentCoupon.used) return;
+            currentCoupon.used = true;
+            localStorage.setItem('todayCoupon', JSON.stringify(currentCoupon));
+            document.getElementById('coupon-used-note').style.display = 'block';
+            document.getElementById('coupon-used-note').innerText = '✅ ใช้คูปองนี้ไปแล้ววันนี้ — อย่าลืมทวงนะ! 💙';
+            document.getElementById('coupon-use-btn').style.opacity = '0.4';
+            document.getElementById('coupon-use-btn').style.pointerEvents = 'none';
+            confetti({ particleCount: 60, spread: 60, origin: { y: 0.6 }, colors: ['#1565c0','#64b5f6','#ffffff'] });
+        }
+
+        function closeCouponModal() { document.getElementById('couponModal').style.display = 'none'; }
+        function closeCouponOnBg(e) { if (e.target === document.getElementById('couponModal')) closeCouponModal(); }
+
         setInterval(() => { updateAnniversary(); updateGreeting(); updateBirthday(); }, 1000);
         updateAnniversary();
         updateGreeting();
