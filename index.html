@@ -39,10 +39,7 @@
             position: relative;
         }
 
-        #heart-container, #click-container {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 1;
-        }
+        #heart-container, #click-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
 
         .container { width: 100%; display: flex; flex-direction: column; align-items: center; z-index: 10; }
 
@@ -54,6 +51,7 @@
             margin: 0 auto;
         }
 
+        /* --- Image Section --- */
         .image-container {
             width: 130px; height: 130px; border-radius: 50%; overflow: hidden;
             margin: -100px auto 1rem auto; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
@@ -62,92 +60,56 @@
         @keyframes float-img { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-10px) rotate(2deg); } }
         .cat-image { width: 100%; height: 100%; object-fit: cover; }
 
-        h1 { color: var(--text-main); font-size: 1.5rem; margin-bottom: 5px; font-weight: 600; min-height: 2rem; padding: 0 10px; }
+        h1 { color: var(--text-main); font-size: 1.5rem; margin-bottom: 5px; font-weight: 600; min-height: 2rem; }
 
         .time-capture-box {
-            background: var(--capture-bg);
-            border-radius: 25px;
-            padding: 15px;
-            margin: 10px 0 20px 0;
-            border: 2px dashed var(--accent);
-            position: relative;
+            background: var(--capture-bg); border-radius: 25px; padding: 15px; margin: 10px 0 20px 0;
+            border: 2px dashed var(--accent); position: relative;
         }
         .capture-label { font-size: 0.7rem; color: var(--text-main); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
         #timer { font-size: 1.1rem; color: var(--text-sub); font-weight: 600; margin: 5px 0; }
         .capture-btn-small {
-            background: var(--accent); color: white; border: none; padding: 8px 20px; 
-            border-radius: 15px; font-size: 0.75rem; cursor: pointer; font-weight: 600; margin-top: 5px;
-            box-shadow: 0 4px 10px rgba(255, 64, 129, 0.3);
+            background: var(--accent); color: white; border: none; padding: 6px 15px; 
+            border-radius: 15px; font-size: 0.7rem; cursor: pointer; font-weight: 600;
         }
-        #capture-log { font-size: 0.7rem; color: var(--text-sub); margin-top: 10px; font-style: italic; opacity: 1; transition: 0.3s; }
 
         .birthday-box {
             background: linear-gradient(135deg, #ff80ab, #ba68c8);
             color: white; border-radius: 20px; padding: 12px; margin-bottom: 20px;
-            box-shadow: 0 8px 15px rgba(216, 27, 96, 0.2);
             border: 2px solid white; animation: pulse 2s infinite;
         }
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
-        .bday-title { font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 2px; }
-        .bday-days { font-family: 'Caveat', cursive; font-size: 1.5rem; letter-spacing: 1px; }
+        .bday-days { font-family: 'Caveat', cursive; font-size: 1.5rem; }
 
-        .music-btn { margin-bottom: 1rem; background: white; border: 1px solid var(--accent); color: var(--accent); padding: 8px 15px; border-radius: 20px; font-size: 0.75rem; cursor: pointer; font-weight: 600; width: 100%; transition: 0.3s; }
-        .music-btn:hover { background: var(--accent); color: white; }
+        .music-btn { margin-bottom: 1rem; background: white; border: 1px solid var(--accent); color: var(--accent); padding: 8px 15px; border-radius: 20px; font-size: 0.75rem; cursor: pointer; font-weight: 600; width: 100%; }
 
         .mood-box { background: rgba(255,255,255,0.3); padding: 12px; border-radius: 20px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.5); }
-        .mood-btns { display: flex; justify-content: center; gap: 15px; margin-top: 8px; }
-        .mood-btn { font-size: 1.6rem; cursor: pointer; transition: 0.2s; }
+        .mood-btns { display: flex; justify-content: center; gap: 15px; margin-top: 8px; font-size: 1.6rem; }
+        .mood-btn { cursor: pointer; transition: 0.2s; }
         .mood-btn:hover { transform: scale(1.3); }
 
         .calendar-box { background: rgba(255, 255, 255, 0.4); border-radius: 25px; padding: 15px; margin-bottom: 20px; border: 2px solid var(--border-color); }
-        .calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; color: var(--text-main); font-weight: 600; font-size: 0.85rem; }
-        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
-        .calendar-day-label { font-size: 0.6rem; color: var(--text-sub); font-weight: 600; }
-        .day-cell { aspect-ratio: 1; background: rgba(255, 255, 255, 0.5); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #888; position: relative; border: 1px solid rgba(255,255,255,0.3); }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin-top: 10px; }
+        .day-cell { aspect-ratio: 1; background: rgba(255, 255, 255, 0.5); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; position: relative; }
         .day-cell.today { border: 2px solid var(--accent); font-weight: bold; color: var(--text-main); }
-        .mood-dot { width: 80%; height: 80%; border-radius: 50%; position: absolute; opacity: 0.6; filter: blur(2px); z-index: 0; }
-        .dot-happy { background: #ffeb3b; }
-        .dot-sad { background: #64b5f6; }
-        .dot-angry { background: #ff5252; }
-        .dot-hungry { background: #ffb74d; }
+        .mood-dot { width: 6px; height: 6px; border-radius: 50%; position: absolute; bottom: 2px; }
+        .dot-happy { background: #ffeb3b; } .dot-sad { background: #64b5f6; } .dot-angry { background: #ff5252; } .dot-hungry { background: #ffb74d; }
 
-        .bio-section { background: rgba(255, 255, 255, 0.4); border-radius: 20px; padding: 15px; margin-bottom: 20px; text-align: left; }
-        .bio-item { font-size: 0.85rem; color: var(--text-sub); margin-bottom: 6px; display: flex; flex-wrap: wrap; }
-        .bio-label { font-weight: 600; min-width: 100px; color: var(--text-main); }
+        .garden-box { background: rgba(255, 255, 255, 0.4); border-radius: 20px; padding: 15px; margin-bottom: 20px; border: 2px dashed #81c784; }
+        .tree-display { font-size: 3rem; margin: 5px 0; }
+        .progress-bar { background: linear-gradient(90deg, #ff80ab, #f48fb1); width: 0%; height: 100%; transition: width 0.5s; }
 
-        .daily-box { background: var(--accent); color: white; border-radius: 15px; padding: 12px; margin-bottom: 12px; cursor: pointer; border: 2px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 100%; }
-        .daily-label { font-size: 0.75rem; opacity: 0.9; margin-bottom: 4px; display: block; font-weight: 600; }
-
-        .garden-box { background: rgba(255, 255, 255, 0.4); border-radius: 20px; padding: 15px; margin-bottom: 20px; border: 2px dashed #81c784; width: 100%; }
-        .tree-display { font-size: 3rem; margin: 5px 0; transition: transform 0.3s; }
-        .progress-container { background: rgba(0,0,0,0.1); border-radius: 10px; height: 12px; width: 85%; margin: 8px auto; overflow: hidden; border: 1px solid rgba(255,255,255,0.5); }
-        .progress-bar { background: linear-gradient(90deg, #ff80ab, #f48fb1); width: 0%; height: 100%; transition: width 0.5s ease; }
-        .water-btn { background: #4caf50; color: white; border: none; padding: 8px 18px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 0.75rem; }
-        .water-btn.disabled { background: #9e9e9e; cursor: not-allowed; }
-
-        .grid-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; padding: 5px; }
-        .polaroid { background: white; padding: 8px 8px 20px 8px; border-radius: 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transform: rotate(var(--r, 0deg)); transition: 0.3s; }
-        .polaroid:hover { transform: scale(1.05) rotate(0deg); z-index: 5; }
-        .polaroid img { width: 100%; height: 140px; object-fit: cover; background: #fff5f8; }
-        .polaroid-text { font-family: 'Caveat', cursive; font-size: 1rem; color: var(--text-sub); margin-top: 8px; }
-
-        fieldset { border: 2px dashed var(--accent); border-radius: 20px; padding: 15px; background: rgba(255, 255, 255, 0.2); margin-bottom: 20px; width: 100%; overflow-x: auto; }
-        legend { background: var(--accent); color: white; padding: 4px 18px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; margin: 0 auto; }
-
-        table { width: 100%; border-collapse: collapse; min-width: 300px; }
-        th { color: var(--text-main); border-bottom: 2px solid var(--accent); padding: 8px 4px; font-size: 0.7rem; }
-        td { padding: 8px 4px; color: var(--text-sub); border-bottom: 1px solid rgba(255, 193, 227, 0.2); font-size: 0.7rem; text-align: center; }
+        /* --- Table Section --- */
+        fieldset { border: 2px dashed var(--accent); border-radius: 20px; padding: 15px; background: rgba(255, 255, 255, 0.2); margin-bottom: 20px; width: 100%; overflow: hidden; }
+        legend { background: var(--accent); color: white; padding: 4px 18px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
+        th { color: var(--text-main); border-bottom: 2px solid var(--accent); padding: 8px 4px; }
+        td { padding: 8px 4px; color: var(--text-sub); border-bottom: 1px solid rgba(255, 193, 227, 0.2); }
 
         .btn-main { background: linear-gradient(45deg, #ff4081, #ba68c8); color: white; border: none; padding: 12px; border-radius: 50px; width: 100%; font-weight: 600; cursor: pointer; margin-top: 10px; }
         
-        .floating-item { position: absolute; animation: floatUp 5s linear forwards; pointer-events: none; z-index: 0; }
-        @keyframes floatUp { 0% { transform: translateY(110vh) scale(0.5); opacity: 0; } 10% { opacity: 0.8; } 100% { transform: translateY(-10vh) scale(1.2) rotate(360deg); opacity: 0; } }
-        .click-heart { position: absolute; animation: clickPop 0.8s ease-out forwards; pointer-events: none; z-index: 100; font-size: 24px; }
-        @keyframes clickPop { 0% { transform: scale(0); opacity: 1; } 100% { transform: scale(1.5) translateY(-40px); opacity: 0; } }
-
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); }
-        .modal-content { background: #fff; margin: 15% auto; padding: 30px; border-radius: 30px; width: 85%; max-width: 400px; text-align: left; position: relative; border: 5px solid var(--accent); }
-        .close { position: absolute; right: 20px; top: 15px; font-size: 28px; font-weight: bold; color: var(--accent); cursor: pointer; }
+        .modal-content { background: #fff; margin: 20% auto; padding: 30px; border-radius: 30px; width: 85%; max-width: 400px; border: 5px solid var(--accent); }
     </style>
 </head>
 <body>
@@ -158,26 +120,25 @@
     <div class="container">
         <div class="card">
             <div class="image-container">
-                <img src="images.png" class="cat-image" onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSADGc854o4-04exHOD4cUdJDQPCe0-5hjSTQ&s'">
+                <img src="images.png" class="cat-image" onerror="this.src='https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=500&auto=format&fit=crop'">
             </div>
             
             <h1 id="greeting">CAKE (ไอ้อ้วนน)</h1>
 
             <div class="time-capture-box">
-                <span class="capture-label" id="capture-title">✨ Anniversary Time Capture ✨</span>
-                <div id="timer">คำนวณเวลา...</div>
-                <button class="capture-btn-small" onclick="captureThisMoment()">📸 Capture Our Moment</button>
-                <div id="capture-log">ยังไม่มีการบันทึกวินาทีประทับใจ</div>
+                <span class="capture-label">✨ วินาทีที่รักกัน ✨</span>
+                <div id="timer">Loading...</div>
+                <button class="capture-btn-small" onclick="captureThisMoment()">📸 Capture This Moment</button>
+                <div id="capture-log" style="font-size:0.65rem; margin-top:8px; font-style:italic; color:var(--text-sub);">ยังไม่มีการบันทึก</div>
             </div>
 
-            <div class="birthday-box" id="birthday-box">
-                <span class="bday-title">🎂 เคาท์ดาวน์วันเกิดอ้วน (7 ก.ย.)</span>
+            <div class="birthday-box">
+                <span style="font-size: 0.8rem; font-weight:600;">🎂 เคาท์ดาวน์วันเกิดอ้วน (7 ก.ย.)</span>
                 <div class="bday-days" id="bday-timer">เหลืออีก -- วัน</div>
             </div>
 
             <audio id="mySong" loop><source src="015 Proud.mp3" type="audio/mpeg"></audio>
             <audio id="happySong" loop><source src="เวลาเธอยิ้ม.mp3" type="audio/mpeg"></audio>
-            
             <button class="music-btn" onclick="toggleMusic()">🎵 <span id="music-status">กดเพื่อเปิดเพลง Proud 🌸</span></button>
 
             <div class="mood-box">
@@ -188,36 +149,12 @@
                     <span class="mood-btn" onclick="mood('😤')">😤</span>
                     <span class="mood-btn" onclick="mood('😋')">😋</span>
                 </div>
-                <p id="mood-reply" style="font-size: 0.8rem; margin-top: 5px; color: var(--text-sub); min-height: 1.2rem;"></p>
+                <p id="mood-reply" style="font-size: 0.8rem; margin-top: 5px; color: var(--text-sub);"></p>
             </div>
 
             <div class="calendar-box">
-                <div class="calendar-header">
-                    <span id="month-name">-- 2569</span>
-                    <span style="font-size: 0.65rem; opacity: 0.7;">Mood Diary ✨</span>
-                </div>
-                <div class="calendar-grid" id="calendar-grid">
-                    <div class="calendar-day-label">S</div><div class="calendar-day-label">M</div><div class="calendar-day-label">T</div><div class="calendar-day-label">W</div><div class="calendar-day-label">T</div><div class="calendar-day-label">F</div><div class="calendar-day-label">S</div>
-                </div>
-            </div>
-
-            <div class="bio-section">
-                <div class="bio-item"><span class="bio-label">วันที่คบกัน:</span><span>25 มีนาคม 2569 ✨</span></div>
-                <div class="bio-item"><span class="bio-label">วันเกิด:</span><span>7 ก.ย. 52 (05:00-06:00 น.)</span></div>
-            </div>
-
-            <button class="btn-main" style="margin-bottom: 15px; background: #ff80ab;" onclick="openLetter()">💌 อ่านจดหมายจากเค้า</button>
-
-            <div id="secret-box" class="daily-box" onclick="showSecret()">
-                <span class="daily-label">🔒 ข้อความลับเฉพาะอ้วน</span>
-                <div id="secret-text">✉️ จิ้มเพื่ออ่าน (วันละครั้ง)</div>
-            </div>
-
-            <div class="garden-box">
-                <p style="font-size: 0.75rem; color: #4caf50; font-weight: 600;">🪴 สวนดอกไม้ของอ้วน</p>
-                <div id="tree-icon" class="tree-display">🌰</div>
-                <div class="progress-container"><div id="growth-bar" class="progress-bar"></div></div>
-                <button id="water-btn" class="water-btn" onclick="waterTree()">💧 รดน้ำต้นไม้</button>
+                <div id="month-name" style="font-size:0.85rem; font-weight:600; color:var(--text-main);">-- 2569</div>
+                <div class="calendar-grid" id="calendar-grid"></div>
             </div>
 
             <fieldset>
@@ -225,23 +162,33 @@
                 <table>
                     <thead><tr><th>Color</th><th>Flower</th><th>Hobby</th><th>Song</th><th>Animal</th></tr></thead>
                     <tbody>
-                        <tr><td>ฟ้าอ่อน</td><td>ลาเวนเดอร์</td><td>วาดรูป</td><td>Proud</td><td>แมว</td></tr>
-                        <tr><td>ชมพูอ่อน</td><td>ทิวลิป</td><td>อ่านนิยาย</td><td>ทางของฝุ่น</td><td>กระต่าย</td></tr>
-                        <tr><td>ม่วง</td><td>เดซี่</td><td>ดนตรี</td><td>ไม่รู้ทำไม</td><td>แมวน้ำ</td></tr>
-                        <tr><td>เหลือง</td><td>ทานตะวัน</td><td>นอน</td><td>baby tee</td><td>เพนกวิ้น</td></tr>
+                        <tr><td>ฟ้า/ชมพู</td><td>ลาเวนเดอร์</td><td>วาดรูป</td><td>Proud</td><td>แมว</td></tr>
+                        <tr><td>ม่วง</td><td>ทิวลิป</td><td>อ่านนิยาย</td><td>ทางของฝุ่น</td><td>หมา</td></tr>
+                        <tr><td>เหลือง</td><td>เดซี่</td><td>ส่องป่า</td><td>baby tee</td><td>กระต่าย</td></tr>
+                        <tr><td>เขียว</td><td>ทานตะวัน</td><td>นอน</td><td>Sorry</td><td>แมวน้ำ</td></tr>
                     </tbody>
                 </table>
             </fieldset>
 
-            <button class="btn-main" onclick="confetti({particleCount:150, spread:70, origin:{y:0.6}})">รักอ้วนที่สุดในโลกเลยย🍰💖</button>
+            <div class="garden-box">
+                <p style="font-size: 0.75rem; color: #4caf50; font-weight: 600;">🪴 สวนดอกไม้ของอ้วน</p>
+                <div id="tree-icon" class="tree-display">🌰</div>
+                <div style="background:rgba(0,0,0,0.1); height:10px; border-radius:10px; overflow:hidden; margin:10px 0;">
+                    <div id="growth-bar" class="progress-bar"></div>
+                </div>
+                <button id="water-btn" style="background:#4caf50; color:white; border:none; padding:5px 15px; border-radius:20px; font-size:0.7rem; cursor:pointer;" onclick="waterTree()">💧 รดน้ำ</button>
+            </div>
+
+            <button class="btn-main" onclick="openLetter()">💌 อ่านจดหมายจากเค้า</button>
+            <button class="btn-main" style="margin-top:10px; background:#ff80ab;" onclick="confetti({particleCount:150, spread:70, origin:{y:0.6}})">รักอ้วนที่สุดเลยย🍰💖</button>
         </div>
     </div>
 
     <div id="loveLetter" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeLetter()">&times;</span>
-            <h2 style="color:var(--accent); margin-bottom:15px; font-family:'Caveat', cursive; font-size:2rem;">Dear Cake,</h2>
-            <p style="font-size:0.95rem; line-height:1.6; color:#555;">ถึงไอ้อ้วนของเค้า... ขอบคุณที่อยู่ด้วยกันมาตลอดนะ ดีใจมากที่มีอ้วนเข้ามาในชีวิต สัญญาว่าจะรักและดูแลอ้วนแบบนี้ไปนานๆ ยิ้มเยอะๆ นะครับคนเก่ง 🍰💖</p>
+            <h2 style="color:var(--accent); font-family:'Caveat', cursive; font-size:2rem; margin-bottom:10px;">Dear Cake,</h2>
+            <p style="font-size:0.95rem; line-height:1.6; color:#555;">ขอบคุณที่อยู่ด้วยกันนะอ้วน สัญญาว่าจะดูแลและรักอ้วนแบบนี้ไปนานๆ ยิ้มเยอะๆ นะครับคนเก่งของเค้า 🍰💖</p>
+            <button class="btn-main" onclick="closeLetter()">ปิด</button>
         </div>
     </div>
 
@@ -249,202 +196,75 @@
         const mySong = document.getElementById('mySong');
         const happySong = document.getElementById('happySong');
         let isPlaying = false;
-        
-        // --- 📅 ตั้งค่าวันครบรอบ (25 มี.ค. 2569) ---
         const startDate = new Date('2026-03-25T00:00:00'); 
-        const getTodayStr = () => new Date().toISOString().slice(0, 10);
 
-        // --- 📸 NEW: Time Capture Message Function ---
-        function captureThisMoment() {
-            const now = new Date();
-            const timeStr = now.toLocaleTimeString('th-TH');
-            const diff = now - startDate;
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            
-            // รายการข้อความสุ่มหวานๆ
-            const messages = [
-                `วินาทีที่รักอ้วน: ${timeStr}`,
-                `ความทรงจำ ณ ${timeStr} ถูกบันทึกแล้ว`,
-                `วันที่ ${days} เวลา ${timeStr} ตกหลุมรักอ้วนอีกรอบ`,
-                `จังหวะหัวใจเต้นแรงตอน ${timeStr}`,
-                `Love Captured: ${timeStr} (ไม่มีวันลบ)`,
-                `อยากหยุดเวลาไว้ที่ ${timeStr} จัง`,
-                `ขอบคุณที่อยู่ด้วยกันจนถึง ${timeStr} นะ`
-            ];
-            
-            const randomMsg = messages[Math.floor(Math.random() * messages.length)];
-            const logElement = document.getElementById('capture-log');
-            
-            // เพิ่ม Animation เล็กน้อยตอนเปลี่ยนข้อความ
-            logElement.style.opacity = '0';
-            setTimeout(() => {
-                logElement.innerText = "📍 " + randomMsg;
-                logElement.style.opacity = '1';
-            }, 200);
-            
-            confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 }, colors: ['#ff4081', '#ba68c8'] });
-        }
-
-        // --- 🕒 อัปเดต UI หลัก (Timer คบกัน) ---
         function updateUI() {
-            const now = new Date();
-            const diff = now - startDate;
+            const diff = new Date() - startDate;
+            const d = Math.floor(diff/(1000*60*60*24));
+            const h = Math.floor((diff/(1000*60*60))%24);
+            const m = Math.floor((diff/1000/60)%60);
+            const s = Math.floor((diff/1000)%60);
+            document.getElementById('timer').innerHTML = `${d} วัน ${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
             
-            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const m = Math.floor((diff / 1000 / 60) % 60);
-            const s = Math.floor((diff / 1000) % 60);
-            
-            const timerElement = document.getElementById('timer');
-            
-            if (diff < 0) {
-                // ถ้ายังไม่ถึงวันที่ 25 มี.ค. 69
-                timerElement.innerHTML = `<span style="font-size:0.8rem">นับถอยหลังสู่วันครบรอบ...</span>`;
-            } else {
-                timerElement.innerHTML = 
-                    `<span style="font-size:0.7rem; display:block; opacity:0.7">เราคบกันมาแล้ว</span>` +
-                    `${d} วัน <span style="color:var(--accent)">${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}</span>`;
-            }
-            
-            // ถ้าเป็นวันที่ 25 ของทุกเดือน ให้เปลี่ยนหัวข้อ
-            if (now.getDate() === 25) {
-                document.getElementById('capture-title').innerText = "💖 Happy Anniversary Day! 💖";
-            }
-
-            updateGreeting(); updateBirthday();
-        }
-
-        // --- ระบบปฏิทินอารมณ์ ---
-        let moodData = JSON.parse(localStorage.getItem('moodHistory')) || {};
-        function initCalendar() {
-            const grid = document.getElementById('calendar-grid');
-            const monthName = document.getElementById('month-name');
-            const now = new Date();
-            monthName.innerText = new Intl.DateTimeFormat('th-TH', { month: 'long', year: 'numeric' }).format(now);
-            const labels = Array.from(grid.querySelectorAll('.calendar-day-label'));
-            grid.innerHTML = '';
-            labels.forEach(l => grid.appendChild(l));
-            const firstDay = new Date(now.getFullYear(), now.getMonth(), 1).getDay();
-            const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
-            for (let i = 0; i < firstDay; i++) grid.appendChild(document.createElement('div'));
-            for (let d = 1; d <= daysInMonth; d++) {
-                const cell = document.createElement('div');
-                cell.className = 'day-cell';
-                if (d === now.getDate()) cell.classList.add('today');
-                cell.innerText = d;
-                const dateKey = `${now.getFullYear()}-${now.getMonth() + 1}-${d}`;
-                if (moodData[dateKey]) {
-                    const dot = document.createElement('div');
-                    dot.className = `mood-dot dot-${moodData[dateKey]}`;
-                    cell.appendChild(dot);
-                }
-                grid.appendChild(cell);
-            }
-        }
-
-        function updateGreeting() {
             const hour = new Date().getHours();
-            const greetElement = document.getElementById('greeting');
-            if (hour >= 5 && hour < 12) greetElement.innerText = "อรุณสวัสดิ์นะไอ้อ้วน ☀️";
-            else if (hour >= 12 && hour < 18) greetElement.innerText = "เที่ยงแล้ว หาไรกินยัง? 🍰";
-            else if (hour >= 18 && hour < 22) greetElement.innerText = "เย็นแล้ว พักผ่อนนะอ้วน 🌸";
-            else greetElement.innerText = "ดึกแล้ว ฝันดีนะไอ้อ้วน 🌙";
-            
             if (hour < 6 || hour >= 18) document.body.classList.add('night-mode');
             else document.body.classList.remove('night-mode');
+            
+            updateBirthday();
         }
 
         function updateBirthday() {
             const today = new Date();
             let bday = new Date(today.getFullYear(), 8, 7);
-            if (today > bday && (today.getDate() !== 7 || today.getMonth() !== 8)) bday.setFullYear(today.getFullYear() + 1);
-            const diff = bday - today;
-            const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-            document.getElementById('bday-timer').innerText = (today.getMonth() === 8 && today.getDate() === 7) ? "🎉 สุขสันต์วันเกิดนะอ้วน! 🎂" : `เหลืออีก ${days} วัน 🎈`;
+            if (today > bday) bday.setFullYear(today.getFullYear() + 1);
+            const days = Math.ceil((bday - today) / (1000 * 60 * 60 * 24));
+            document.getElementById('bday-timer').innerText = days === 0 ? "🎉 สุขสันต์วันเกิดนะอ้วน! 🎂" : `เหลืออีก ${days} วัน 🎈`;
         }
 
         function toggleMusic() {
             const status = document.getElementById('music-status');
-            happySong.pause();
             if (!isPlaying) {
-                mySong.play().then(() => { status.innerText = "กำลังเล่น: Proud... 🌸"; isPlaying = true; }).catch(() => alert("ใส่ไฟล์เพลง 015 Proud.mp3 ก่อนนะ!"));
+                mySong.play().then(() => { status.innerText = "กำลังเล่น: Proud... 🌸"; isPlaying = true; });
             } else {
                 mySong.pause(); status.innerText = "กดเพื่อเปิดเพลง Proud 🌸"; isPlaying = false;
             }
         }
 
         function mood(type) {
-            const replies = { '😊':"ดีมาก! ยิ้มเยอะๆ นะ 🎶", '😔':"โอ๋ๆ เดี๋ยวเค้ากอดนะ", '😤':"ใจเย็นๆ เดี๋ยวพาไปกินขนม", '😋':"หิวหรอ? ไปกินของอร่อยกัน!" };
+            const replies = { '😊':"ยิ้มเยอะๆ นะ 🎶", '😔':"โอ๋ๆ เดี๋ยวเค้ากอด", '😤':"ใจเย็นๆ นะ", '😋':"ไปหาของอร่อยกัน!" };
             document.getElementById('mood-reply').innerText = replies[type];
-            const now = new Date();
-            const dateKey = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
-            const typeMap = { '😊': 'happy', '😔': 'sad', '😤': 'angry', '😋': 'hungry' };
-            moodData[dateKey] = typeMap[type];
-            localStorage.setItem('moodHistory', JSON.stringify(moodData));
-            initCalendar();
-            if (type === '😊') {
-                mySong.pause(); isPlaying = false;
-                happySong.play().catch(() => {});
-                confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-            }
-        }
-
-        let treeProgress = parseInt(localStorage.getItem('treeProgress')) || 0;
-        let lastWaterDate = localStorage.getItem('lastWaterDate');
-        function updateTreeUI() {
-            const bar = document.getElementById('growth-bar');
-            const icon = document.getElementById('tree-icon');
-            const btn = document.getElementById('water-btn');
-            bar.style.width = treeProgress + '%';
-            if(treeProgress >= 100) icon.innerText = '🌷';
-            else if(treeProgress >= 50) icon.innerText = '🌿';
-            else icon.innerText = '🌱';
-            if(lastWaterDate === getTodayStr() || treeProgress >= 100) btn.classList.add('disabled');
-            else btn.classList.remove('disabled');
+            if (type === '😊') confetti({ particleCount: 100, spread: 70 });
         }
 
         function waterTree() {
-            if(lastWaterDate === getTodayStr() || treeProgress >= 100) return;
-            treeProgress = Math.min(treeProgress + 10, 100);
-            lastWaterDate = getTodayStr();
-            localStorage.setItem('treeProgress', treeProgress);
-            localStorage.setItem('lastWaterDate', lastWaterDate);
-            updateTreeUI();
-            confetti({ particleCount: 30, colors: ['#2196f3'], origin: { y: 0.8 } });
-        }
-
-        function showSecret() {
-            if (localStorage.getItem('lastSecret') === getTodayStr()) { alert("วันนี้อ่านไปแล้วน้า ❤️"); return; }
-            const quotes = ["วันนี้อ้วนน่ารักที่สุดในโลกเลย","เค้ารักอ้วนมากๆ นะ","ขอบคุณที่อยู่ด้วยกันนะคนเก่ง","ยิ้มเยอะๆ นะ เพราะรอยยิ้มอ้วนสวยที่สุด"];
-            document.getElementById('secret-text').innerText = "💌 " + quotes[Math.floor(Math.random()*quotes.length)];
-            localStorage.setItem('lastSecret', getTodayStr());
+            let progress = parseInt(localStorage.getItem('treeProgress')) || 0;
+            progress = Math.min(progress + 10, 100);
+            localStorage.setItem('treeProgress', progress);
+            document.getElementById('growth-bar').style.width = progress + '%';
+            if(progress >= 100) document.getElementById('tree-icon').innerText = '🌷';
+            else if(progress >= 50) document.getElementById('tree-icon').innerText = '🌿';
+            confetti({ particleCount: 20, colors: ['#2196f3'] });
         }
 
         function openLetter() { document.getElementById('loveLetter').style.display = "block"; }
         function closeLetter() { document.getElementById('loveLetter').style.display = "none"; }
 
-        // --- พื้นหลังหัวใจ ---
-        document.addEventListener('click', (e) => {
+        // Initial setup
+        setInterval(updateUI, 1000);
+        document.getElementById('growth-bar').style.width = (localStorage.getItem('treeProgress') || 0) + '%';
+        
+        // Floating hearts
+        setInterval(() => {
             const heart = document.createElement('div');
             heart.innerHTML = '❤️';
-            heart.className = 'click-heart';
-            heart.style.left = (e.clientX - 10) + 'px'; heart.style.top = (e.clientY - 10) + 'px';
-            document.getElementById('click-container').appendChild(heart);
-            setTimeout(() => heart.remove(), 800);
-        });
-
-        setInterval(() => {
-            const item = document.createElement('div');
-            item.innerHTML = '❤️';
-            item.className = 'floating-item';
-            item.style.left = Math.random() * 100 + 'vw';
-            document.getElementById('heart-container').appendChild(item);
-            setTimeout(() => item.remove(), 5000);
+            heart.style.cssText = `position:fixed; left:${Math.random()*100}vw; bottom:-20px; font-size:${Math.random()*20+10}px; animation: floatUp 5s linear forwards; pointer-events:none; z-index:0; opacity:0.6;`;
+            document.getElementById('heart-container').appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
         }, 1000);
 
-        setInterval(updateUI, 1000);
-        initCalendar();
-        updateTreeUI();
+        const style = document.createElement('style');
+        style.innerHTML = `@keyframes floatUp { to { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }`;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
