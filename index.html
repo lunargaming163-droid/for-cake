@@ -64,7 +64,6 @@
 
         h1 { color: var(--text-main); font-size: 1.5rem; margin-bottom: 5px; font-weight: 600; min-height: 2rem; padding: 0 10px; }
 
-        /* --- New Time Capture Styles --- */
         .time-capture-box {
             background: var(--capture-bg);
             border-radius: 25px;
@@ -76,10 +75,11 @@
         .capture-label { font-size: 0.7rem; color: var(--text-main); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
         #timer { font-size: 1.1rem; color: var(--text-sub); font-weight: 600; margin: 5px 0; }
         .capture-btn-small {
-            background: var(--accent); color: white; border: none; padding: 6px 15px; 
-            border-radius: 15px; font-size: 0.7rem; cursor: pointer; font-weight: 600; margin-top: 5px;
+            background: var(--accent); color: white; border: none; padding: 8px 20px; 
+            border-radius: 15px; font-size: 0.75rem; cursor: pointer; font-weight: 600; margin-top: 5px;
+            box-shadow: 0 4px 10px rgba(255, 64, 129, 0.3);
         }
-        #capture-log { font-size: 0.65rem; color: var(--text-sub); margin-top: 8px; font-style: italic; opacity: 0.8; }
+        #capture-log { font-size: 0.7rem; color: var(--text-sub); margin-top: 10px; font-style: italic; opacity: 1; transition: 0.3s; }
 
         .birthday-box {
             background: linear-gradient(135deg, #ff80ab, #ba68c8);
@@ -131,12 +131,12 @@
         .polaroid img { width: 100%; height: 140px; object-fit: cover; background: #fff5f8; }
         .polaroid-text { font-family: 'Caveat', cursive; font-size: 1rem; color: var(--text-sub); margin-top: 8px; }
 
-        fieldset { border: 2px dashed var(--accent); border-radius: 20px; padding: 15px; background: rgba(255, 255, 255, 0.2); margin-bottom: 20px; width: 100%; }
+        fieldset { border: 2px dashed var(--accent); border-radius: 20px; padding: 15px; background: rgba(255, 255, 255, 0.2); margin-bottom: 20px; width: 100%; overflow-x: auto; }
         legend { background: var(--accent); color: white; padding: 4px 18px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; margin: 0 auto; }
 
-        table { width: 100%; border-collapse: collapse; }
-        th { color: var(--text-main); border-bottom: 2px solid var(--accent); padding: 8px 4px; font-size: 0.75rem; }
-        td { padding: 8px 4px; color: var(--text-sub); border-bottom: 1px solid rgba(255, 193, 227, 0.2); font-size: 0.75rem; }
+        table { width: 100%; border-collapse: collapse; min-width: 300px; }
+        th { color: var(--text-main); border-bottom: 2px solid var(--accent); padding: 8px 4px; font-size: 0.7rem; }
+        td { padding: 8px 4px; color: var(--text-sub); border-bottom: 1px solid rgba(255, 193, 227, 0.2); font-size: 0.7rem; text-align: center; }
 
         .btn-main { background: linear-gradient(45deg, #ff4081, #ba68c8); color: white; border: none; padding: 12px; border-radius: 50px; width: 100%; font-weight: 600; cursor: pointer; margin-top: 10px; }
         
@@ -164,10 +164,10 @@
             <h1 id="greeting">CAKE (ไอ้อ้วนน)</h1>
 
             <div class="time-capture-box">
-                <span class="capture-label">✨ Time Capture ✨</span>
-                <div id="timer">Loading...</div>
-                <button class="capture-btn-small" onclick="captureThisMoment()">📸 Capture Seconds</button>
-                <div id="capture-log">ยังไม่มีการบันทึกเวลา</div>
+                <span class="capture-label" id="capture-title">✨ Anniversary Time Capture ✨</span>
+                <div id="timer">คำนวณเวลา...</div>
+                <button class="capture-btn-small" onclick="captureThisMoment()">📸 Capture Our Moment</button>
+                <div id="capture-log">ยังไม่มีการบันทึกวินาทีประทับใจ</div>
             </div>
 
             <div class="birthday-box" id="birthday-box">
@@ -223,14 +223,12 @@
             <fieldset>
                 <legend> 🎀 SHE LIKES 🎀 </legend>
                 <table>
-                    <thead><tr><th>Color</th><th>Flower</th><th>Hobby</th><th>Song</th></tr></thead>
+                    <thead><tr><th>Color</th><th>Flower</th><th>Hobby</th><th>Song</th><th>Animal</th></tr></thead>
                     <tbody>
-                        <tr><td>ฟ้าอ่อน</td><td>ไม่กินปลา</td><td>ลาเวนเดอร์</td><td>วาดรูป</td><td>DMMA</td><td>หมา</td></tr>
-                        <tr><td>ชมพูอ่อน</td><td>ขนมทุกอย่าง</td><td>ทิวลิป</td><td>ส่องป่า</td><td>ทางของฝุ่น</td><td>แมว</td></tr>
-                        <tr><td>ม่วง</td><td>-</td><td>ทานตะวัน</td><td>อ่านนิยาย</td><td>ไม่รู้ทำไม</td><td>กระต่าย</td></tr>
-                        <tr><td>เหลือง</td><td>-</td><td>เดซี่</td><td>นอน</td><td>baby tee</td><td>แมวน้ำ</td></tr>
-                        <tr><td>เขียว</td><td>-</td><td>แดนดิไลออน</td><td>ดนตรี/ดาว</td><td>pretty girl</td><td>เพนกวิ้น</td></tr>
-                        <tr><td>น้ำตาลไม้</td><td>-</td><td>-</td><td>-</td><td>Sorry</td><td>โคอาร่า</td></tr>
+                        <tr><td>ฟ้าอ่อน</td><td>ลาเวนเดอร์</td><td>วาดรูป</td><td>Proud</td><td>แมว</td></tr>
+                        <tr><td>ชมพูอ่อน</td><td>ทิวลิป</td><td>อ่านนิยาย</td><td>ทางของฝุ่น</td><td>กระต่าย</td></tr>
+                        <tr><td>ม่วง</td><td>เดซี่</td><td>ดนตรี</td><td>ไม่รู้ทำไม</td><td>แมวน้ำ</td></tr>
+                        <tr><td>เหลือง</td><td>ทานตะวัน</td><td>นอน</td><td>baby tee</td><td>เพนกวิ้น</td></tr>
                     </tbody>
                 </table>
             </fieldset>
@@ -251,39 +249,68 @@
         const mySong = document.getElementById('mySong');
         const happySong = document.getElementById('happySong');
         let isPlaying = false;
+        
+        // --- 📅 ตั้งค่าวันครบรอบ (25 มี.ค. 2569) ---
         const startDate = new Date('2026-03-25T00:00:00'); 
         const getTodayStr = () => new Date().toISOString().slice(0, 10);
 
-        // --- 📸 Time Capture Function ---
+        // --- 📸 NEW: Time Capture Message Function ---
         function captureThisMoment() {
             const now = new Date();
             const timeStr = now.toLocaleTimeString('th-TH');
             const diff = now - startDate;
-            const days = Math.floor(diff/(1000*60*60*24));
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             
-            const logs = [
+            // รายการข้อความสุ่มหวานๆ
+            const messages = [
                 `วินาทีที่รักอ้วน: ${timeStr}`,
-                `ความทรงจำ ณ ${timeStr}`,
-                `วันที่ ${days} เวลา ${timeStr} ตกหลุมรักอีกรอบ`,
-                `บันทึกจังหวะหัวใจ: ${timeStr}`
+                `ความทรงจำ ณ ${timeStr} ถูกบันทึกแล้ว`,
+                `วันที่ ${days} เวลา ${timeStr} ตกหลุมรักอ้วนอีกรอบ`,
+                `จังหวะหัวใจเต้นแรงตอน ${timeStr}`,
+                `Love Captured: ${timeStr} (ไม่มีวันลบ)`,
+                `อยากหยุดเวลาไว้ที่ ${timeStr} จัง`,
+                `ขอบคุณที่อยู่ด้วยกันจนถึง ${timeStr} นะ`
             ];
-            const randomLog = logs[Math.floor(Math.random() * logs.length)];
-            document.getElementById('capture-log').innerText = "📍 " + randomLog;
             
-            confetti({ particleCount: 40, spread: 50, origin: { y: 0.6 }, colors: ['#ff4081', '#ffffff'] });
+            const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+            const logElement = document.getElementById('capture-log');
+            
+            // เพิ่ม Animation เล็กน้อยตอนเปลี่ยนข้อความ
+            logElement.style.opacity = '0';
+            setTimeout(() => {
+                logElement.innerText = "📍 " + randomMsg;
+                logElement.style.opacity = '1';
+            }, 200);
+            
+            confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 }, colors: ['#ff4081', '#ba68c8'] });
         }
 
+        // --- 🕒 อัปเดต UI หลัก (Timer คบกัน) ---
         function updateUI() {
-            const diff = new Date() - startDate;
-            const d = Math.floor(diff/(1000*60*60*24));
-            const h = Math.floor((diff/(1000*60*60))%24);
-            const m = Math.floor((diff/1000/60)%60);
-            const s = Math.floor((diff/1000)%60);
+            const now = new Date();
+            const diff = now - startDate;
             
-            // ปรับ Timer ให้ดูเป็น Capture มากขึ้น
-            document.getElementById('timer').innerHTML = 
-                `${d} วัน <span style="color:var(--accent)">${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}</span>`;
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const m = Math.floor((diff / 1000 / 60) % 60);
+            const s = Math.floor((diff / 1000) % 60);
             
+            const timerElement = document.getElementById('timer');
+            
+            if (diff < 0) {
+                // ถ้ายังไม่ถึงวันที่ 25 มี.ค. 69
+                timerElement.innerHTML = `<span style="font-size:0.8rem">นับถอยหลังสู่วันครบรอบ...</span>`;
+            } else {
+                timerElement.innerHTML = 
+                    `<span style="font-size:0.7rem; display:block; opacity:0.7">เราคบกันมาแล้ว</span>` +
+                    `${d} วัน <span style="color:var(--accent)">${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}</span>`;
+            }
+            
+            // ถ้าเป็นวันที่ 25 ของทุกเดือน ให้เปลี่ยนหัวข้อ
+            if (now.getDate() === 25) {
+                document.getElementById('capture-title').innerText = "💖 Happy Anniversary Day! 💖";
+            }
+
             updateGreeting(); updateBirthday();
         }
 
@@ -322,6 +349,7 @@
             else if (hour >= 12 && hour < 18) greetElement.innerText = "เที่ยงแล้ว หาไรกินยัง? 🍰";
             else if (hour >= 18 && hour < 22) greetElement.innerText = "เย็นแล้ว พักผ่อนนะอ้วน 🌸";
             else greetElement.innerText = "ดึกแล้ว ฝันดีนะไอ้อ้วน 🌙";
+            
             if (hour < 6 || hour >= 18) document.body.classList.add('night-mode');
             else document.body.classList.remove('night-mode');
         }
@@ -339,7 +367,7 @@
             const status = document.getElementById('music-status');
             happySong.pause();
             if (!isPlaying) {
-                mySong.play().then(() => { status.innerText = "กำลังเล่น: Proud... 🌸"; isPlaying = true; }).catch(() => alert("ยังไม่ได้ใส่ไฟล์เพลง Proud นะ!"));
+                mySong.play().then(() => { status.innerText = "กำลังเล่น: Proud... 🌸"; isPlaying = true; }).catch(() => alert("ใส่ไฟล์เพลง 015 Proud.mp3 ก่อนนะ!"));
             } else {
                 mySong.pause(); status.innerText = "กดเพื่อเปิดเพลง Proud 🌸"; isPlaying = false;
             }
@@ -387,7 +415,7 @@
 
         function showSecret() {
             if (localStorage.getItem('lastSecret') === getTodayStr()) { alert("วันนี้อ่านไปแล้วน้า ❤️"); return; }
-            const quotes = ["วันนี้อ้วนน่ารักจัง","รักอ้วนที่สุดเลย","ดีใจที่มีอ้วนนะ"];
+            const quotes = ["วันนี้อ้วนน่ารักที่สุดในโลกเลย","เค้ารักอ้วนมากๆ นะ","ขอบคุณที่อยู่ด้วยกันนะคนเก่ง","ยิ้มเยอะๆ นะ เพราะรอยยิ้มอ้วนสวยที่สุด"];
             document.getElementById('secret-text').innerText = "💌 " + quotes[Math.floor(Math.random()*quotes.length)];
             localStorage.setItem('lastSecret', getTodayStr());
         }
@@ -395,6 +423,7 @@
         function openLetter() { document.getElementById('loveLetter').style.display = "block"; }
         function closeLetter() { document.getElementById('loveLetter').style.display = "none"; }
 
+        // --- พื้นหลังหัวใจ ---
         document.addEventListener('click', (e) => {
             const heart = document.createElement('div');
             heart.innerHTML = '❤️';
@@ -411,7 +440,7 @@
             item.style.left = Math.random() * 100 + 'vw';
             document.getElementById('heart-container').appendChild(item);
             setTimeout(() => item.remove(), 5000);
-        }, 800);
+        }, 1000);
 
         setInterval(updateUI, 1000);
         initCalendar();
