@@ -1170,7 +1170,7 @@
             if (e.target.closest('.coupon-card') || e.target.closest('.gift-section')) return;
             if (e.target.closest('.photo-upload-area') || e.target.closest('.memories-section')) return;
             const heart = document.createElement('div');
-            heart.innerHTML = '❤️';
+            heart.innerHTML = '❤️','😼','🌸','💖','✨';
             heart.className = 'click-heart';
             heart.style.left = (e.clientX - 10) + 'px';
             heart.style.top = (e.clientY - 10) + 'px';
@@ -1180,7 +1180,7 @@
 
         setInterval(() => {
             const item = document.createElement('div');
-            item.innerHTML = '❤️';
+            item.innerHTML = '❤️','😼','🌸','💖','✨';
             item.className = 'floating-item';
             item.style.left = Math.random() * 100 + 'vw';
             document.getElementById('heart-container').appendChild(item);
