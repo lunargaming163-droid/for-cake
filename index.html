@@ -459,6 +459,32 @@
             border: 2px solid rgba(255,255,255,0.7);
         }
 
+        .photo-upload-area {
+            margin-top: 12px; text-align: center; padding: 10px;
+            border: 2px dashed rgba(255,179,198,0.6); border-radius: 18px;
+            background: rgba(255,255,255,0.3);
+        }
+        .photo-upload-btn {
+            background: linear-gradient(135deg, #ff80ab, #ff4081); color: white;
+            border: none; padding: 9px 22px; border-radius: 50px; font-size: 0.78rem;
+            font-weight: 700; cursor: pointer; font-family: 'Anuphan', sans-serif;
+            box-shadow: 0 4px 12px rgba(255,64,129,0.3); transition: transform 0.15s;
+        }
+        .photo-upload-btn:active { transform: scale(0.95); }
+        .photo-upload-hint { font-size: 0.65rem; color: var(--text-sub); margin-top: 5px; opacity: 0.8; }
+        .dynamic-polaroid-caption-input {
+            border: none; border-bottom: 1px dashed #ccc; background: transparent;
+            font-family: 'Caveat', cursive; font-size: 0.95rem; color: #888;
+            text-align: center; width: 90%; outline: none; user-select: text;
+        }
+        .photo-delete-btn {
+            position: absolute; top: 4px; right: 4px; background: rgba(255,64,129,0.8);
+            color: white; border: none; border-radius: 50%; width: 20px; height: 20px;
+            font-size: 0.6rem; cursor: pointer; display: flex; align-items: center;
+            justify-content: center; opacity: 0; transition: opacity 0.2s;
+        }
+        .polaroid-card:hover .photo-delete-btn { opacity: 1; }
+
         .bio-section { background: rgba(255, 255, 255, 0.4); border-radius: 20px; padding: 15px; margin-bottom: 20px; text-align: left; }
         .bio-item { font-size: 0.85rem; color: var(--text-sub); margin-bottom: 6px; display: flex; flex-wrap: wrap; }
         .bio-label { font-weight: 600; min-width: 100px; color: var(--text-main); }
@@ -635,7 +661,8 @@
                     <div class="memories-header-badge">🖼 OUR MEMORIES 🖼</div>
                     <div class="memories-header-line right"></div>
                 </div>
-                <div class="memories-grid">
+                <!-- Static photos -->
+                <div class="memories-grid" id="static-memories">
                     <div class="polaroid-card">
                         <div class="polaroid-pin"></div>
                         <img class="polaroid-photo" src="แฟน.png" alt="My Cake"
@@ -648,6 +675,17 @@
                              onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSADGc854o4-04exHOD4cUdJDQPCe0-5hjSTQ&s'">
                         <div class="polaroid-caption">Happy Day 🌿</div>
                     </div>
+                </div>
+                <!-- Dynamic photos from JSONBin -->
+                <div class="memories-grid" id="dynamic-photos" style="margin-top:10px;"></div>
+                <!-- Upload button -->
+                <div class="photo-upload-area" id="photo-upload-area">
+                    <input type="file" id="photo-file-input" accept="image/*" style="display:none" onchange="handlePhotoUpload(event)">
+                    <button class="photo-upload-btn" onclick="document.getElementById('photo-file-input').click()">
+                        📷 เพิ่มรูปความทรงจำ
+                    </button>
+                    <div class="photo-upload-hint">รูปจะซิงค์ให้ทั้งคู่เห็นพร้อมกัน 💕</div>
+                    <div id="photo-upload-status" style="font-size:0.7rem;color:#e65100;margin-top:4px;min-height:1rem;"></div>
                 </div>
             </div>
 
@@ -843,14 +881,43 @@
             document.getElementById('anniv-secs').innerText = String(s).padStart(2,'0');
         }
 
-        // ===== Time Capsule Message System =====
-        let capsuleMessages = JSON.parse(localStorage.getItem('capsuleMessages')) || [];
+        // ===== JSONBin Config =====
+        const BIN_ID = '69c80a875fdde574550b19be';
+        const BIN_KEY = '$2a$10$dRzV8ELTFUgtYV0SdcZeru1bd9vvyzFgW/AA2r8SCAW.vl3m/K.ze';
+        const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+
+        async function loadBin() {
+            try {
+                const r = await fetch(BIN_URL + '/latest', {
+                    headers: { 'X-Master-Key': BIN_KEY }
+                });
+                const data = await r.json();
+                return data.record;
+            } catch(e) { return { messages: [], photos: [] }; }
+        }
+
+        async function saveBin(record) {
+            await fetch(BIN_URL, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json', 'X-Master-Key': BIN_KEY },
+                body: JSON.stringify(record)
+            });
+        }
+
+        // ===== Time Capsule Message System (JSONBin) =====
+        let capsuleMessages = [];
+
+        async function initCapsule() {
+            const rec = await loadBin();
+            capsuleMessages = rec.messages || [];
+            updateCapsuleCount();
+        }
 
         function updateCapsuleCount() {
             document.getElementById('capsule-count').innerText = capsuleMessages.length;
         }
 
-        function saveCapsuleMessage() {
+        async function saveCapsuleMessage() {
             const input = document.getElementById('capsule-input');
             const text = input.value.trim();
             if (!text) {
@@ -858,11 +925,12 @@
                 setTimeout(() => input.style.borderColor = '#ffcc80', 1000);
                 return;
             }
+            const btn = document.querySelector('.capsule-save-btn');
+            btn.innerText = '⏳ กำลังบันทึก...'; btn.disabled = true;
 
             const now = new Date();
             const diff = now - startDate;
             const daysTogether = Math.floor(diff / (1000*60*60*24));
-
             const entry = {
                 id: Date.now(),
                 message: text,
@@ -872,16 +940,16 @@
                 daysTogether: daysTogether
             };
 
-            capsuleMessages.unshift(entry); // newest first
-            localStorage.setItem('capsuleMessages', JSON.stringify(capsuleMessages));
+            const rec = await loadBin();
+            rec.messages = [entry, ...(rec.messages || [])];
+            await saveBin(rec);
+            capsuleMessages = rec.messages;
             updateCapsuleCount();
 
             input.value = '';
+            btn.innerText = '📸 บันทึกช่วงเวลานี้'; btn.disabled = false;
             document.getElementById('capsule-meta-info').innerText = `✅ บันทึกแล้ว! (${entry.displayDate} ${entry.displayTime})`;
-            setTimeout(() => {
-                document.getElementById('capsule-meta-info').innerText = 'วันที่ + เวลาจะถูกบันทึกอัตโนมัติ';
-            }, 3000);
-
+            setTimeout(() => { document.getElementById('capsule-meta-info').innerText = 'วันที่ + เวลาจะถูกบันทึกอัตโนมัติ'; }, 3000);
             confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 }, colors: ['#ff7043', '#ffb74d', '#ffffff'] });
         }
 
@@ -905,14 +973,19 @@
             return text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
         }
 
-        function deleteEntry(id) {
-            capsuleMessages = capsuleMessages.filter(e => e.id !== id);
-            localStorage.setItem('capsuleMessages', JSON.stringify(capsuleMessages));
+        async function deleteEntry(id) {
+            const rec = await loadBin();
+            rec.messages = (rec.messages || []).filter(e => e.id !== id);
+            await saveBin(rec);
+            capsuleMessages = rec.messages;
             updateCapsuleCount();
             renderCapsuleList();
         }
 
-        function openCapsuleModal() {
+        async function openCapsuleModal() {
+            const rec = await loadBin();
+            capsuleMessages = rec.messages || [];
+            updateCapsuleCount();
             renderCapsuleList();
             document.getElementById('capsuleModal').style.display = 'block';
         }
@@ -923,6 +996,66 @@
 
         function closeCapsuleOnBg(e) {
             if (e.target === document.getElementById('capsuleModal')) closeCapsuleModal();
+        }
+
+        // ===== Photo System (JSONBin + Base64) =====
+        let photosData = [];
+
+        async function initPhotos() {
+            const rec = await loadBin();
+            photosData = rec.photos || [];
+            renderDynamicPhotos();
+        }
+
+        function renderDynamicPhotos() {
+            const grid = document.getElementById('dynamic-photos');
+            if (!photosData.length) { grid.innerHTML = ''; return; }
+            grid.innerHTML = photosData.map((p, i) => `
+                <div class="polaroid-card" style="position:relative">
+                    <div class="polaroid-pin"></div>
+                    <img class="polaroid-photo" src="${p.src}" alt="${p.caption}">
+                    <div class="polaroid-caption">${escapeHtml(p.caption)}</div>
+                    <button class="photo-delete-btn" onclick="deletePhoto(${i})">✕</button>
+                </div>
+            `).join('');
+        }
+
+        async function handlePhotoUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            if (file.size > 300 * 1024) {
+                document.getElementById('photo-upload-status').innerText = '⚠️ รูปใหญ่เกินไป กรุณาใช้รูปที่น้อยกว่า 300KB';
+                return;
+            }
+            const status = document.getElementById('photo-upload-status');
+            status.innerText = '⏳ กำลังอัปโหลด...';
+
+            const caption = prompt('ใส่คำบรรยายรูปนี้ 💕', 'ความทรงจำดีๆ 🌸') || 'ความทรงจำดีๆ 🌸';
+
+            const reader = new FileReader();
+            reader.onload = async (e) => {
+                const base64 = e.target.result;
+                const rec = await loadBin();
+                const newPhoto = { id: Date.now(), src: base64, caption: caption };
+                rec.photos = [newPhoto, ...(rec.photos || [])];
+                await saveBin(rec);
+                photosData = rec.photos;
+                renderDynamicPhotos();
+                status.innerText = '✅ เพิ่มรูปแล้ว!';
+                setTimeout(() => status.innerText = '', 3000);
+                confetti({ particleCount: 60, spread: 70, origin: { y: 0.6 }, colors: ['#ff80ab', '#ffffff', '#ffd6e0'] });
+            };
+            reader.readAsDataURL(file);
+            event.target.value = '';
+        }
+
+        async function deletePhoto(index) {
+            if (!confirm('ลบรูปนี้เลยนะ?')) return;
+            const rec = await loadBin();
+            rec.photos = (rec.photos || []).filter((_, i) => i !== index);
+            await saveBin(rec);
+            photosData = rec.photos;
+            renderDynamicPhotos();
         }
 
         // Allow text input in textarea
@@ -1035,6 +1168,7 @@
             if (e.target.closest('.capsule-modal-content') || e.target.closest('.capsule-box')) return;
             if (e.target.closest('.gift-modal-content') || e.target.closest('.gift-detail-content')) return;
             if (e.target.closest('.coupon-card') || e.target.closest('.gift-section')) return;
+            if (e.target.closest('.photo-upload-area') || e.target.closest('.memories-section')) return;
             const heart = document.createElement('div');
             heart.innerHTML = '❤️';
             heart.className = 'click-heart';
@@ -1175,13 +1309,15 @@
         function closeCouponModal() { document.getElementById('couponModal').style.display = 'none'; }
         function closeCouponOnBg(e) { if (e.target === document.getElementById('couponModal')) closeCouponModal(); }
 
+        // Init
         setInterval(() => { updateAnniversary(); updateGreeting(); updateBirthday(); }, 1000);
         updateAnniversary();
         updateGreeting();
         updateBirthday();
         initCalendar();
         updateTreeUI();
-        updateCapsuleCount();
+        initCapsule();
+        initPhotos();
     </script>
 </body>
 </html>
