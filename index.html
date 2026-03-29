@@ -282,11 +282,6 @@
             height: 24px; background: white;
             border-radius: 50% 50% 0 0 / 24px 24px 0 0;
         }
-        .coupon-dots {
-            position: absolute; top: 50%; left: -8px; transform: translateY(-50%);
-            display: flex; flex-direction: column; gap: 6px;
-        }
-        .coupon-dots::after { content: ''; }
         .coupon-stamp { font-size: 0.65rem; background: rgba(255,255,255,0.2); border-radius: 50px; padding: 3px 10px; margin-bottom: 8px; display: inline-block; letter-spacing: 1px; }
         .coupon-emoji { font-size: 3rem; margin: 6px 0; }
         .coupon-title { font-size: 1rem; font-weight: 700; }
@@ -313,80 +308,30 @@
         .bday-days { font-family: 'Caveat', cursive; font-size: 1.5rem; letter-spacing: 1px; }
 
         /* ===== Playlist Section ===== */
-        .playlist-section {
-            width: 100%; margin-bottom: 20px;
-        }
-        .playlist-header {
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            margin-bottom: 14px;
-        }
-        .playlist-header-line {
-            flex: 1; height: 2px;
-            background: linear-gradient(90deg, transparent, #ffb3c6);
-        }
-        .playlist-header-line.right {
-            background: linear-gradient(90deg, #ffb3c6, transparent);
-        }
-        .playlist-header-badge {
-            background: var(--accent); border-radius: 50px;
-            padding: 6px 16px; font-size: 0.7rem; font-weight: 700;
-            color: white; white-space: nowrap; letter-spacing: 1px;
-            box-shadow: 0 4px 12px rgba(255,64,129,0.3);
-        }
+        .playlist-section { width: 100%; margin-bottom: 20px; }
+        .playlist-header { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 14px; }
+        .playlist-header-line { flex: 1; height: 2px; background: linear-gradient(90deg, transparent, #ffb3c6); }
+        .playlist-header-line.right { background: linear-gradient(90deg, #ffb3c6, transparent); }
+        .playlist-header-badge { background: var(--accent); border-radius: 50px; padding: 6px 16px; font-size: 0.7rem; font-weight: 700; color: white; white-space: nowrap; letter-spacing: 1px; box-shadow: 0 4px 12px rgba(255,64,129,0.3); }
         .playlist-tracks { display: flex; flex-direction: column; gap: 10px; }
-        .track-card {
-            background: white; border-radius: 20px; padding: 12px 14px;
-            display: flex; align-items: center; gap: 12px;
-            box-shadow: 0 4px 14px rgba(216,27,96,0.1);
-            border: 1.5px solid rgba(255,179,198,0.4);
-            cursor: pointer; transition: all 0.25s; position: relative; overflow: hidden;
-        }
+        .track-card { background: white; border-radius: 20px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; box-shadow: 0 4px 14px rgba(216,27,96,0.1); border: 1.5px solid rgba(255,179,198,0.4); cursor: pointer; transition: all 0.25s; position: relative; overflow: hidden; }
         .track-card:hover { transform: translateX(4px); box-shadow: 0 6px 20px rgba(216,27,96,0.18); }
-        .track-card.playing {
-            background: linear-gradient(135deg, #fff0f5, #fce4ec);
-            border-color: var(--accent);
-            box-shadow: 0 6px 20px rgba(255,64,129,0.25);
-        }
-        .track-card.playing::before {
-            content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 4px;
-            background: var(--accent); border-radius: 20px 0 0 20px;
-        }
-        .track-icon-wrap {
-            width: 46px; height: 46px; border-radius: 14px; flex-shrink: 0;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.4rem; position: relative;
-        }
+        .track-card.playing { background: linear-gradient(135deg, #fff0f5, #fce4ec); border-color: var(--accent); box-shadow: 0 6px 20px rgba(255,64,129,0.25); }
+        .track-card.playing::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 4px; background: var(--accent); border-radius: 20px 0 0 20px; }
+        .track-icon-wrap { width: 46px; height: 46px; border-radius: 14px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; position: relative; }
         .track-icon-wrap.proud-color { background: linear-gradient(135deg, #ffd6e0, #ffb3c6); }
         .track-icon-wrap.happy-color { background: linear-gradient(135deg, #fff9c4, #ffe082); }
-        .track-vinyl {
-            position: absolute; inset: 0; border-radius: 14px;
-            background: repeating-conic-gradient(rgba(255,255,255,0.15) 0deg, transparent 1deg, transparent 5deg);
-            animation: spin 3s linear infinite; opacity: 0;
-            transition: opacity 0.3s;
-        }
+        .track-vinyl { position: absolute; inset: 0; border-radius: 14px; background: repeating-conic-gradient(rgba(255,255,255,0.15) 0deg, transparent 1deg, transparent 5deg); animation: spin 3s linear infinite; opacity: 0; transition: opacity 0.3s; }
         .track-card.playing .track-vinyl { opacity: 1; }
         @keyframes spin { to { transform: rotate(360deg); } }
         .track-info { flex: 1; text-align: left; }
         .track-name { font-size: 0.85rem; font-weight: 700; color: #c2185b; margin-bottom: 2px; }
         .track-sub { font-size: 0.7rem; color: #888; }
-        .track-play-btn {
-            width: 36px; height: 36px; border-radius: 50%; border: none;
-            background: linear-gradient(135deg, #ff80ab, #ff4081);
-            color: white; font-size: 0.9rem; cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 3px 10px rgba(255,64,129,0.35);
-            transition: transform 0.15s; flex-shrink: 0;
-        }
+        .track-play-btn { width: 36px; height: 36px; border-radius: 50%; border: none; background: linear-gradient(135deg, #ff80ab, #ff4081); color: white; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 10px rgba(255,64,129,0.35); transition: transform 0.15s; flex-shrink: 0; }
         .track-play-btn:active { transform: scale(0.9); }
-        .track-bars {
-            display: flex; align-items: flex-end; gap: 2px; height: 18px;
-            margin-right: 6px; opacity: 0; transition: opacity 0.3s;
-        }
+        .track-bars { display: flex; align-items: flex-end; gap: 2px; height: 18px; margin-right: 6px; opacity: 0; transition: opacity 0.3s; }
         .track-card.playing .track-bars { opacity: 1; }
-        .track-bar {
-            width: 3px; background: var(--accent); border-radius: 2px;
-            animation: barBounce 0.6s ease-in-out infinite alternate;
-        }
+        .track-bar { width: 3px; background: var(--accent); border-radius: 2px; animation: barBounce 0.6s ease-in-out infinite alternate; }
         .track-bar:nth-child(1) { height: 8px; animation-delay: 0s; }
         .track-bar:nth-child(2) { height: 14px; animation-delay: 0.15s; }
         .track-bar:nth-child(3) { height: 10px; animation-delay: 0.3s; }
@@ -411,78 +356,32 @@
         .dot-hungry { background: #ffb74d; }
 
         /* ===== Memories Section ===== */
-        .memories-section {
-            width: 100%; margin-bottom: 20px;
-        }
-        .memories-header {
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            margin-bottom: 14px;
-        }
-        .memories-header-line {
-            flex: 1; height: 2px;
-            background: linear-gradient(90deg, transparent, #ffb3c6);
-        }
-        .memories-header-line.right {
-            background: linear-gradient(90deg, #ffb3c6, transparent);
-        }
-        .memories-header-badge {
-            background: white; border: 2px solid #ffb3c6; border-radius: 50px;
-            padding: 5px 14px; font-size: 0.7rem; font-weight: 700;
-            color: var(--text-main); white-space: nowrap; letter-spacing: 1px;
-        }
-        .memories-grid {
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
-        }
-        .polaroid-card {
-            background: white; border-radius: 6px;
-            padding: 8px 8px 28px 8px;
-            box-shadow: 0 6px 20px rgba(216,27,96,0.12), 0 2px 6px rgba(0,0,0,0.08);
-            position: relative; transition: transform 0.3s;
-            border: 1px solid rgba(255,255,255,0.8);
-        }
+        .memories-section { width: 100%; margin-bottom: 20px; }
+        .memories-header { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 14px; }
+        .memories-header-line { flex: 1; height: 2px; background: linear-gradient(90deg, transparent, #ffb3c6); }
+        .memories-header-line.right { background: linear-gradient(90deg, #ffb3c6, transparent); }
+        .memories-header-badge { background: white; border: 2px solid #ffb3c6; border-radius: 50px; padding: 5px 14px; font-size: 0.7rem; font-weight: 700; color: var(--text-main); white-space: nowrap; letter-spacing: 1px; }
+        .memories-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+        .polaroid-card { background: white; border-radius: 6px; padding: 8px 8px 28px 8px; box-shadow: 0 6px 20px rgba(216,27,96,0.12), 0 2px 6px rgba(0,0,0,0.08); position: relative; transition: transform 0.3s; border: 1px solid rgba(255,255,255,0.8); }
         .polaroid-card:nth-child(odd) { transform: rotate(-1.5deg); }
         .polaroid-card:nth-child(even) { transform: rotate(1.5deg); }
         .polaroid-card:hover { transform: rotate(0deg) scale(1.04) translateY(-4px); z-index: 5; box-shadow: 0 14px 35px rgba(216,27,96,0.2); }
-        .polaroid-photo {
-            width: 100%; aspect-ratio: 1; object-fit: cover;
-            border-radius: 3px; display: block; background: #fff0f5;
-        }
-        .polaroid-caption {
-            position: absolute; bottom: 6px; left: 0; right: 0;
-            text-align: center; font-family: 'Caveat', cursive;
-            font-size: 0.95rem; color: #888; padding: 0 6px;
-        }
-        .polaroid-pin {
-            position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
-            width: 18px; height: 18px; background: radial-gradient(circle at 40% 35%, #ff8fab, #d81b60);
-            border-radius: 50%; box-shadow: 0 2px 6px rgba(216,27,96,0.4);
-            border: 2px solid rgba(255,255,255,0.7);
-        }
+        .polaroid-photo { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 3px; display: block; background: #fff0f5; }
+        .polaroid-caption { position: absolute; bottom: 6px; left: 0; right: 0; text-align: center; font-family: 'Caveat', cursive; font-size: 0.95rem; color: #888; padding: 0 6px; }
+        .polaroid-pin { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 18px; height: 18px; background: radial-gradient(circle at 40% 35%, #ff8fab, #d81b60); border-radius: 50%; box-shadow: 0 2px 6px rgba(216,27,96,0.4); border: 2px solid rgba(255,255,255,0.7); }
 
-        .photo-upload-area {
-            margin-top: 12px; text-align: center; padding: 10px;
-            border: 2px dashed rgba(255,179,198,0.6); border-radius: 18px;
-            background: rgba(255,255,255,0.3);
-        }
-        .photo-upload-btn {
-            background: linear-gradient(135deg, #ff80ab, #ff4081); color: white;
-            border: none; padding: 9px 22px; border-radius: 50px; font-size: 0.78rem;
-            font-weight: 700; cursor: pointer; font-family: 'Anuphan', sans-serif;
-            box-shadow: 0 4px 12px rgba(255,64,129,0.3); transition: transform 0.15s;
-        }
+        /* ===== Photo Upload ===== */
+        .photo-upload-area { margin-top: 12px; text-align: center; padding: 14px; border: 2px dashed rgba(255,179,198,0.6); border-radius: 18px; background: rgba(255,255,255,0.3); }
+        .photo-upload-btn { background: linear-gradient(135deg, #ff80ab, #ff4081); color: white; border: none; padding: 9px 22px; border-radius: 50px; font-size: 0.78rem; font-weight: 700; cursor: pointer; font-family: 'Anuphan', sans-serif; box-shadow: 0 4px 12px rgba(255,64,129,0.3); transition: transform 0.15s; }
         .photo-upload-btn:active { transform: scale(0.95); }
         .photo-upload-hint { font-size: 0.65rem; color: var(--text-sub); margin-top: 5px; opacity: 0.8; }
-        .dynamic-polaroid-caption-input {
-            border: none; border-bottom: 1px dashed #ccc; background: transparent;
-            font-family: 'Caveat', cursive; font-size: 0.95rem; color: #888;
-            text-align: center; width: 90%; outline: none; user-select: text;
-        }
-        .photo-delete-btn {
-            position: absolute; top: 4px; right: 4px; background: rgba(255,64,129,0.8);
-            color: white; border: none; border-radius: 50%; width: 20px; height: 20px;
-            font-size: 0.6rem; cursor: pointer; display: flex; align-items: center;
-            justify-content: center; opacity: 0; transition: opacity 0.2s;
-        }
+        .photo-upload-status { font-size: 0.7rem; color: #e65100; margin-top: 6px; min-height: 1rem; }
+
+        /* Upload progress bar */
+        .upload-progress-wrap { display: none; margin-top: 8px; background: rgba(255,179,198,0.3); border-radius: 10px; height: 8px; overflow: hidden; }
+        .upload-progress-bar { height: 100%; background: linear-gradient(90deg, #ff80ab, #ff4081); border-radius: 10px; width: 0%; transition: width 0.3s; }
+
+        .photo-delete-btn { position: absolute; top: 4px; right: 4px; background: rgba(255,64,129,0.85); color: white; border: none; border-radius: 50%; width: 22px; height: 22px; font-size: 0.65rem; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; font-weight: 700; }
         .polaroid-card:hover .photo-delete-btn { opacity: 1; }
 
         .bio-section { background: rgba(255, 255, 255, 0.4); border-radius: 20px; padding: 15px; margin-bottom: 20px; text-align: left; }
@@ -499,12 +398,6 @@
         .water-btn { background: #4caf50; color: white; border: none; padding: 8px 18px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 0.75rem; }
         .water-btn.disabled { background: #9e9e9e; cursor: not-allowed; }
 
-        .grid-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; padding: 5px; }
-        .polaroid { background: white; padding: 8px 8px 20px 8px; border-radius: 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transform: rotate(var(--r, 0deg)); transition: 0.3s; }
-        .polaroid:hover { transform: scale(1.05) rotate(0deg); z-index: 5; }
-        .polaroid img { width: 100%; height: 140px; object-fit: cover; background: #fff5f8; }
-        .polaroid-text { font-family: 'Caveat', cursive; font-size: 1rem; color: var(--text-sub); margin-top: 8px; }
-
         fieldset { border: 2px dashed var(--accent); border-radius: 20px; padding: 15px; background: rgba(255, 255, 255, 0.2); margin-bottom: 20px; width: 100%; }
         legend { background: var(--accent); color: white; padding: 4px 18px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; margin: 0 auto; }
 
@@ -513,7 +406,7 @@
         td { padding: 8px 4px; color: var(--text-sub); border-bottom: 1px solid rgba(255, 193, 227, 0.2); font-size: 0.75rem; }
 
         .btn-main { background: linear-gradient(45deg, #ff4081, #ba68c8); color: white; border: none; padding: 12px; border-radius: 50px; width: 100%; font-weight: 600; cursor: pointer; margin-top: 10px; }
-        
+
         .floating-item { position: absolute; animation: floatUp 5s linear forwards; pointer-events: none; z-index: 0; }
         @keyframes floatUp { 0% { transform: translateY(110vh) scale(0.5); opacity: 0; } 10% { opacity: 0.8; } 100% { transform: translateY(-10vh) scale(1.2) rotate(360deg); opacity: 0; } }
         .click-heart { position: absolute; animation: clickPop 0.8s ease-out forwards; pointer-events: none; z-index: 100; font-size: 24px; }
@@ -522,6 +415,14 @@
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); }
         .modal-content { background: #fff; margin: 15% auto; padding: 30px; border-radius: 30px; width: 85%; max-width: 400px; text-align: left; position: relative; border: 5px solid var(--accent); }
         .close { position: absolute; right: 20px; top: 15px; font-size: 28px; font-weight: bold; color: var(--accent); cursor: pointer; }
+
+        /* Caption input modal */
+        .caption-modal { display: none; position: fixed; z-index: 5000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(6px); }
+        .caption-modal-content { background: white; margin: 30% auto; border-radius: 24px; width: 80%; max-width: 340px; padding: 24px; text-align: center; border: 3px solid #ffb3c6; }
+        .caption-modal-title { font-size: 0.95rem; font-weight: 700; color: var(--text-main); margin-bottom: 14px; }
+        .caption-input { width: 100%; border: 2px solid #ffb3c6; border-radius: 12px; padding: 10px 14px; font-family: 'Anuphan', sans-serif; font-size: 0.85rem; color: #555; outline: none; margin-bottom: 14px; user-select: text; }
+        .caption-input:focus { border-color: var(--accent); }
+        .caption-confirm-btn { background: linear-gradient(135deg, #ff80ab, #ff4081); color: white; border: none; padding: 10px 28px; border-radius: 50px; font-size: 0.82rem; font-weight: 700; cursor: pointer; font-family: 'Anuphan', sans-serif; }
     </style>
 </head>
 <body>
@@ -534,34 +435,22 @@
             <div class="image-container">
                 <img src="images.png" class="cat-image" onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSADGc854o4-04exHOD4cUdJDQPCe0-5hjSTQ&s'">
             </div>
-            
+
             <h1 id="greeting">CAKE (ไอ้อ้วนน)</h1>
 
-            <!-- ===== Anniversary Counter ===== -->
+            <!-- Anniversary Counter -->
             <div class="anniversary-box">
                 <span class="anniv-label">💕 เราคบกันมาแล้ว</span>
                 <div class="anniv-counter">
-                    <div class="anniv-unit">
-                        <span class="anniv-num" id="anniv-days">0</span>
-                        <span class="anniv-unit-label">วัน</span>
-                    </div>
-                    <div class="anniv-unit">
-                        <span class="anniv-num" id="anniv-hours">00</span>
-                        <span class="anniv-unit-label">ชั่วโมง</span>
-                    </div>
-                    <div class="anniv-unit">
-                        <span class="anniv-num" id="anniv-mins">00</span>
-                        <span class="anniv-unit-label">นาที</span>
-                    </div>
-                    <div class="anniv-unit">
-                        <span class="anniv-num" id="anniv-secs">00</span>
-                        <span class="anniv-unit-label">วินาที</span>
-                    </div>
+                    <div class="anniv-unit"><span class="anniv-num" id="anniv-days">0</span><span class="anniv-unit-label">วัน</span></div>
+                    <div class="anniv-unit"><span class="anniv-num" id="anniv-hours">00</span><span class="anniv-unit-label">ชั่วโมง</span></div>
+                    <div class="anniv-unit"><span class="anniv-num" id="anniv-mins">00</span><span class="anniv-unit-label">นาที</span></div>
+                    <div class="anniv-unit"><span class="anniv-num" id="anniv-secs">00</span><span class="anniv-unit-label">วินาที</span></div>
                 </div>
                 <div class="anniv-since">ตั้งแต่ 25 มีนาคม 2569 ✨</div>
             </div>
 
-            <!-- ===== Time Capsule Message ===== -->
+            <!-- Time Capsule -->
             <div class="capsule-box">
                 <div class="capsule-header">
                     <span class="capsule-icon">📬</span>
@@ -574,9 +463,7 @@
                 <div class="capsule-meta" id="capsule-meta-info">วันที่ + เวลาจะถูกบันทึกอัตโนมัติ</div>
                 <div class="capsule-btn-row">
                     <button class="capsule-save-btn" onclick="saveCapsuleMessage()">📸 บันทึกช่วงเวลานี้</button>
-                    <button class="capsule-view-btn" onclick="openCapsuleModal()">
-                        📖 อ่านทั้งหมด<span class="capsule-count-badge" id="capsule-count">0</span>
-                    </button>
+                    <button class="capsule-view-btn" onclick="openCapsuleModal()">📖 อ่านทั้งหมด<span class="capsule-count-badge" id="capsule-count">0</span></button>
                 </div>
             </div>
 
@@ -588,7 +475,7 @@
             <audio id="mySong" loop><source src="015 Proud.mp3" type="audio/mpeg"></audio>
             <audio id="happySong" loop><source src="เวลาเธอยิ้ม.mp3" type="audio/mpeg"></audio>
 
-            <!-- OUR PLAYLIST -->
+            <!-- Playlist -->
             <div class="playlist-section">
                 <div class="playlist-header">
                     <div class="playlist-header-line"></div>
@@ -597,37 +484,21 @@
                 </div>
                 <div class="playlist-tracks">
                     <div class="track-card" id="track-proud" onclick="playTrack('proud')">
-                        <div class="track-icon-wrap proud-color">
-                            <div class="track-vinyl"></div>
-                            🌸
-                        </div>
+                        <div class="track-icon-wrap proud-color"><div class="track-vinyl"></div>🌸</div>
                         <div class="track-info">
                             <div class="track-name">Proud - fellow fellow</div>
                             <div class="track-sub">เพลงที่กำตั้งใจเปิดให้อ้วนฟัง 🌸</div>
                         </div>
-                        <div class="track-bars">
-                            <div class="track-bar"></div>
-                            <div class="track-bar"></div>
-                            <div class="track-bar"></div>
-                            <div class="track-bar"></div>
-                        </div>
+                        <div class="track-bars"><div class="track-bar"></div><div class="track-bar"></div><div class="track-bar"></div><div class="track-bar"></div></div>
                         <button class="track-play-btn" id="btn-proud">▶</button>
                     </div>
                     <div class="track-card" id="track-happy" onclick="playTrack('happy')">
-                        <div class="track-icon-wrap happy-color">
-                            <div class="track-vinyl"></div>
-                            🌟
-                        </div>
+                        <div class="track-icon-wrap happy-color"><div class="track-vinyl"></div>🌟</div>
                         <div class="track-info">
                             <div class="track-name">เวลาเธอยิ้ม - Polycat</div>
                             <div class="track-sub">ฟังตอนอ้วนยิ้มแล้วโลกสดใส</div>
                         </div>
-                        <div class="track-bars">
-                            <div class="track-bar"></div>
-                            <div class="track-bar"></div>
-                            <div class="track-bar"></div>
-                            <div class="track-bar"></div>
-                        </div>
+                        <div class="track-bars"><div class="track-bar"></div><div class="track-bar"></div><div class="track-bar"></div><div class="track-bar"></div></div>
                         <button class="track-play-btn" id="btn-happy">▶</button>
                     </div>
                 </div>
@@ -654,38 +525,36 @@
                 </div>
             </div>
 
-            <!-- OUR MEMORIES -->
+            <!-- Memories -->
             <div class="memories-section">
                 <div class="memories-header">
                     <div class="memories-header-line"></div>
-                    <div class="memories-header-badge">🖼 OUR MEMORIES ยังเพิ่มรูปมะด้ายน้าา 🖼</div>
+                    <div class="memories-header-badge">🖼 OUR MEMORIES 🖼</div>
                     <div class="memories-header-line right"></div>
                 </div>
-                <!-- Static photos -->
                 <div class="memories-grid" id="static-memories">
                     <div class="polaroid-card">
                         <div class="polaroid-pin"></div>
-                        <img class="polaroid-photo" src="แฟน.png" alt="My Cake"
-                             onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSADGc854o4-04exHOD4cUdJDQPCe0-5hjSTQ&s'">
+                        <img class="polaroid-photo" src="แฟน.png" alt="My Cake" onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSADGc854o4-04exHOD4cUdJDQPCe0-5hjSTQ&s'">
                         <div class="polaroid-caption">My Cake 🍰</div>
                     </div>
                     <div class="polaroid-card">
                         <div class="polaroid-pin"></div>
-                        <img class="polaroid-photo" src="แฟน2.png" alt="Happy Day"
-                             onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSADGc854o4-04exHOD4cUdJDQPCe0-5hjSTQ&s'">
+                        <img class="polaroid-photo" src="แฟน2.png" alt="Happy Day" onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSADGc854o4-04exHOD4cUdJDQPCe0-5hjSTQ&s'">
                         <div class="polaroid-caption">Happy Day 🌿</div>
                     </div>
                 </div>
-                <!-- Dynamic photos from JSONBin -->
                 <div class="memories-grid" id="dynamic-photos" style="margin-top:10px;"></div>
-                <!-- Upload button -->
-                <div class="photo-upload-area" id="photo-upload-area">
+                <div class="photo-upload-area">
                     <input type="file" id="photo-file-input" accept="image/*" style="display:none" onchange="handlePhotoUpload(event)">
                     <button class="photo-upload-btn" onclick="document.getElementById('photo-file-input').click()">
                         📷 เพิ่มรูปความทรงจำ
                     </button>
                     <div class="photo-upload-hint">รูปจะซิงค์ให้ทั้งคู่เห็นพร้อมกัน 💕</div>
-                    <div id="photo-upload-status" style="font-size:0.7rem;color:#e65100;margin-top:4px;min-height:1rem;"></div>
+                    <div class="upload-progress-wrap" id="upload-progress-wrap">
+                        <div class="upload-progress-bar" id="upload-progress-bar"></div>
+                    </div>
+                    <div class="photo-upload-status" id="photo-upload-status"></div>
                 </div>
             </div>
 
@@ -723,22 +592,16 @@
                 </table>
             </fieldset>
 
-            <!-- Gift & Coupon Section -->
+            <!-- Gift & Coupon -->
             <div class="gift-section">
                 <button class="gift-btn btn-gift" onclick="openGiftModal()">
                     <span class="gift-btn-icon">🎁</span>
-                    <span class="gift-btn-text">
-                        ของขวัญพิเศษ
-                        <span class="gift-btn-label">กดเพื่อเปิดกล่องของขวัญสำหรับอ้วน ✨</span>
-                    </span>
+                    <span class="gift-btn-text">ของขวัญพิเศษ<span class="gift-btn-label">กดเพื่อเปิดกล่องของขวัญสำหรับอ้วน ✨</span></span>
                     <span>›</span>
                 </button>
                 <button class="gift-btn btn-coupon" onclick="drawCoupon()">
                     <span class="gift-btn-icon">🎟</span>
-                    <span class="gift-btn-text">
-                        สุ่มคูปองรัก
-                        <span class="gift-btn-label">วันละครั้ง — แลกได้จริงนะ! 💙</span>
-                    </span>
+                    <span class="gift-btn-text">สุ่มคูปองรัก<span class="gift-btn-label">วันละครั้ง — แลกได้จริงนะ! 💙</span></span>
                     <span>›</span>
                 </button>
             </div>
@@ -750,14 +613,8 @@
     <!-- Gift Modal -->
     <div id="giftModal" class="gift-modal" onclick="closeGiftOnBg(event)">
         <div class="gift-modal-content">
-            <div class="gift-modal-header">
-                <h3>🎁 ของขวัญพิเศษสำหรับอ้วน</h3>
-                <p>เลือกกล่องที่อยากเปิด ✨</p>
-            </div>
-            <div class="gift-modal-body">
-                <div class="gift-grid" id="gift-grid"></div>
-                <button class="gift-modal-close" onclick="closeGiftModal()">ปิด</button>
-            </div>
+            <div class="gift-modal-header"><h3>🎁 ของขวัญพิเศษสำหรับอ้วน</h3><p>เลือกกล่องที่อยากเปิด ✨</p></div>
+            <div class="gift-modal-body"><div class="gift-grid" id="gift-grid"></div><button class="gift-modal-close" onclick="closeGiftModal()">ปิด</button></div>
         </div>
     </div>
 
@@ -784,11 +641,7 @@
                 </div>
                 <div class="coupon-body">
                     <div class="coupon-desc" id="coupon-desc"></div>
-                    <div class="coupon-notch-row">
-                        <div class="coupon-notch-circle"></div>
-                        <div class="coupon-notch-line"></div>
-                        <div class="coupon-notch-circle"></div>
-                    </div>
+                    <div class="coupon-notch-row"><div class="coupon-notch-circle"></div><div class="coupon-notch-line"></div><div class="coupon-notch-circle"></div></div>
                     <div class="coupon-expire" id="coupon-expire"></div>
                     <div class="coupon-barcode">| || ||| | || ||| | || ||| |</div>
                     <button class="coupon-use-btn" id="coupon-use-btn" onclick="useCoupon()">✅ ใช้คูปองนี้</button>
@@ -815,58 +668,76 @@
                 <h3>📬 Time Capsule Messages</h3>
                 <button class="capsule-close" onclick="closeCapsuleModal()">×</button>
             </div>
-            <div class="capsule-list" id="capsule-list">
-                <div class="capsule-empty">ยังไม่มีข้อความที่บันทึกไว้ 💌</div>
-            </div>
+            <div class="capsule-list" id="capsule-list"></div>
+        </div>
+    </div>
+
+    <!-- Caption Input Modal -->
+    <div id="captionModal" class="caption-modal">
+        <div class="caption-modal-content">
+            <div class="caption-modal-title">📝 ใส่คำบรรยายรูปนี้</div>
+            <input type="text" class="caption-input" id="caption-input" placeholder="ความทรงจำดีๆ 🌸" maxlength="40">
+            <br>
+            <button class="caption-confirm-btn" onclick="confirmCaption()">✅ ยืนยัน</button>
         </div>
     </div>
 
     <script>
+        // ===== Config =====
+        const CLOUDINARY_CLOUD = 'dlb23ghyx';
+        const CLOUDINARY_PRESET = 'cake_photos';
+        const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`;
+
+        const BIN_ID = '69c80a875fdde574550b19be';
+        const BIN_KEY = '$2a$10$dRzV8ELTFUgtYV0SdcZeru1bd9vvyzFgW/AA2r8SCAW.vl3m/K.ze';
+        const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+
+        const startDate = new Date('2026-03-25T00:00:00');
+        const getTodayStr = () => new Date().toISOString().slice(0, 10);
+
+        // ===== JSONBin Helpers =====
+        async function loadBin() {
+            try {
+                const r = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': BIN_KEY } });
+                const data = await r.json();
+                return data.record || { messages: [], photos: [] };
+            } catch(e) { return { messages: [], photos: [] }; }
+        }
+        async function saveBin(record) {
+            await fetch(BIN_URL, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json', 'X-Master-Key': BIN_KEY },
+                body: JSON.stringify(record)
+            });
+        }
+
+        // ===== Playlist =====
         const mySong = document.getElementById('mySong');
         const happySong = document.getElementById('happySong');
-        let currentTrack = null; // 'proud' | 'happy' | null
+        let currentTrack = null;
 
-        // ===== Playlist Player =====
         function playTrack(track) {
             const proudCard = document.getElementById('track-proud');
             const happyCard = document.getElementById('track-happy');
             const btnProud = document.getElementById('btn-proud');
             const btnHappy = document.getElementById('btn-happy');
-
             if (currentTrack === track) {
-                // pause same track
                 mySong.pause(); happySong.pause();
-                proudCard.classList.remove('playing');
-                happyCard.classList.remove('playing');
+                proudCard.classList.remove('playing'); happyCard.classList.remove('playing');
                 btnProud.innerHTML = '▶'; btnHappy.innerHTML = '▶';
-                currentTrack = null;
-                return;
+                currentTrack = null; return;
             }
-
-            // stop both first
             mySong.pause(); happySong.pause();
-            proudCard.classList.remove('playing');
-            happyCard.classList.remove('playing');
+            proudCard.classList.remove('playing'); happyCard.classList.remove('playing');
             btnProud.innerHTML = '▶'; btnHappy.innerHTML = '▶';
-
             if (track === 'proud') {
-                mySong.play().then(() => {
-                    proudCard.classList.add('playing');
-                    btnProud.innerHTML = '⏸';
-                    currentTrack = 'proud';
-                }).catch(() => {});
+                mySong.play().then(() => { proudCard.classList.add('playing'); btnProud.innerHTML = '⏸'; currentTrack = 'proud'; }).catch(()=>{});
             } else {
-                happySong.play().then(() => {
-                    happyCard.classList.add('playing');
-                    btnHappy.innerHTML = '⏸';
-                    currentTrack = 'happy';
-                }).catch(() => {});
+                happySong.play().then(() => { happyCard.classList.add('playing'); btnHappy.innerHTML = '⏸'; currentTrack = 'happy'; }).catch(()=>{});
             }
         }
-        const startDate = new Date('2026-03-25T00:00:00');
-        const getTodayStr = () => new Date().toISOString().slice(0, 10);
 
-        // ===== Anniversary Counter =====
+        // ===== Anniversary =====
         function updateAnniversary() {
             const now = new Date();
             const diff = now - startDate;
@@ -881,78 +752,46 @@
             document.getElementById('anniv-secs').innerText = String(s).padStart(2,'0');
         }
 
-        // ===== JSONBin Config =====
-        const BIN_ID = '69c80a875fdde574550b19be';
-        const BIN_KEY = '$2a$10$dRzV8ELTFUgtYV0SdcZeru1bd9vvyzFgW/AA2r8SCAW.vl3m/K.ze';
-        const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
-
-        async function loadBin() {
-            try {
-                const r = await fetch(BIN_URL + '/latest', {
-                    headers: { 'X-Master-Key': BIN_KEY }
-                });
-                const data = await r.json();
-                return data.record;
-            } catch(e) { return { messages: [], photos: [] }; }
-        }
-
-        async function saveBin(record) {
-            await fetch(BIN_URL, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json', 'X-Master-Key': BIN_KEY },
-                body: JSON.stringify(record)
-            });
-        }
-
-        // ===== Time Capsule Message System (JSONBin) =====
+        // ===== Time Capsule =====
         let capsuleMessages = [];
-
         async function initCapsule() {
             const rec = await loadBin();
             capsuleMessages = rec.messages || [];
             updateCapsuleCount();
         }
-
         function updateCapsuleCount() {
             document.getElementById('capsule-count').innerText = capsuleMessages.length;
         }
-
         async function saveCapsuleMessage() {
             const input = document.getElementById('capsule-input');
             const text = input.value.trim();
-            if (!text) {
-                input.style.borderColor = '#ff5252';
-                setTimeout(() => input.style.borderColor = '#ffcc80', 1000);
-                return;
-            }
+            if (!text) { input.style.borderColor='#ff5252'; setTimeout(()=>input.style.borderColor='#ffcc80',1000); return; }
             const btn = document.querySelector('.capsule-save-btn');
             btn.innerText = '⏳ กำลังบันทึก...'; btn.disabled = true;
-
             const now = new Date();
             const diff = now - startDate;
             const daysTogether = Math.floor(diff / (1000*60*60*24));
             const entry = {
-                id: Date.now(),
-                message: text,
+                id: Date.now(), message: text,
                 timestamp: now.toISOString(),
                 displayDate: now.toLocaleDateString('th-TH', { year:'numeric', month:'long', day:'numeric' }),
                 displayTime: now.toLocaleTimeString('th-TH', { hour:'2-digit', minute:'2-digit' }),
-                daysTogether: daysTogether
+                daysTogether
             };
-
             const rec = await loadBin();
             rec.messages = [entry, ...(rec.messages || [])];
             await saveBin(rec);
             capsuleMessages = rec.messages;
             updateCapsuleCount();
-
             input.value = '';
             btn.innerText = '📸 บันทึกช่วงเวลานี้'; btn.disabled = false;
             document.getElementById('capsule-meta-info').innerText = `✅ บันทึกแล้ว! (${entry.displayDate} ${entry.displayTime})`;
             setTimeout(() => { document.getElementById('capsule-meta-info').innerText = 'วันที่ + เวลาจะถูกบันทึกอัตโนมัติ'; }, 3000);
-            confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 }, colors: ['#ff7043', '#ffb74d', '#ffffff'] });
+            confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 }, colors: ['#ff7043','#ffb74d','#ffffff'] });
         }
-
+        function escapeHtml(text) {
+            return String(text).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        }
         function renderCapsuleList() {
             const list = document.getElementById('capsule-list');
             if (capsuleMessages.length === 0) {
@@ -968,11 +807,6 @@
                 </div>
             `).join('');
         }
-
-        function escapeHtml(text) {
-            return text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-        }
-
         async function deleteEntry(id) {
             const rec = await loadBin();
             rec.messages = (rec.messages || []).filter(e => e.id !== id);
@@ -981,7 +815,6 @@
             updateCapsuleCount();
             renderCapsuleList();
         }
-
         async function openCapsuleModal() {
             const rec = await loadBin();
             capsuleMessages = rec.messages || [];
@@ -989,17 +822,12 @@
             renderCapsuleList();
             document.getElementById('capsuleModal').style.display = 'block';
         }
+        function closeCapsuleModal() { document.getElementById('capsuleModal').style.display = 'none'; }
+        function closeCapsuleOnBg(e) { if (e.target === document.getElementById('capsuleModal')) closeCapsuleModal(); }
 
-        function closeCapsuleModal() {
-            document.getElementById('capsuleModal').style.display = 'none';
-        }
-
-        function closeCapsuleOnBg(e) {
-            if (e.target === document.getElementById('capsuleModal')) closeCapsuleModal();
-        }
-
-        // ===== Photo System (JSONBin + Base64) =====
+        // ===== Photo System (Cloudinary + JSONBin) =====
         let photosData = [];
+        let pendingUploadFile = null;
 
         async function initPhotos() {
             const rec = await loadBin();
@@ -1011,42 +839,104 @@
             const grid = document.getElementById('dynamic-photos');
             if (!photosData.length) { grid.innerHTML = ''; return; }
             grid.innerHTML = photosData.map((p, i) => `
-                <div class="polaroid-card" style="position:relative">
+                <div class="polaroid-card">
                     <div class="polaroid-pin"></div>
-                    <img class="polaroid-photo" src="${p.src}" alt="${p.caption}">
+                    <img class="polaroid-photo" src="${escapeHtml(p.url)}" alt="${escapeHtml(p.caption)}" loading="lazy">
                     <div class="polaroid-caption">${escapeHtml(p.caption)}</div>
                     <button class="photo-delete-btn" onclick="deletePhoto(${i})">✕</button>
                 </div>
             `).join('');
         }
 
-        async function handlePhotoUpload(event) {
+        function handlePhotoUpload(event) {
             const file = event.target.files[0];
             if (!file) return;
-            if (file.size > 300 * 1024) {
-                document.getElementById('photo-upload-status').innerText = '⚠️ รูปใหญ่เกินไป กรุณาใช้รูปที่น้อยกว่า 300KB';
+            // No size limit now since Cloudinary handles it, but warn if > 10MB
+            if (file.size > 10 * 1024 * 1024) {
+                setStatus('⚠️ รูปใหญ่เกินไป กรุณาใช้รูปที่น้อยกว่า 10MB');
                 return;
             }
-            const status = document.getElementById('photo-upload-status');
-            status.innerText = '⏳ กำลังอัปโหลด...';
-
-            const caption = prompt('ใส่คำบรรยายรูปนี้ 💕', 'ความทรงจำดีๆ 🌸') || 'ความทรงจำดีๆ 🌸';
-
-            const reader = new FileReader();
-            reader.onload = async (e) => {
-                const base64 = e.target.result;
-                const rec = await loadBin();
-                const newPhoto = { id: Date.now(), src: base64, caption: caption };
-                rec.photos = [newPhoto, ...(rec.photos || [])];
-                await saveBin(rec);
-                photosData = rec.photos;
-                renderDynamicPhotos();
-                status.innerText = '✅ เพิ่มรูปแล้ว!';
-                setTimeout(() => status.innerText = '', 3000);
-                confetti({ particleCount: 60, spread: 70, origin: { y: 0.6 }, colors: ['#ff80ab', '#ffffff', '#ffd6e0'] });
-            };
-            reader.readAsDataURL(file);
+            pendingUploadFile = file;
+            // Show caption modal
+            document.getElementById('caption-input').value = '';
+            document.getElementById('captionModal').style.display = 'block';
+            setTimeout(() => document.getElementById('caption-input').focus(), 100);
             event.target.value = '';
+        }
+
+        async function confirmCaption() {
+            const caption = document.getElementById('caption-input').value.trim() || 'ความทรงจำดีๆ 🌸';
+            document.getElementById('captionModal').style.display = 'none';
+            if (!pendingUploadFile) return;
+            await uploadToCloudinary(pendingUploadFile, caption);
+            pendingUploadFile = null;
+        }
+
+        function setStatus(msg) {
+            document.getElementById('photo-upload-status').innerText = msg;
+        }
+
+        async function uploadToCloudinary(file, caption) {
+            setStatus('⏳ กำลังอัปโหลดรูป...');
+            const progressWrap = document.getElementById('upload-progress-wrap');
+            const progressBar = document.getElementById('upload-progress-bar');
+            progressWrap.style.display = 'block';
+            progressBar.style.width = '0%';
+
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('upload_preset', CLOUDINARY_PRESET);
+
+            return new Promise((resolve) => {
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', CLOUDINARY_UPLOAD_URL);
+
+                xhr.upload.onprogress = (e) => {
+                    if (e.lengthComputable) {
+                        const pct = Math.round((e.loaded / e.total) * 80);
+                        progressBar.style.width = pct + '%';
+                    }
+                };
+
+                xhr.onload = async () => {
+                    progressBar.style.width = '90%';
+                    try {
+                        const result = JSON.parse(xhr.responseText);
+                        if (result.secure_url) {
+                            // Save URL to JSONBin
+                            const rec = await loadBin();
+                            const newPhoto = { id: Date.now(), url: result.secure_url, caption };
+                            rec.photos = [newPhoto, ...(rec.photos || [])];
+                            await saveBin(rec);
+                            photosData = rec.photos;
+                            renderDynamicPhotos();
+                            progressBar.style.width = '100%';
+                            setStatus('✅ เพิ่มรูปแล้ว!');
+                            setTimeout(() => {
+                                setStatus('');
+                                progressWrap.style.display = 'none';
+                                progressBar.style.width = '0%';
+                            }, 2500);
+                            confetti({ particleCount: 60, spread: 70, origin: { y: 0.6 }, colors: ['#ff80ab','#ffffff','#ffd6e0'] });
+                        } else {
+                            setStatus('❌ อัปโหลดไม่สำเร็จ ลองใหม่นะ');
+                            progressWrap.style.display = 'none';
+                        }
+                    } catch(e) {
+                        setStatus('❌ เกิดข้อผิดพลาด ลองใหม่นะ');
+                        progressWrap.style.display = 'none';
+                    }
+                    resolve();
+                };
+
+                xhr.onerror = () => {
+                    setStatus('❌ อินเทอร์เน็ตมีปัญหา ลองใหม่นะ');
+                    progressWrap.style.display = 'none';
+                    resolve();
+                };
+
+                xhr.send(formData);
+            });
         }
 
         async function deletePhoto(index) {
@@ -1058,10 +948,13 @@
             renderDynamicPhotos();
         }
 
-        // Allow text input in textarea
+        // Allow textarea input
         document.getElementById('capsule-input').addEventListener('click', e => e.stopPropagation());
         document.getElementById('capsule-input').style.userSelect = 'text';
         document.getElementById('capsule-input').addEventListener('mousedown', e => e.stopPropagation());
+        document.getElementById('caption-input').addEventListener('click', e => e.stopPropagation());
+        document.getElementById('caption-input').style.userSelect = 'text';
+        document.getElementById('caption-input').addEventListener('keydown', e => { if (e.key === 'Enter') confirmCaption(); });
 
         // ===== Original Functions =====
         let moodData = JSON.parse(localStorage.getItem('moodHistory')) || {};
@@ -1082,7 +975,7 @@
                 cell.className = 'day-cell';
                 if (d === now.getDate()) cell.classList.add('today');
                 cell.innerText = d;
-                const dateKey = `${now.getFullYear()}-${now.getMonth() + 1}-${d}`;
+                const dateKey = `${now.getFullYear()}-${now.getMonth()+1}-${d}`;
                 if (moodData[dateKey]) {
                     const dot = document.createElement('div');
                     dot.className = `mood-dot dot-${moodData[dateKey]}`;
@@ -1094,11 +987,11 @@
 
         function updateGreeting() {
             const hour = new Date().getHours();
-            const greetElement = document.getElementById('greeting');
-            if (hour >= 5 && hour < 12) greetElement.innerText = "อรุณสวัสดิ์นะไอ้อ้วน ☀️";
-            else if (hour >= 12 && hour < 18) greetElement.innerText = "เที่ยงแล้ว หาไรกินยัง? 🍰";
-            else if (hour >= 18 && hour < 22) greetElement.innerText = "เย็นแล้ว พักผ่อนนะอ้วน 🌸";
-            else greetElement.innerText = "ดึกแล้ว ฝันดีนะไอ้อ้วน 🌙";
+            const el = document.getElementById('greeting');
+            if (hour >= 5 && hour < 12) el.innerText = "อรุณสวัสดิ์นะไอ้อ้วน ☀️";
+            else if (hour >= 12 && hour < 18) el.innerText = "เที่ยงแล้ว หาไรกินยัง? 🍰";
+            else if (hour >= 18 && hour < 22) el.innerText = "เย็นแล้ว พักผ่อนนะอ้วน 🌸";
+            else el.innerText = "ดึกแล้ว ฝันดีนะไอ้อ้วน 🌙";
             if (hour < 6 || hour >= 18) document.body.classList.add('night-mode');
             else document.body.classList.remove('night-mode');
         }
@@ -1106,26 +999,26 @@
         function updateBirthday() {
             const today = new Date();
             let bday = new Date(today.getFullYear(), 8, 7);
-            if (today > bday && (today.getDate() !== 7 || today.getMonth() !== 8)) bday.setFullYear(today.getFullYear() + 1);
+            if (today > bday && !(today.getDate()===7 && today.getMonth()===8)) bday.setFullYear(today.getFullYear()+1);
             const diff = bday - today;
-            const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-            document.getElementById('bday-timer').innerText = (today.getMonth() === 8 && today.getDate() === 7) ? "🎉 สุขสันต์วันเกิดนะอ้วน! 🎂" : `เหลืออีก ${days} วัน 🎈`;
+            const days = Math.ceil(diff / (1000*60*60*24));
+            document.getElementById('bday-timer').innerText = (today.getMonth()===8 && today.getDate()===7) ? "🎉 สุขสันต์วันเกิดนะอ้วน! 🎂" : `เหลืออีก ${days} วัน 🎈`;
         }
-
-        function toggleMusic() {} // legacy - replaced by playTrack
 
         function mood(type) {
             const replies = { '😊':"ดีมาก! ยิ้มเยอะๆ นะ 🎶", '😔':"โอ๋ๆ เดี๋ยวเค้ากอดนะ", '😤':"ใจเย็นๆ เดี๋ยวพาไปกินขนม", '😋':"หิวหรอ? ไปกินของอร่อยกัน!" };
             document.getElementById('mood-reply').innerText = replies[type];
             const now = new Date();
-            const dateKey = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
-            const typeMap = { '😊': 'happy', '😔': 'sad', '😤': 'angry', '😋': 'hungry' };
+            const dateKey = `${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}`;
+            const typeMap = { '😊':'happy', '😔':'sad', '😤':'angry', '😋':'hungry' };
             moodData[dateKey] = typeMap[type];
             localStorage.setItem('moodHistory', JSON.stringify(moodData));
             initCalendar();
             if (type === '😊') {
-                mySong.pause(); currentTrack = null; document.getElementById('track-proud').classList.remove('playing'); document.getElementById('btn-proud').innerHTML='▶';
-                happySong.play().catch(() => {});
+                mySong.pause(); currentTrack = null;
+                document.getElementById('track-proud').classList.remove('playing');
+                document.getElementById('btn-proud').innerHTML = '▶';
+                happySong.play().catch(()=>{});
                 confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
             }
         }
@@ -1137,15 +1030,14 @@
             const icon = document.getElementById('tree-icon');
             const btn = document.getElementById('water-btn');
             bar.style.width = treeProgress + '%';
-            if(treeProgress >= 100) icon.innerText = '🌷';
-            else if(treeProgress >= 50) icon.innerText = '🌿';
+            if (treeProgress >= 100) icon.innerText = '🌻';
+            else if (treeProgress >= 50) icon.innerText = '🌿';
             else icon.innerText = '🌱';
-            if(lastWaterDate === getTodayStr() || treeProgress >= 100) btn.classList.add('disabled');
+            if (lastWaterDate === getTodayStr() || treeProgress >= 100) btn.classList.add('disabled');
             else btn.classList.remove('disabled');
         }
-
         function waterTree() {
-            if(lastWaterDate === getTodayStr() || treeProgress >= 100) return;
+            if (lastWaterDate === getTodayStr() || treeProgress >= 100) return;
             treeProgress = Math.min(treeProgress + 10, 100);
             lastWaterDate = getTodayStr();
             localStorage.setItem('treeProgress', treeProgress);
@@ -1169,8 +1061,9 @@
             if (e.target.closest('.gift-modal-content') || e.target.closest('.gift-detail-content')) return;
             if (e.target.closest('.coupon-card') || e.target.closest('.gift-section')) return;
             if (e.target.closest('.photo-upload-area') || e.target.closest('.memories-section')) return;
+            if (e.target.closest('.caption-modal-content')) return;
             const heart = document.createElement('div');
-            heart.innerHTML = '❤️','😼','🌸','💖','✨';
+            heart.innerHTML = '❤️';
             heart.className = 'click-heart';
             heart.style.left = (e.clientX - 10) + 'px';
             heart.style.top = (e.clientY - 10) + 'px';
@@ -1180,7 +1073,7 @@
 
         setInterval(() => {
             const item = document.createElement('div');
-            item.innerHTML = '❤️','😼','🌸','💖','✨';
+            item.innerHTML = ['❤️','🌸','💖','✨'][Math.floor(Math.random()*4)];
             item.className = 'floating-item';
             item.style.left = Math.random() * 100 + 'vw';
             document.getElementById('heart-container').appendChild(item);
@@ -1199,32 +1092,24 @@
             { id: 'g8', icon: '📸', name: 'โฟโต้เดต', desc: 'พาอ้วนไปถ่ายรูปด้วยกัน เก็บความทรงจำสวยๆ 📸', unlockDay: 30 },
             { id: 'g9', icon: '🌍', name: 'ทริปพิเศษ', desc: 'วันหนึ่งจะพาอ้วนไปเที่ยวที่อ้วนอยากไป ไม่ว่าจะที่ไหน 🌍✈️', unlockDay: 30 },
         ];
-
         let openedGifts = JSON.parse(localStorage.getItem('openedGifts')) || [];
-
         function renderGifts() {
             const now = new Date();
             const daysTogether = Math.floor((now - startDate) / (1000*60*60*24));
-            const grid = document.getElementById('gift-grid');
-            grid.innerHTML = gifts.map(g => {
+            document.getElementById('gift-grid').innerHTML = gifts.map(g => {
                 const isLocked = daysTogether < g.unlockDay;
                 const isOpened = openedGifts.includes(g.id);
-                return `<div class="gift-item ${isLocked ? 'locked' : ''}" onclick="${isLocked ? '' : `openGift('${g.id}')`}">
+                return `<div class="gift-item ${isLocked?'locked':''}" onclick="${isLocked?'':` openGift('${g.id}')`}">
                     ${!isLocked && !isOpened ? '<div class="gift-unlock-badge">!</div>' : ''}
-                    <div class="gift-item-icon">${isOpened ? '✅' : (isLocked ? '🔒' : g.icon)}</div>
+                    <div class="gift-item-icon">${isOpened?'✅':(isLocked?'🔒':g.icon)}</div>
                     <div class="gift-item-name">${g.name}</div>
-                    <div class="gift-item-hint">${isLocked ? `ปลดล็อกวันที่ ${g.unlockDay}` : (isOpened ? 'รับแล้ว!' : 'แตะเพื่อเปิด')}</div>
+                    <div class="gift-item-hint">${isLocked?`ปลดล็อกวันที่ ${g.unlockDay}`:(isOpened?'รับแล้ว!':'แตะเพื่อเปิด')}</div>
                 </div>`;
             }).join('');
         }
-
-        function openGiftModal() {
-            renderGifts();
-            document.getElementById('giftModal').style.display = 'block';
-        }
+        function openGiftModal() { renderGifts(); document.getElementById('giftModal').style.display = 'block'; }
         function closeGiftModal() { document.getElementById('giftModal').style.display = 'none'; }
         function closeGiftOnBg(e) { if (e.target === document.getElementById('giftModal')) closeGiftModal(); }
-
         function openGift(id) {
             const g = gifts.find(x => x.id === id);
             if (!g) return;
@@ -1235,66 +1120,50 @@
             document.getElementById('giftDetailModal').dataset.currentId = id;
             confetti({ particleCount: 80, spread: 70, origin: { y: 0.5 }, colors: ['#ce93d8','#ff80ab','#ffffff'] });
         }
-
         function closeGiftDetail(e) { if (e.target === document.getElementById('giftDetailModal')) closeGiftDetailBtn(); }
         function closeGiftDetailBtn() {
             const id = document.getElementById('giftDetailModal').dataset.currentId;
-            if (id && !openedGifts.includes(id)) {
-                openedGifts.push(id);
-                localStorage.setItem('openedGifts', JSON.stringify(openedGifts));
-            }
+            if (id && !openedGifts.includes(id)) { openedGifts.push(id); localStorage.setItem('openedGifts', JSON.stringify(openedGifts)); }
             document.getElementById('giftDetailModal').style.display = 'none';
             renderGifts();
         }
 
         // ===== Coupon System =====
         const coupons = [
-            { emoji: '🤗', title: 'คูปองกอด', desc: 'สามารถขอกอดเค้าได้ 1 ครั้ง ไม่มีเงื่อนไข แลกได้ตลอด 24 ชั่วโมง 🤗' },
-            { emoji: '🍡', title: 'คูปองของหวาน', desc: 'เค้าจะพาอ้วนไปกินของหวานที่อ้วนอยากกิน เลือกเองได้เลย! 🍡🍰' },
-            { emoji: '🎮', title: 'คูปองเกมส์', desc: 'เล่นเกมอะไรก็ได้ด้วยกัน เค้าจะไม่โกง (มั้ง) 🎮😄' },
-            { emoji: '💆', title: 'คูปองนวด', desc: 'นวดไหล่ให้อ้วน 15 นาที ไม่มีข้ออ้าง แลกได้เลย! 💆' },
-            { emoji: '🌙', title: 'คูปองคุยทั้งคืน', desc: 'คืนนี้คุยด้วยกันยันเช้า ไม่ว่าจะเรื่องอะไรก็ได้ 🌙✨' },
-            { emoji: '🎁', title: 'คูปองซื้อของ', desc: 'อ้วนอยากได้อะไร บอกมาได้เลย เค้าจะซื้อให้! (ในงบนะ 555) 🎁' },
-            { emoji: '📷', title: 'คูปองถ่ายรูป', desc: 'เค้าจะถ่ายรูปให้อ้วนสวยๆ ไม่จำกัดจำนวน วันไหนก็ได้ 📷💕' },
-            { emoji: '🍳', title: 'คูปองอาหาร', desc: 'เค้าจะทำอาหารให้อ้วนกิน 1 มื้อ เมนูอะไรก็ได้ที่ทำได้นะ 🍳' },
-            { emoji: '🌈', title: 'คูปองซัพไพรส์', desc: 'เค้าจะทำสิ่งพิเศษให้อ้วน 1 อย่าง...ต้องแลกถึงจะรู้ว่าคืออะไร 🌈✨' },
+            { emoji:'🤗', title:'คูปองกอด', desc:'สามารถขอกอดเค้าได้ 1 ครั้ง ไม่มีเงื่อนไข แลกได้ตลอด 24 ชั่วโมง 🤗' },
+            { emoji:'🍡', title:'คูปองของหวาน', desc:'เค้าจะพาอ้วนไปกินของหวานที่อ้วนอยากกิน เลือกเองได้เลย! 🍡🍰' },
+            { emoji:'🎮', title:'คูปองเกมส์', desc:'เล่นเกมอะไรก็ได้ด้วยกัน เค้าจะไม่โกง (มั้ง) 🎮😄' },
+            { emoji:'💆', title:'คูปองนวด', desc:'นวดไหล่ให้อ้วน 15 นาที ไม่มีข้ออ้าง แลกได้เลย! 💆' },
+            { emoji:'🌙', title:'คูปองคุยทั้งคืน', desc:'คืนนี้คุยด้วยกันยันเช้า ไม่ว่าจะเรื่องอะไรก็ได้ 🌙✨' },
+            { emoji:'🎁', title:'คูปองซื้อของ', desc:'อ้วนอยากได้อะไร บอกมาได้เลย เค้าจะซื้อให้! (ในงบนะ 555) 🎁' },
+            { emoji:'📷', title:'คูปองถ่ายรูป', desc:'เค้าจะถ่ายรูปให้อ้วนสวยๆ ไม่จำกัดจำนวน วันไหนก็ได้ 📷💕' },
+            { emoji:'🍳', title:'คูปองอาหาร', desc:'เค้าจะทำอาหารให้อ้วนกิน 1 มื้อ เมนูอะไรก็ได้ที่ทำได้นะ 🍳' },
+            { emoji:'🌈', title:'คูปองซัพไพรส์', desc:'เค้าจะทำสิ่งพิเศษให้อ้วน 1 อย่าง...ต้องแลกถึงจะรู้ว่าคืออะไร 🌈✨' },
         ];
-
         let currentCoupon = null;
-
         function drawCoupon() {
             const today = getTodayStr();
-            const savedCoupon = JSON.parse(localStorage.getItem('todayCoupon') || 'null');
-
-            if (savedCoupon && savedCoupon.date === today) {
-                currentCoupon = savedCoupon;
-            } else {
+            const saved = JSON.parse(localStorage.getItem('todayCoupon') || 'null');
+            if (saved && saved.date === today) currentCoupon = saved;
+            else {
                 const c = coupons[Math.floor(Math.random() * coupons.length)];
                 currentCoupon = { ...c, date: today, used: false };
                 localStorage.setItem('todayCoupon', JSON.stringify(currentCoupon));
             }
-
             document.getElementById('coupon-emoji').innerText = currentCoupon.emoji;
             document.getElementById('coupon-title').innerText = currentCoupon.title;
             document.getElementById('coupon-desc').innerText = currentCoupon.desc;
             document.getElementById('coupon-expire').innerText = `หมดอายุ: วันนี้ ${today} เท่านั้น!`;
-
             const usedNote = document.getElementById('coupon-used-note');
             const useBtn = document.getElementById('coupon-use-btn');
             if (currentCoupon.used) {
-                usedNote.style.display = 'block';
-                usedNote.innerText = '✅ ใช้คูปองนี้ไปแล้ววันนี้';
-                useBtn.style.opacity = '0.4';
-                useBtn.style.pointerEvents = 'none';
+                usedNote.style.display = 'block'; usedNote.innerText = '✅ ใช้คูปองนี้ไปแล้ววันนี้';
+                useBtn.style.opacity = '0.4'; useBtn.style.pointerEvents = 'none';
             } else {
-                usedNote.style.display = 'none';
-                useBtn.style.opacity = '1';
-                useBtn.style.pointerEvents = 'auto';
+                usedNote.style.display = 'none'; useBtn.style.opacity = '1'; useBtn.style.pointerEvents = 'auto';
             }
-
             document.getElementById('couponModal').style.display = 'block';
         }
-
         function useCoupon() {
             if (!currentCoupon || currentCoupon.used) return;
             currentCoupon.used = true;
@@ -1305,19 +1174,14 @@
             document.getElementById('coupon-use-btn').style.pointerEvents = 'none';
             confetti({ particleCount: 60, spread: 60, origin: { y: 0.6 }, colors: ['#1565c0','#64b5f6','#ffffff'] });
         }
-
         function closeCouponModal() { document.getElementById('couponModal').style.display = 'none'; }
         function closeCouponOnBg(e) { if (e.target === document.getElementById('couponModal')) closeCouponModal(); }
 
-        // Init
+        // ===== Init =====
         setInterval(() => { updateAnniversary(); updateGreeting(); updateBirthday(); }, 1000);
-        updateAnniversary();
-        updateGreeting();
-        updateBirthday();
-        initCalendar();
-        updateTreeUI();
-        initCapsule();
-        initPhotos();
+        updateAnniversary(); updateGreeting(); updateBirthday();
+        initCalendar(); updateTreeUI();
+        initCapsule(); initPhotos();
     </script>
 </body>
 </html>
