@@ -46,6 +46,17 @@
         .section-badge { background:var(--accent); border-radius:50px; padding:6px 16px; font-size:0.7rem; font-weight:700; color:white; white-space:nowrap; letter-spacing:1px; box-shadow:0 4px 12px rgba(255,64,129,0.3); }
         .section-badge.outline { background:white; border:2px solid #ffb3c6; color:var(--text-main); box-shadow:none; }
 
+        /* Sync Status Bar */
+        .sync-bar { display:flex; align-items:center; justify-content:space-between; background:rgba(255,255,255,0.5); border-radius:50px; padding:6px 14px; margin-bottom:16px; border:1px solid rgba(255,179,198,0.4); }
+        .sync-status { font-size:0.65rem; color:var(--text-sub); display:flex; align-items:center; gap:5px; }
+        .sync-dot { width:7px; height:7px; border-radius:50%; background:#4caf50; animation:syncPulse 2s infinite; flex-shrink:0; }
+        .sync-dot.syncing { background:#ffb74d; animation:syncSpin 1s linear infinite; }
+        .sync-dot.error { background:#ef5350; animation:none; }
+        @keyframes syncPulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+        @keyframes syncSpin { 0%{transform:scale(0.6)} 50%{transform:scale(1)} 100%{transform:scale(0.6)} }
+        .sync-refresh-btn { background:none; border:1.5px solid rgba(255,64,129,0.3); border-radius:50px; padding:4px 10px; font-size:0.6rem; color:var(--text-main); cursor:pointer; font-family:'Anuphan',sans-serif; font-weight:600; }
+        .sync-refresh-btn:active { transform:scale(0.95); }
+
         /* ===== 🌙 Bedtime Check-in ===== */
         .checkin-box { background:linear-gradient(135deg,#1a1a2e,#16213e); border-radius:28px; padding:18px 16px; margin-bottom:20px; width:100%; position:relative; overflow:hidden; border:2px solid #3a3a6a; }
         .checkin-box::before { content:'🌙'; position:absolute; top:-8px; right:-4px; font-size:4rem; opacity:0.08; }
@@ -388,6 +399,15 @@
         <div class="anniv-since">ตั้งแต่ 25 มีนาคม 2569 ✨</div>
     </div>
 
+    <!-- 🔄 Sync Status Bar -->
+    <div class="sync-bar">
+        <div class="sync-status">
+            <div class="sync-dot" id="sync-dot"></div>
+            <span id="sync-label">ซิงค์ข้อมูลทั้งคู่แล้ว ✓</span>
+        </div>
+        <button class="sync-refresh-btn" onclick="manualSync()">🔄 รีเฟรช</button>
+    </div>
+
     <!-- 🌙 Bedtime Check-in -->
     <div class="checkin-box">
         <div class="checkin-title">🌙 เช็คอินก่อนนอน</div>
@@ -457,9 +477,9 @@
                 <button class="track-play-btn" id="btn-happy">▶</button>
             </div>
         </div>
-        <!-- Song Request -->
+        <!-- Song Request (SYNCED) -->
         <div class="song-request-box" style="margin-top:10px;">
-            <div class="song-req-title">🎶 อ้วนอยากเพิ่มเพลงอะไร?</div>
+            <div class="song-req-title">🎶 อ้วนอยากเพิ่มเพลงอะไร? <span style="font-size:0.6rem;color:#a1887f;">(ซิงค์ทั้งคู่ 🔄)</span></div>
             <div class="song-req-row">
                 <input class="song-req-input" id="song-req-input" placeholder="ชื่อเพลง - ศิลปิน..." maxlength="60">
                 <button class="song-req-btn" onclick="addSongRequest()">+ เพิ่ม</button>
@@ -488,9 +508,10 @@
         </div>
     </div>
 
-    <!-- 💬 Message Board -->
+    <!-- 💬 Message Board (SYNCED) -->
     <div class="section-header"><div class="section-line"></div><div class="section-badge">💬 MESSAGE BOARD</div><div class="section-line right"></div></div>
     <div class="board-box" style="margin-bottom:20px;">
+        <div style="font-size:0.6rem;color:#9fa8da;margin-bottom:8px;text-align:right;">🔄 ซิงค์ทั้งคู่แบบ real-time</div>
         <div class="board-who-row">
             <button class="board-who-btn active" id="board-me-btn" onclick="setBoardWho('me')">👦 เค้า</button>
             <button class="board-who-btn" id="board-you-btn" onclick="setBoardWho('you')">🍰 อ้วน</button>
@@ -503,9 +524,10 @@
         <div class="board-feed" id="board-feed"><div class="board-empty">ยังไม่มีข้อความ เริ่มโพสต์กันเลย! 💬</div></div>
     </div>
 
-    <!-- 🎯 Wishlist -->
+    <!-- 🎯 Wishlist (SYNCED) -->
     <div class="section-header"><div class="section-line"></div><div class="section-badge">🎯 COUPLE WISHLIST</div><div class="section-line right"></div></div>
     <div class="wishlist-box" style="margin-bottom:20px;">
+        <div style="font-size:0.6rem;color:#a1887f;margin-bottom:8px;text-align:right;">🔄 ซิงค์ทั้งคู่แบบ real-time</div>
         <div class="wish-who-select">
             <button class="who-btn active" id="wish-me-btn" onclick="setWishWho('me')">👦 เค้าอยากทำ</button>
             <button class="who-btn" id="wish-you-btn" onclick="setWishWho('you')">🍰 อ้วนอยากทำ</button>
@@ -642,7 +664,7 @@
     <div class="modal-content">
         <span class="close" onclick="document.getElementById('loveLetter').style.display='none'">&times;</span>
         <h2 style="color:var(--accent);margin-bottom:15px;font-family:'Caveat',cursive;font-size:2rem;">Dear Cake,</h2>
-        <p style="font-size:0.95rem;line-height:1.6;color:#555;">ถึงไอ้อ้วนของเค้า... ขอบคุณที่อยู่ด้วยกันมาตลอดนะ ดีใจมากที่มีอ้วนเข้ามาในชีวิต สัญญาว่าจะรักและดูแลอ้วนแบบนี้ไปนานๆ ยิ้มเยอะๆ นะครับคนเก่ง 🍰💖</p>
+        <p style="font-size:0.95rem;line-height:1.6;color:#555;">ถึงไอ้อ้วนที่รักมากที่สุด... ขอบคุณที่อยู่ด้วยกันมาตลอดนะ ดีใจมากที่มีอ้วนเข้ามาในชีวิต สัญญาว่าจะรักและดูแลอ้วนแบบนี้ไปนานๆ ยิ้มเยอะๆ นะครับคนเก่ง 🍰💖</p>
     </div>
 </div>
 <div id="capsuleModal" class="capsule-modal" onclick="if(event.target===this)closeCapsuleModal()">
@@ -685,19 +707,71 @@ const startDate = new Date('2026-03-25T00:00:00');
 const getTodayStr = () => new Date().toISOString().slice(0,10);
 const escapeHtml = t => String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
+// ===== Sync State =====
+let syncedData = {}; // in-memory cache of bin data
+let isSyncing = false;
+let lastSyncTime = null;
+
+function setSyncStatus(state, label) {
+    const dot = document.getElementById('sync-dot');
+    const lbl = document.getElementById('sync-label');
+    dot.className = 'sync-dot' + (state === 'syncing' ? ' syncing' : state === 'error' ? ' error' : '');
+    lbl.innerText = label;
+}
+
 // ===== JSONBin =====
 async function loadBin() {
     try {
         const r = await fetch(BIN_URL+'/latest',{headers:{'X-Master-Key':BIN_KEY}});
         const d = await r.json();
         return d.record || {};
-    } catch(e){ return {}; }
+    } catch(e){ return syncedData || {}; }
 }
 async function saveBin(record) {
     try {
         await fetch(BIN_URL,{method:'PUT',headers:{'Content-Type':'application/json','X-Master-Key':BIN_KEY},body:JSON.stringify(record)});
     } catch(e){}
 }
+
+// ===== Full Sync (pull all synced sections) =====
+async function fullSync(silent=false) {
+    if(isSyncing) return;
+    isSyncing = true;
+    if(!silent) setSyncStatus('syncing','กำลังซิงค์...');
+    try {
+        const rec = await loadBin();
+        syncedData = rec;
+
+        // Update each section if data changed
+        renderBoardFromData(rec.boardPosts || []);
+        renderWishlistFromData(rec.wishlist || []);
+        renderRequestedSongsFromData(rec.songRequests || []);
+
+        capsuleMessages = rec.messages || [];
+        updateCapsuleCount();
+        document.getElementById('stat-capsules').innerText = capsuleMessages.length;
+
+        photosData = rec.photos || [];
+        renderDynamicPhotos();
+        document.getElementById('stat-photos').innerText = photosData.length;
+
+        updateStatsFromData(rec);
+
+        lastSyncTime = new Date();
+        const timeStr = lastSyncTime.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
+        setSyncStatus('ok', `ซิงค์ล่าสุด ${timeStr} ✓`);
+    } catch(e) {
+        setSyncStatus('error','ซิงค์ไม่สำเร็จ ⚠️');
+    }
+    isSyncing = false;
+}
+
+async function manualSync() {
+    await fullSync(false);
+}
+
+// Auto-sync every 10 seconds
+setInterval(() => fullSync(true), 10000);
 
 // ===== Anniversary =====
 function updateAnniversary() {
@@ -717,7 +791,6 @@ function saveCheckinData(d) { localStorage.setItem('checkinData',JSON.stringify(
 
 function initCheckin() {
     const data = getCheckinData();
-    // check if streak broken
     if(data.lastDate && data.lastDate !== getTodayStr()) {
         const last = new Date(data.lastDate), today = new Date(getTodayStr());
         const diff = Math.floor((today-last)/864e5);
@@ -741,7 +814,6 @@ function renderCheckin(data) {
         btn.className = 'checkin-btn';
         document.getElementById('checkin-msg').innerText = '';
     }
-    // render last 7 days dots
     const row = document.getElementById('checkin-days-row');
     row.innerHTML = '';
     const days = ['อา','จ','อ','พ','พฤ','ศ','ส'];
@@ -786,17 +858,19 @@ function updateStats() {
         document.getElementById('cnt-'+t).innerText=counts[t];
         document.getElementById('bar-'+t).style.width=(counts[t]/total*100)+'%';
     });
-    // wish count
-    const wishes = JSON.parse(localStorage.getItem('wishlist')||'[]');
+}
+
+function updateStatsFromData(rec) {
+    const wishes = rec.wishlist || [];
     document.getElementById('stat-wishes').innerText = wishes.filter(w=>w.done).length;
-    // board posts
-    const posts = JSON.parse(localStorage.getItem('boardPosts')||'[]');
+    const posts = rec.boardPosts || [];
     document.getElementById('stat-posts').innerText = posts.length;
+    updateStats();
 }
 
 // ===== 💌 Countdown Letters =====
 const letters = [
-    { num:1, title:'จดหมายฉบับแรก 💕', unlockDays:0, content:'ถึงไอ้อ้วนที่รักมากที่สุด\n\nตั้งแต่วันแรกที่เราคบกัน เค้ารู้สึกว่าชีวิตมันสดใสขึ้นมากเลยนะ ขอบคุณที่ยอมรับเค้าในทุกรูปแบบ ทั้งตอนที่เค้าน่ารักและตอนที่เค้าเซ่อซ่า 😅\n\nสัญญาว่าจะทำให้อ้วนยิ้มทุกวัน รักอ้วนนะ 🍰💖' },
+    { num:1, title:'จดหมายฉบับแรก 💕', unlockDays:0, content:'ถึงไอ้อ้วนที่รักมากที่สุด\n\nตั้งแต่วันแรกที่เราคบกัน เค้ารู้สึกว่าชีวิตมันสดใสขึ้นมากเลยนะ ขอบคุณที่ยอมรับเค้าในทุกรูปแบบ ทั้งตอนที่เค้าน่ารักและตอนที่เค้าอ๋อง 😅\n\nสัญญาว่าจะทำให้อ้วนยิ้มทุกวัน รักอ้วนนะ 🍰💖' },
     { num:2, title:'จดหมาย 7 วัน 🌸', unlockDays:7, content:'อ้วน 🍰\n\nผ่านมา 1 สัปดาห์แล้วนะ เวลาผ่านไปเร็วมากเลย แต่ทุกวันที่มีอ้วนอยู่ด้วยมันพิเศษทุกวันเลย\n\nขอบคุณที่อยู่ข้างๆ กันนะ จะดูแลอ้วนไปอีกนานๆ 💕' },
     { num:3, title:'จดหมาย 1 เดือน 🌙', unlockDays:30, content:'ครบ 1 เดือนแล้วนะอ้วน! 🎉\n\nเค้าอยากบอกว่า ทุกช่วงเวลาที่ผ่านมามันทำให้เค้ายิ่งรักอ้วนมากขึ้นเรื่อยๆ อ้วนทำให้ชีวิตเค้าสมบูรณ์ขึ้นมากจริงๆ\n\nรักอ้วนที่สุดในโลก 🌍💖' },
     { num:4, title:'จดหมาย 3 เดือน ⭐', unlockDays:90, content:'3 เดือนแล้วน้า! 🥰\n\nตอนนี้เค้ารู้สึกว่าอ้วนเป็นส่วนหนึ่งของชีวิตที่ขาดไม่ได้เลย ขอบคุณที่รักและดูแลเค้านะ\n\nยังอยากอยู่ด้วยกันไปอีกนานๆ เลยนะ 💕✨' },
@@ -839,7 +913,7 @@ function readLetter(num) {
 }
 function closeLetter2() { document.getElementById('letterModal').style.display='none'; }
 
-// ===== 💬 Message Board =====
+// ===== 💬 Message Board (SYNCED via JSONBin) =====
 let boardWho = 'me';
 function setBoardWho(w) {
     boardWho = w;
@@ -850,8 +924,8 @@ function updateBoardChar() {
     const v = document.getElementById('board-textarea').value;
     document.getElementById('board-char-count').innerText=`${v.length}/200`;
 }
-function renderBoard() {
-    const posts = JSON.parse(localStorage.getItem('boardPosts')||'[]');
+
+function renderBoardFromData(posts) {
     const feed = document.getElementById('board-feed');
     if(!posts.length){feed.innerHTML='<div class="board-empty">ยังไม่มีข้อความ เริ่มโพสต์กันเลย! 💬</div>';return;}
     feed.innerHTML = [...posts].reverse().map((p,ri) => {
@@ -865,26 +939,36 @@ function renderBoard() {
     }).join('');
     document.getElementById('stat-posts').innerText=posts.length;
 }
-function addBoardPost() {
+
+async function addBoardPost() {
     const ta = document.getElementById('board-textarea');
     const text = ta.value.trim();
     if(!text) return;
-    const posts = JSON.parse(localStorage.getItem('boardPosts')||'[]');
+    setSyncStatus('syncing','กำลังโพสต์...');
+    const rec = await loadBin();
+    const posts = rec.boardPosts || [];
     const now = new Date();
     posts.push({who:boardWho, text, time: now.toLocaleDateString('th-TH',{day:'numeric',month:'short'})+' '+now.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'})});
-    localStorage.setItem('boardPosts',JSON.stringify(posts));
+    rec.boardPosts = posts;
+    await saveBin(rec);
+    syncedData = rec;
     ta.value=''; updateBoardChar();
-    renderBoard();
+    renderBoardFromData(posts);
+    setSyncStatus('ok','โพสต์แล้ว ✓');
     confetti({particleCount:30,spread:50,origin:{y:0.7},colors:['#7986cb','#ce93d8','#ffffff']});
 }
-function deleteBoardPost(i) {
-    const posts = JSON.parse(localStorage.getItem('boardPosts')||'[]');
+
+async function deleteBoardPost(i) {
+    const rec = await loadBin();
+    const posts = rec.boardPosts || [];
     posts.splice(i,1);
-    localStorage.setItem('boardPosts',JSON.stringify(posts));
-    renderBoard();
+    rec.boardPosts = posts;
+    await saveBin(rec);
+    syncedData = rec;
+    renderBoardFromData(posts);
 }
 
-// ===== 🎯 Wishlist =====
+// ===== 🎯 Wishlist (SYNCED via JSONBin) =====
 let wishWho = 'both';
 function setWishWho(w) {
     wishWho=w;
@@ -892,8 +976,8 @@ function setWishWho(w) {
         document.getElementById('wish-'+x+'-btn').className='who-btn'+(x===w?' active':'');
     });
 }
-function renderWishlist() {
-    const wishes = JSON.parse(localStorage.getItem('wishlist')||'[]');
+
+function renderWishlistFromData(wishes) {
     const list = document.getElementById('wish-list');
     if(!wishes.length){list.innerHTML='<div class="wish-empty">ยังไม่มี Wishlist เพิ่มเข้ามาเลย! 🎯</div>';return;}
     list.innerHTML = wishes.map((w,i)=>`
@@ -906,33 +990,49 @@ function renderWishlist() {
     `).join('');
     document.getElementById('stat-wishes').innerText=wishes.filter(w=>w.done).length;
 }
-function addWish() {
+
+async function addWish() {
     const inp = document.getElementById('wish-input');
     const text = inp.value.trim();
     if(!text) return;
-    const wishes = JSON.parse(localStorage.getItem('wishlist')||'[]');
+    setSyncStatus('syncing','กำลังเพิ่ม Wish...');
+    const rec = await loadBin();
+    const wishes = rec.wishlist || [];
     wishes.push({text, who:wishWho, done:false});
-    localStorage.setItem('wishlist',JSON.stringify(wishes));
-    inp.value=''; renderWishlist(); updateStats();
-}
-function toggleWish(i) {
-    const wishes = JSON.parse(localStorage.getItem('wishlist')||'[]');
-    wishes[i].done=!wishes[i].done;
-    localStorage.setItem('wishlist',JSON.stringify(wishes));
-    renderWishlist(); updateStats();
-    if(wishes[i].done) confetti({particleCount:60,spread:60,origin:{y:0.6},colors:['#ff7043','#ffb74d','#ffffff']});
-}
-function deleteWish(i) {
-    const wishes = JSON.parse(localStorage.getItem('wishlist')||'[]');
-    wishes.splice(i,1);
-    localStorage.setItem('wishlist',JSON.stringify(wishes));
-    renderWishlist(); updateStats();
+    rec.wishlist = wishes;
+    await saveBin(rec);
+    syncedData = rec;
+    inp.value='';
+    renderWishlistFromData(wishes);
+    setSyncStatus('ok','เพิ่ม Wish แล้ว ✓');
 }
 
-// ===== 🎵 Song Request =====
-function renderRequestedSongs() {
-    const songs = JSON.parse(localStorage.getItem('songRequests')||'[]');
+async function toggleWish(i) {
+    const rec = await loadBin();
+    const wishes = rec.wishlist || [];
+    if(!wishes[i]) return;
+    wishes[i].done=!wishes[i].done;
+    rec.wishlist = wishes;
+    await saveBin(rec);
+    syncedData = rec;
+    renderWishlistFromData(wishes);
+    if(wishes[i].done) confetti({particleCount:60,spread:60,origin:{y:0.6},colors:['#ff7043','#ffb74d','#ffffff']});
+}
+
+async function deleteWish(i) {
+    const rec = await loadBin();
+    const wishes = rec.wishlist || [];
+    wishes.splice(i,1);
+    rec.wishlist = wishes;
+    await saveBin(rec);
+    syncedData = rec;
+    renderWishlistFromData(wishes);
+}
+
+// ===== 🎵 Song Request (SYNCED via JSONBin) =====
+function renderRequestedSongsFromData(songs) {
     const container = document.getElementById('requested-songs');
+    if(!songs.length){container.innerHTML='';return;}
     container.innerHTML = songs.map((s,i)=>`
         <div class="track-card requested" style="cursor:default;">
             <div class="track-icon-wrap request-color">🎵</div>
@@ -944,21 +1044,32 @@ function renderRequestedSongs() {
         </div>
     `).join('');
 }
-function addSongRequest() {
+
+async function addSongRequest() {
     const inp = document.getElementById('song-req-input');
     const name = inp.value.trim();
     if(!name) return;
-    const songs = JSON.parse(localStorage.getItem('songRequests')||'[]');
-    songs.push({name, who:'you'}); // อ้วนส่ง
-    localStorage.setItem('songRequests',JSON.stringify(songs));
-    inp.value=''; renderRequestedSongs();
+    setSyncStatus('syncing','กำลังเพิ่มเพลง...');
+    const rec = await loadBin();
+    const songs = rec.songRequests || [];
+    songs.push({name, who:'you'});
+    rec.songRequests = songs;
+    await saveBin(rec);
+    syncedData = rec;
+    inp.value='';
+    renderRequestedSongsFromData(songs);
+    setSyncStatus('ok','เพิ่มเพลงแล้ว ✓');
     confetti({particleCount:40,spread:50,origin:{y:0.6},colors:['#ff80ab','#ffb3c6','#fff']});
 }
-function deleteRequest(i) {
-    const songs = JSON.parse(localStorage.getItem('songRequests')||'[]');
+
+async function deleteRequest(i) {
+    const rec = await loadBin();
+    const songs = rec.songRequests || [];
     songs.splice(i,1);
-    localStorage.setItem('songRequests',JSON.stringify(songs));
-    renderRequestedSongs();
+    rec.songRequests = songs;
+    await saveBin(rec);
+    syncedData = rec;
+    renderRequestedSongsFromData(songs);
 }
 
 // ===== Time Capsule =====
@@ -986,6 +1097,7 @@ async function saveCapsuleMessage() {
     const rec=await loadBin();
     rec.messages=[entry,...(rec.messages||[])];
     await saveBin(rec);
+    syncedData=rec;
     capsuleMessages=rec.messages; updateCapsuleCount();
     input.value=''; btn.innerText='📸 บันทึกช่วงเวลานี้'; btn.disabled=false;
     document.getElementById('capsule-meta-info').innerText=`✅ บันทึกแล้ว! (${entry.displayDate} ${entry.displayTime})`;
@@ -1005,7 +1117,7 @@ function renderCapsuleList() {
 }
 async function deleteCapsuleEntry(id) {
     const rec=await loadBin(); rec.messages=(rec.messages||[]).filter(e=>e.id!==id);
-    await saveBin(rec); capsuleMessages=rec.messages; updateCapsuleCount(); renderCapsuleList();
+    await saveBin(rec); syncedData=rec; capsuleMessages=rec.messages; updateCapsuleCount(); renderCapsuleList();
 }
 async function openCapsuleModal() {
     const rec=await loadBin(); capsuleMessages=rec.messages||[]; updateCapsuleCount(); renderCapsuleList();
@@ -1062,7 +1174,7 @@ async function uploadToCloudinary(file,caption) {
                 if(r.secure_url){
                     const rec=await loadBin();
                     rec.photos=[{id:Date.now(),url:r.secure_url,caption},...(rec.photos||[])];
-                    await saveBin(rec); photosData=rec.photos; renderDynamicPhotos();
+                    await saveBin(rec); syncedData=rec; photosData=rec.photos; renderDynamicPhotos();
                     pb.style.width='100%'; setPhotoStatus('✅ เพิ่มรูปแล้ว!');
                     setTimeout(()=>{setPhotoStatus('');pw.style.display='none';pb.style.width='0%';},2500);
                     confetti({particleCount:60,spread:70,origin:{y:0.6},colors:['#ff80ab','#ffffff','#ffd6e0']});
@@ -1077,7 +1189,7 @@ async function uploadToCloudinary(file,caption) {
 async function deletePhoto(i) {
     if(!confirm('ลบรูปนี้เลยนะ?')) return;
     const rec=await loadBin(); rec.photos=(rec.photos||[]).filter((_,j)=>j!==i);
-    await saveBin(rec); photosData=rec.photos; renderDynamicPhotos();
+    await saveBin(rec); syncedData=rec; photosData=rec.photos; renderDynamicPhotos();
 }
 
 // ===== Playlist =====
@@ -1204,7 +1316,6 @@ function closeGiftDetailBtn(){
     document.getElementById('giftDetailModal').style.display='none'; renderGifts();
 }
 
-// ===== Coupon =====
 const coupons=[
     {emoji:'🤗',title:'คูปองกอด',desc:'สามารถขอกอดเค้าได้ 1 ครั้ง ไม่มีเงื่อนไข 🤗'},
     {emoji:'🍡',title:'คูปองของหวาน',desc:'เค้าจะพาอ้วนไปกินของหวานที่อ้วนอยากกิน! 🍡🍰'},
@@ -1276,8 +1387,9 @@ setInterval(()=>{updateAnniversary();updateGreeting();updateBirthday();},1000);
 updateAnniversary(); updateGreeting(); updateBirthday();
 initCalendar(); updateTreeUI(); updateStats();
 initCheckin(); initLetters();
-renderBoard(); renderWishlist(); renderRequestedSongs();
-initCapsule(); initPhotos();
+
+// Initial full sync (loads board, wishlist, songs, capsule, photos all at once)
+fullSync(false);
 </script>
 </body>
 </html>
