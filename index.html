@@ -57,7 +57,7 @@
         .sync-refresh-btn { background:none; border:1.5px solid rgba(255,64,129,0.3); border-radius:50px; padding:4px 10px; font-size:0.6rem; color:var(--text-main); cursor:pointer; font-family:'Anuphan',sans-serif; font-weight:600; }
         .sync-refresh-btn:active { transform:scale(0.95); }
 
-        /* ===== 🌙 Bedtime Check-in ===== */
+        /* 🌙 Bedtime Check-in */
         .checkin-box { background:linear-gradient(135deg,#1a1a2e,#16213e); border-radius:28px; padding:18px 16px; margin-bottom:20px; width:100%; position:relative; overflow:hidden; border:2px solid #3a3a6a; }
         .checkin-box::before { content:'🌙'; position:absolute; top:-8px; right:-4px; font-size:4rem; opacity:0.08; }
         .checkin-title { font-size:0.85rem; font-weight:700; color:#ce93d8; margin-bottom:4px; }
@@ -71,13 +71,12 @@
         .checkin-dot { width:28px; height:28px; border-radius:50%; background:rgba(255,255,255,0.08); border:1.5px solid rgba(149,117,205,0.3); display:flex; align-items:center; justify-content:center; font-size:0.55rem; color:#9575cd; flex-direction:column; }
         .checkin-dot.done { background:linear-gradient(135deg,#7b1fa2,#9c27b0); border-color:#ce93d8; }
         .checkin-dot.today-dot { border:2px solid #ffb74d; }
-        .checkin-dot-label { font-size:0.42rem; color:#9575cd; margin-top:1px; }
         .checkin-btn { width:100%; background:linear-gradient(135deg,#7b1fa2,#9c27b0); color:white; border:none; padding:12px; border-radius:50px; font-size:0.85rem; font-weight:700; cursor:pointer; font-family:'Anuphan',sans-serif; box-shadow:0 4px 15px rgba(123,31,162,0.4); transition:all 0.2s; }
         .checkin-btn:active { transform:scale(0.97); }
         .checkin-btn.checked { background:rgba(255,255,255,0.1); color:#9575cd; border:2px solid #3a3a6a; box-shadow:none; cursor:default; }
         .checkin-msg { font-size:0.7rem; color:#b39ddb; margin-top:8px; min-height:1rem; }
 
-        /* ===== 📊 Relationship Stats ===== */
+        /* 📊 Relationship Stats */
         .stats-box { background:linear-gradient(135deg,#e8f5e9,#f3e5f5); border:2px solid #a5d6a7; border-radius:28px; padding:18px 14px; margin-bottom:20px; width:100%; }
         .stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
         .stat-card { background:white; border-radius:18px; padding:12px 8px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
@@ -92,7 +91,7 @@
         .mood-bar-fill { height:100%; border-radius:4px; transition:width 0.6s ease; }
         .mood-bar-count { font-size:0.6rem; color:#999; width:16px; text-align:right; }
 
-        /* ===== 🎯 Wishlist ===== */
+        /* 🎯 Wishlist */
         .wishlist-box { background:linear-gradient(135deg,#fff3e0,#fce4ec); border:2px solid #ffcc80; border-radius:28px; padding:18px 14px; margin-bottom:20px; width:100%; }
         .wish-input-row { display:flex; gap:8px; margin-bottom:12px; }
         .wish-input { flex:1; border:2px solid #ffcc80; border-radius:50px; padding:9px 14px; font-family:'Anuphan',sans-serif; font-size:0.8rem; color:#5d4037; background:rgba(255,255,255,0.9); outline:none; user-select:text; }
@@ -112,10 +111,8 @@
         .who-btn.active { background:linear-gradient(135deg,#ff7043,#ffb74d); color:white; border-color:transparent; }
         .wish-empty { text-align:center; color:#bcaaa4; font-size:0.82rem; padding:16px; }
 
-        /* ===== 💌 Countdown Letters ===== */
-        .letters-section { width:100%; margin-bottom:20px; }
-        .letters-grid { display:flex; flex-direction:column; gap:10px; }
-        .letter-card { border-radius:22px; overflow:hidden; border:2px solid; transition:all 0.2s; }
+        /* 💌 Countdown Letters */
+        .letter-card { border-radius:22px; overflow:hidden; border:2px solid; transition:all 0.2s; margin-bottom:10px; }
         .letter-card.locked { border-color:#e0e0e0; background:linear-gradient(135deg,#f5f5f5,#eeeeee); }
         .letter-card.unlocked { border-color:#f48fb1; background:linear-gradient(135deg,#fff0f5,#fce4ec); cursor:pointer; }
         .letter-card.unlocked:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(216,27,96,0.15); }
@@ -145,8 +142,7 @@
         .letter-modal-text { font-size:0.88rem; color:#5d4037; line-height:1.75; white-space:pre-wrap; }
         .letter-close-btn { width:100%; background:linear-gradient(135deg,#ff80ab,#ff4081); color:white; border:none; padding:14px; font-size:0.85rem; font-weight:700; cursor:pointer; font-family:'Anuphan',sans-serif; }
 
-        /* ===== 🎵 Song Request (Playlist) ===== */
-        .playlist-section { width:100%; margin-bottom:20px; }
+        /* 🎵 Playlist */
         .playlist-tracks { display:flex; flex-direction:column; gap:10px; }
         .track-card { background:white; border-radius:20px; padding:12px 14px; display:flex; align-items:center; gap:12px; box-shadow:0 4px 14px rgba(216,27,96,0.1); border:1.5px solid rgba(255,179,198,0.4); cursor:pointer; transition:all 0.25s; position:relative; overflow:hidden; }
         .track-card:hover { transform:translateX(4px); }
@@ -175,7 +171,6 @@
         .track-bar:nth-child(4){height:16px;animation-delay:0.1s}
         @keyframes barBounce { from{transform:scaleY(0.4)} to{transform:scaleY(1)} }
         .request-tag { font-size:0.55rem; background:#fff3e0; color:#e65100; border-radius:50px; padding:2px 7px; font-weight:700; margin-top:3px; display:inline-block; }
-        /* Song request input */
         .song-request-box { background:linear-gradient(135deg,#fff8e1,#fff3e0); border:2px dashed #ffcc80; border-radius:20px; padding:12px 14px; margin-top:10px; }
         .song-req-title { font-size:0.75rem; font-weight:700; color:#e65100; margin-bottom:8px; }
         .song-req-row { display:flex; gap:8px; }
@@ -183,7 +178,7 @@
         .song-req-input:focus { border-color:#ff7043; }
         .song-req-btn { background:linear-gradient(135deg,#ff7043,#ffb74d); color:white; border:none; border-radius:50px; padding:8px 14px; font-size:0.75rem; font-weight:700; cursor:pointer; font-family:'Anuphan',sans-serif; }
 
-        /* ===== 💬 Message Board ===== */
+        /* 💬 Message Board */
         .board-box { background:linear-gradient(135deg,#e8eaf6,#f3e5f5); border:2px solid #9fa8da; border-radius:28px; padding:18px 14px; margin-bottom:20px; width:100%; }
         .board-post-row { display:flex; gap:8px; margin-bottom:14px; align-items:flex-end; }
         .board-textarea { flex:1; border:2px solid #9fa8da; border-radius:18px; padding:10px 12px; font-family:'Anuphan',sans-serif; font-size:0.8rem; color:#37474f; background:rgba(255,255,255,0.9); outline:none; resize:none; min-height:60px; user-select:text; }
@@ -206,33 +201,99 @@
         .board-empty { text-align:center; color:#b0bec5; font-size:0.82rem; padding:16px; }
         .board-char-count { font-size:0.6rem; color:#9fa8da; text-align:right; margin-top:2px; }
 
-        /* ===== Time Capsule ===== */
-        .capsule-box { background:linear-gradient(135deg,#fff8e1,#fce4ec); border:2px dashed #ffb74d; border-radius:28px; padding:16px 14px; margin-bottom:20px; width:100%; }
-        .capsule-header { display:flex; align-items:center; gap:8px; margin-bottom:12px; }
-        .capsule-icon { font-size:1.4rem; }
-        .capsule-title { font-size:0.85rem; font-weight:700; color:#e65100; text-align:left; }
-        .capsule-subtitle { font-size:0.65rem; color:#bf360c; opacity:0.8; text-align:left; }
-        .capsule-textarea { width:100%; border:2px solid #ffcc80; border-radius:16px; padding:10px 12px; font-family:'Anuphan',sans-serif; font-size:0.8rem; color:#5d4037; background:rgba(255,255,255,0.85); resize:none; outline:none; min-height:80px; user-select:text; transition:border-color 0.3s; }
-        .capsule-textarea:focus { border-color:#ff7043; }
-        .capsule-meta { font-size:0.65rem; color:#bf360c; text-align:right; margin-top:4px; opacity:0.7; }
-        .capsule-btn-row { display:flex; gap:8px; margin-top:10px; }
-        .capsule-save-btn { flex:1; background:linear-gradient(135deg,#ff7043,#ffb74d); color:white; border:none; padding:9px; border-radius:50px; font-size:0.75rem; font-weight:700; cursor:pointer; font-family:'Anuphan',sans-serif; }
-        .capsule-view-btn { background:rgba(255,255,255,0.7); color:#e65100; border:2px solid #ffcc80; padding:9px 14px; border-radius:50px; font-size:0.75rem; font-weight:700; cursor:pointer; font-family:'Anuphan',sans-serif; }
-        .capsule-count-badge { background:#ff7043; color:white; border-radius:50px; font-size:0.6rem; padding:2px 7px; font-weight:700; margin-left:4px; }
+        /* ===== 📬 TIME CAPSULE (NEW LOCKED SYSTEM) ===== */
+        .capsule-section { width:100%; margin-bottom:20px; }
 
-        /* Capsule Modal */
-        .capsule-modal { display:none; position:fixed; z-index:2000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.55); backdrop-filter:blur(6px); }
-        .capsule-modal-content { background:linear-gradient(160deg,#fff8e1,#fce4ec); margin:8% auto; padding:0; border-radius:30px; width:90%; max-width:440px; border:3px solid #ffb74d; overflow:hidden; max-height:80vh; display:flex; flex-direction:column; }
-        .capsule-modal-header { background:linear-gradient(135deg,#ff7043,#ffb74d); color:white; padding:18px 20px; display:flex; justify-content:space-between; align-items:center; }
-        .capsule-modal-header h3 { font-size:1rem; font-weight:700; }
-        .capsule-close { font-size:1.5rem; cursor:pointer; background:none; border:none; color:white; }
-        .capsule-list { overflow-y:auto; padding:12px; flex:1; }
-        .capsule-entry { background:rgba(255,255,255,0.8); border-radius:18px; padding:14px; margin-bottom:10px; border-left:4px solid #ff7043; position:relative; text-align:left; animation:fadeInUp 0.3s ease; }
-        .capsule-entry-msg { font-size:0.85rem; color:#4e342e; line-height:1.5; margin-bottom:6px; white-space:pre-wrap; }
-        .capsule-entry-time { font-size:0.6rem; color:#a1887f; }
-        .capsule-entry-days { font-size:0.65rem; color:#ff7043; font-weight:700; margin-top:2px; }
-        .capsule-delete-btn { position:absolute; top:10px; right:10px; background:none; border:none; color:#ef9a9a; font-size:0.8rem; cursor:pointer; }
-        .capsule-empty { text-align:center; color:#bcaaa4; padding:30px; font-size:0.85rem; }
+        .tc-stats-row { display:flex; gap:8px; margin-bottom:14px; }
+        .tc-stat { flex:1; background:rgba(255,255,255,0.7); border-radius:16px; padding:10px 8px; text-align:center; border:1.5px solid rgba(255,204,128,0.5); }
+        .tc-stat-num { font-family:'Caveat',cursive; font-size:1.5rem; color:#ff7043; line-height:1; font-weight:700; display:block; }
+        .tc-stat-label { font-size:0.55rem; color:#a1887f; text-transform:uppercase; letter-spacing:0.5px; font-weight:700; }
+        .tc-notify-dot { width:7px; height:7px; background:#4caf50; border-radius:50%; display:inline-block; animation:syncPulse 2s infinite; margin-right:3px; }
+
+        /* Create box */
+        .tc-create-box { background:white; border-radius:20px; padding:16px; margin-bottom:14px; border:1.5px solid #ffcc80; box-shadow:0 2px 12px rgba(255,112,67,0.08); }
+        .tc-create-title { font-size:0.78rem; font-weight:700; color:#e65100; margin-bottom:12px; display:flex; align-items:center; gap:6px; }
+
+        .tc-type-row { display:flex; gap:6px; margin-bottom:12px; flex-wrap:wrap; }
+        .tc-type-btn { padding:6px 10px; border-radius:50px; border:1.5px solid #ffcc80; background:white; font-size:0.68rem; font-weight:700; cursor:pointer; color:#e65100; transition:all 0.15s; white-space:nowrap; font-family:'Anuphan',sans-serif; }
+        .tc-type-btn.active { background:linear-gradient(135deg,#ff7043,#ffb74d); color:white; border-color:transparent; }
+
+        .tc-inp { width:100%; border:1.5px solid #ffcc80; border-radius:12px; padding:10px 12px; font-size:0.8rem; color:#5d4037; background:rgba(255,255,255,0.9); outline:none; resize:none; font-family:'Anuphan',sans-serif; transition:border-color 0.2s; user-select:text; }
+        .tc-inp:focus { border-color:#ff7043; }
+        .tc-inp-label { font-size:0.65rem; color:#a1887f; margin-bottom:4px; margin-top:10px; display:block; font-weight:600; }
+
+        .lock-option-row { display:flex; gap:8px; margin-top:10px; }
+        .lock-opt { flex:1; background:#fff8f0; border:1.5px solid #ffcc80; border-radius:12px; padding:10px 6px; cursor:pointer; transition:all 0.2s; text-align:center; }
+        .lock-opt.selected { background:linear-gradient(135deg,#fff3e0,#fce4ec); border-color:#ff7043; box-shadow:0 2px 8px rgba(255,112,67,0.15); }
+        .lock-opt-icon { font-size:1.2rem; display:block; margin-bottom:4px; }
+        .lock-opt-name { font-size:0.62rem; font-weight:700; color:#e65100; }
+        .lock-opt-desc { font-size:0.52rem; color:#a1887f; margin-top:2px; }
+
+        .lock-cfg { background:#fff8f0; border-radius:12px; padding:12px; margin-top:10px; border:1.5px dashed #ffcc80; animation:fadeInUp 0.3s ease; }
+
+        .tc-save-btn { width:100%; background:linear-gradient(135deg,#ff7043,#ffb74d); color:white; border:none; padding:12px; border-radius:50px; font-size:0.85rem; font-weight:700; cursor:pointer; margin-top:12px; font-family:'Anuphan',sans-serif; transition:all 0.2s; }
+        .tc-save-btn:active { transform:scale(0.98); }
+
+        /* Capsule list item */
+        .tc-item { background:white; border-radius:16px; padding:14px; margin-bottom:10px; border:1.5px solid; position:relative; overflow:hidden; transition:all 0.2s; cursor:pointer; }
+        .tc-item:hover { transform:translateY(-2px); }
+        .tc-item.tci-locked { border-color:#ffcc80; background:linear-gradient(135deg,#fff8f0,#fff3e0); }
+        .tc-item.tci-unlocked { border-color:#a5d6a7; background:linear-gradient(135deg,#f1f8e9,#e8f5e9); }
+        .tc-item.tci-pw { border-color:#ce93d8; background:linear-gradient(135deg,#f9f0ff,#f3e5f5); }
+
+        .tc-left-bar { position:absolute; left:0; top:0; bottom:0; width:4px; border-radius:16px 0 0 16px; }
+        .bar-dream { background:linear-gradient(180deg,#7c4dff,#b39ddb); }
+        .bar-promise { background:linear-gradient(180deg,#ff4081,#f48fb1); }
+        .bar-secret { background:linear-gradient(180deg,#00bcd4,#80deea); }
+        .bar-letter { background:linear-gradient(180deg,#ff7043,#ffb74d); }
+
+        .tc-item-top { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+        .tc-type-icon { width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; }
+        .icon-dream { background:#ede7f6; }
+        .icon-promise { background:#fce4ec; }
+        .icon-secret { background:#e0f7fa; }
+        .icon-letter { background:#fff3e0; }
+        .tc-meta { flex:1; min-width:0; }
+        .tc-type-label { font-size:0.58rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:2px; }
+        .label-dream { color:#7c4dff; } .label-promise { color:#e91e63; } .label-secret { color:#00acc1; } .label-letter { color:#f4511e; }
+        .tc-preview { font-size:0.78rem; color:#5d4037; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+        .tc-lock-pill { padding:3px 8px; border-radius:50px; font-size:0.58rem; font-weight:700; display:inline-flex; align-items:center; gap:3px; }
+        .pill-locked { background:#fff3e0; color:#e65100; border:1px solid #ffcc80; }
+        .pill-unlocked { background:#e8f5e9; color:#2e7d32; border:1px solid #a5d6a7; }
+        .pill-pw { background:#f3e5f5; color:#6a1b9a; border:1px solid #ce93d8; }
+
+        .tc-countdown { background:rgba(255,112,67,0.06); border-radius:10px; padding:8px 10px; margin-top:8px; display:flex; align-items:center; gap:8px; }
+        .tc-count-nums { display:flex; gap:4px; }
+        .tc-count-unit { background:white; border-radius:6px; padding:4px 6px; text-align:center; border:1px solid #ffcc80; min-width:34px; }
+        .tc-count-num { font-size:0.9rem; font-weight:700; color:#ff7043; line-height:1; display:block; font-family:'Caveat',cursive; }
+        .tc-count-lbl { font-size:0.45rem; color:#a1887f; display:block; text-transform:uppercase; }
+        .tc-countdown-msg { font-size:0.62rem; color:#a1887f; flex:1; }
+
+        .tc-content { background:rgba(255,255,255,0.6); border-radius:10px; padding:10px; margin-top:8px; font-size:0.78rem; color:#4e342e; line-height:1.5; white-space:pre-wrap; text-align:left; }
+        .tc-hidden-msg { background:rgba(255,255,255,0.5); border-radius:10px; padding:10px; margin-top:8px; font-size:0.78rem; color:#bcaaa4; text-align:center; user-select:none; }
+
+        .tc-del-btn { position:absolute; top:10px; right:10px; background:none; border:none; color:#ffcdd2; font-size:0.72rem; cursor:pointer; padding:2px 6px; border-radius:6px; transition:all 0.15s; }
+        .tc-del-btn:hover { background:#ffebee; color:#e53935; }
+
+        .tc-filter-row { display:flex; gap:6px; margin-bottom:12px; }
+        .tc-filter-btn { padding:5px 12px; border-radius:50px; border:1.5px solid #ffcc80; background:white; font-size:0.62rem; font-weight:700; cursor:pointer; color:#a1887f; transition:all 0.15s; font-family:'Anuphan',sans-serif; }
+        .tc-filter-btn.active { background:#ff7043; color:white; border-color:transparent; }
+
+        /* Password Modal */
+        .pw-overlay { display:none; position:fixed; z-index:6000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6); backdrop-filter:blur(6px); align-items:center; justify-content:center; }
+        .pw-overlay.show { display:flex; }
+        .pw-box { background:white; border-radius:24px; padding:28px 24px; width:300px; text-align:center; border:2px solid #ce93d8; animation:popIn 0.3s cubic-bezier(0.175,0.885,0.32,1.275); }
+        .pw-box-title { font-size:0.95rem; font-weight:700; color:#6a1b9a; margin-bottom:6px; }
+        .pw-box-sub { font-size:0.7rem; color:#9575cd; margin-bottom:16px; }
+        .pw-box-input { width:100%; border:1.5px solid #ce93d8; border-radius:10px; padding:10px; font-size:0.9rem; text-align:center; outline:none; color:#5d4037; letter-spacing:3px; font-family:'Anuphan',sans-serif; user-select:text; }
+        .pw-box-input:focus { border-color:#7b1fa2; }
+        .pw-btn-row { display:flex; gap:8px; margin-top:12px; }
+        .pw-confirm-btn { flex:1; background:linear-gradient(135deg,#7b1fa2,#9c27b0); color:white; border:none; padding:11px; border-radius:12px; font-weight:700; cursor:pointer; font-family:'Anuphan',sans-serif; font-size:0.82rem; }
+        .pw-cancel-btn { background:none; border:1.5px solid #ce93d8; color:#9575cd; padding:11px 14px; border-radius:12px; font-weight:700; cursor:pointer; font-family:'Anuphan',sans-serif; font-size:0.82rem; }
+        .pw-err { color:#e53935; font-size:0.7rem; margin-top:8px; min-height:1.2rem; }
+
+        .tc-empty { text-align:center; color:#bcaaa4; font-size:0.82rem; padding:20px; }
 
         /* Birthday */
         .birthday-box { background:linear-gradient(135deg,#ff80ab,#ba68c8); color:white; border-radius:20px; padding:12px; margin-bottom:20px; box-shadow:0 8px 15px rgba(216,27,96,0.2); border:2px solid white; animation:pulse 2s infinite; }
@@ -257,7 +318,6 @@
         .dot-happy{background:#ffeb3b}.dot-sad{background:#64b5f6}.dot-angry{background:#ff5252}.dot-hungry{background:#ffb74d}
 
         /* Memories */
-        .memories-section { width:100%; margin-bottom:20px; }
         .memories-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
         .polaroid-card { background:white; border-radius:6px; padding:8px 8px 28px; box-shadow:0 6px 20px rgba(216,27,96,0.12),0 2px 6px rgba(0,0,0,0.08); position:relative; transition:transform 0.3s; border:1px solid rgba(255,255,255,0.8); }
         .polaroid-card:nth-child(odd){transform:rotate(-1.5deg)}
@@ -280,7 +340,7 @@
         .bio-item { font-size:0.85rem; color:var(--text-sub); margin-bottom:6px; display:flex; flex-wrap:wrap; }
         .bio-label { font-weight:600; min-width:100px; color:var(--text-main); }
 
-        /* Secret / Garden / Gifts */
+        /* Garden / Secret */
         .daily-box { background:var(--accent); color:white; border-radius:15px; padding:12px; margin-bottom:12px; cursor:pointer; border:2px solid white; box-shadow:0 4px 10px rgba(0,0,0,0.1); width:100%; }
         .daily-label { font-size:0.75rem; opacity:0.9; margin-bottom:4px; display:block; font-weight:600; }
         .garden-box { background:rgba(255,255,255,0.4); border-radius:20px; padding:15px; margin-bottom:20px; border:2px dashed #81c784; width:100%; }
@@ -367,12 +427,16 @@
         .caption-input:focus { border-color:var(--accent); }
         .caption-confirm-btn { background:linear-gradient(135deg,#ff80ab,#ff4081); color:white; border:none; padding:10px 28px; border-radius:50px; font-size:0.82rem; font-weight:700; cursor:pointer; font-family:'Anuphan',sans-serif; }
 
-        /* Floating / click effects */
+        /* Misc */
         .btn-main { background:linear-gradient(45deg,#ff4081,#ba68c8); color:white; border:none; padding:12px; border-radius:50px; width:100%; font-weight:600; cursor:pointer; margin-top:10px; font-family:'Anuphan',sans-serif; font-size:0.9rem; }
         .floating-item { position:absolute; animation:floatUp 5s linear forwards; pointer-events:none; z-index:0; }
         @keyframes floatUp { 0%{transform:translateY(110vh) scale(0.5);opacity:0} 10%{opacity:0.8} 100%{transform:translateY(-10vh) scale(1.2) rotate(360deg);opacity:0} }
         .click-heart { position:absolute; animation:clickPop 0.8s ease-out forwards; pointer-events:none; z-index:100; font-size:24px; }
         @keyframes clickPop { 0%{transform:scale(0);opacity:1} 100%{transform:scale(1.5) translateY(-40px);opacity:0} }
+
+        /* Toast */
+        .tc-toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:#323232; color:white; padding:10px 20px; border-radius:50px; font-size:0.75rem; font-weight:600; z-index:9999; opacity:0; transition:opacity 0.3s; white-space:nowrap; pointer-events:none; }
+        .tc-toast.show { opacity:1; }
     </style>
 </head>
 <body>
@@ -399,7 +463,7 @@
         <div class="anniv-since">ตั้งแต่ 25 มีนาคม 2569 ✨</div>
     </div>
 
-    <!-- 🔄 Sync Status Bar -->
+    <!-- Sync Bar -->
     <div class="sync-bar">
         <div class="sync-status">
             <div class="sync-dot" id="sync-dot"></div>
@@ -422,14 +486,14 @@
         <div class="checkin-msg" id="checkin-msg"></div>
     </div>
 
-    <!-- 📊 Relationship Stats -->
+    <!-- 📊 Stats -->
     <div class="section-header"><div class="section-line"></div><div class="section-badge">📊 OUR STATS</div><div class="section-line right"></div></div>
     <div class="stats-box" style="margin-bottom:20px;">
         <div class="stats-grid">
             <div class="stat-card"><div class="stat-icon">📅</div><div class="stat-num" id="stat-days">0</div><div class="stat-label">วันด้วยกัน</div></div>
             <div class="stat-card"><div class="stat-icon">🔥</div><div class="stat-num" id="stat-streak">0</div><div class="stat-label">Streak คืน</div></div>
             <div class="stat-card"><div class="stat-icon">📸</div><div class="stat-num" id="stat-photos">0</div><div class="stat-label">รูปความทรงจำ</div></div>
-            <div class="stat-card"><div class="stat-icon">💌</div><div class="stat-num" id="stat-capsules">0</div><div class="stat-label">Time Capsule</div></div>
+            <div class="stat-card"><div class="stat-icon">📬</div><div class="stat-num" id="stat-capsules">0</div><div class="stat-label">Time Capsule</div></div>
             <div class="stat-card"><div class="stat-icon">✅</div><div class="stat-num" id="stat-wishes">0</div><div class="stat-label">Wish สำเร็จ</div></div>
             <div class="stat-card"><div class="stat-icon">💬</div><div class="stat-num" id="stat-posts">0</div><div class="stat-label">ข้อความ</div></div>
         </div>
@@ -442,15 +506,86 @@
         </div>
     </div>
 
-    <!-- Time Capsule -->
-    <div class="capsule-box">
-        <div class="capsule-header"><span class="capsule-icon">📬</span><div><div class="capsule-title">Time Capsule Message</div><div class="capsule-subtitle">บันทึกความรู้สึก ณ ตอนนี้ไว้อ่านในอนาคต</div></div></div>
-        <textarea class="capsule-textarea" id="capsule-input" placeholder="พิมสิ่งที่อยากบันทึกไว้... 💌" rows="3"></textarea>
-        <div class="capsule-meta" id="capsule-meta-info">วันที่ + เวลาจะถูกบันทึกอัตโนมัติ</div>
-        <div class="capsule-btn-row">
-            <button class="capsule-save-btn" onclick="saveCapsuleMessage()">📸 บันทึกช่วงเวลานี้</button>
-            <button class="capsule-view-btn" onclick="openCapsuleModal()">📖 อ่านทั้งหมด<span class="capsule-count-badge" id="capsule-count">0</span></button>
+    <!-- ===== 📬 TIME CAPSULE (LOCKED + SYNCED) ===== -->
+    <div class="section-header"><div class="section-line"></div><div class="section-badge">📬 TIME CAPSULE</div><div class="section-line right"></div></div>
+    <div class="capsule-section">
+        <!-- Stats row -->
+        <div class="tc-stats-row">
+            <div class="tc-stat"><span class="tc-stat-num" id="tc-stat-ready">0</span><span class="tc-stat-label"><span class="tc-notify-dot" id="tc-nd" style="display:none"></span>พร้อมเปิด</span></div>
+            <div class="tc-stat"><span class="tc-stat-num" id="tc-stat-locked">0</span><span class="tc-stat-label">ล็อกอยู่</span></div>
+            <div class="tc-stat"><span class="tc-stat-num" id="tc-stat-total">0</span><span class="tc-stat-label">ทั้งหมด</span></div>
         </div>
+
+        <!-- Create -->
+        <div class="tc-create-box">
+            <div class="tc-create-title">✏️ สร้าง Time Capsule ใหม่ <span style="font-size:0.6rem;color:#a1887f;font-weight:400">(ซิงค์ทั้งคู่ 🔄)</span></div>
+
+            <span class="tc-inp-label" style="margin-top:0">ประเภท</span>
+            <div class="tc-type-row">
+                <button class="tc-type-btn active" onclick="tcSetType('letter')" id="tct-letter">💌 จดหมาย</button>
+                <button class="tc-type-btn" onclick="tcSetType('dream')" id="tct-dream">💜 ความฝัน</button>
+                <button class="tc-type-btn" onclick="tcSetType('promise')" id="tct-promise">🌸 คำสัญญา</button>
+                <button class="tc-type-btn" onclick="tcSetType('secret')" id="tct-secret">🔵 ความลับ</button>
+            </div>
+
+            <span class="tc-inp-label">บอกใครส่ง</span>
+            <div class="tc-type-row">
+                <button class="tc-type-btn active" onclick="tcSetWho('me')" id="tcw-me">👦 จากเค้า</button>
+                <button class="tc-type-btn" onclick="tcSetWho('you')" id="tcw-you">🍰 จากอ้วน</button>
+            </div>
+
+            <span class="tc-inp-label">ข้อความ</span>
+            <textarea class="tc-inp" id="tc-text" rows="4" placeholder="เขียนสิ่งที่อยากบอกในอนาคต... 💌"></textarea>
+
+            <span class="tc-inp-label">ระบบล็อก</span>
+            <div class="lock-option-row">
+                <div class="lock-opt selected" onclick="tcSelectLock('date')" id="tcl-date">
+                    <span class="lock-opt-icon">📅</span>
+                    <div class="lock-opt-name">ล็อกตามวัน</div>
+                    <div class="lock-opt-desc">เปิดได้หลังวันที่กำหนด</div>
+                </div>
+                <div class="lock-opt" onclick="tcSelectLock('password')" id="tcl-password">
+                    <span class="lock-opt-icon">🔑</span>
+                    <div class="lock-opt-name">ล็อก Password</div>
+                    <div class="lock-opt-desc">ต้องใส่รหัสเพื่อเปิด</div>
+                </div>
+                <div class="lock-opt" onclick="tcSelectLock('both')" id="tcl-both">
+                    <span class="lock-opt-icon">🔒</span>
+                    <div class="lock-opt-name">ล็อกคู่กัน</div>
+                    <div class="lock-opt-desc">วัน + รหัสผ่าน</div>
+                </div>
+            </div>
+
+            <div class="lock-cfg" id="tc-cfg-date">
+                <span class="tc-inp-label" style="margin-top:0">📅 วันที่จะเปิดได้</span>
+                <input type="datetime-local" class="tc-inp" id="tc-unlock-date">
+                <div style="font-size:0.62rem;color:#a1887f;margin-top:6px">⏳ ก่อนถึงวันนี้เนื้อหาจะถูกซ่อน — ทั้งคู่เห็นได้เฉพาะเมื่อถึงเวลา</div>
+            </div>
+            <div class="lock-cfg" id="tc-cfg-password" style="display:none">
+                <span class="tc-inp-label" style="margin-top:0">🔑 ตั้ง Password</span>
+                <input type="password" class="tc-inp" id="tc-set-pw" placeholder="ตั้งรหัสผ่านสำหรับแคปซูลนี้">
+                <div style="font-size:0.62rem;color:#a1887f;margin-top:6px">💜 บอกรหัสนี้ให้อีกฝ่ายเองนะ หรือเก็บเป็นความลับ</div>
+            </div>
+            <div class="lock-cfg" id="tc-cfg-both" style="display:none">
+                <span class="tc-inp-label" style="margin-top:0">📅 วันที่จะเปิดได้</span>
+                <input type="datetime-local" class="tc-inp" id="tc-unlock-date-both">
+                <span class="tc-inp-label">🔑 ตั้ง Password</span>
+                <input type="password" class="tc-inp" id="tc-set-pw-both" placeholder="ตั้งรหัสผ่าน">
+                <div style="font-size:0.62rem;color:#a1887f;margin-top:6px">🔒 ต้องทั้งถึงวันและรู้รหัสถึงเปิดได้</div>
+            </div>
+
+            <button class="tc-save-btn" onclick="tcSave()">📸 ล็อกแคปซูลนี้ไว้</button>
+        </div>
+
+        <!-- Filter -->
+        <div class="tc-filter-row">
+            <button class="tc-filter-btn active" onclick="tcSetFilter('all')" id="tcf-all">ทั้งหมด</button>
+            <button class="tc-filter-btn" onclick="tcSetFilter('ready')" id="tcf-ready">✨ พร้อมเปิด</button>
+            <button class="tc-filter-btn" onclick="tcSetFilter('locked')" id="tcf-locked">🔒 ล็อก</button>
+        </div>
+
+        <!-- List -->
+        <div id="tc-list"></div>
     </div>
 
     <!-- Birthday -->
@@ -460,8 +595,8 @@
     <audio id="mySong" loop><source src="015 Proud.mp3" type="audio/mpeg"></audio>
     <audio id="happySong" loop><source src="เวลาเธอยิ้ม.mp3" type="audio/mpeg"></audio>
 
-    <!-- 🎵 Playlist + Song Request -->
-    <div class="playlist-section">
+    <!-- 🎵 Playlist -->
+    <div style="width:100%;margin-bottom:20px;">
         <div class="section-header"><div class="section-line"></div><div class="section-badge">🎵 OUR PLAYLIST</div><div class="section-line right"></div></div>
         <div class="playlist-tracks" id="playlist-tracks">
             <div class="track-card" id="track-proud" onclick="playTrack('proud')">
@@ -477,7 +612,6 @@
                 <button class="track-play-btn" id="btn-happy">▶</button>
             </div>
         </div>
-        <!-- Song Request (SYNCED) -->
         <div class="song-request-box" style="margin-top:10px;">
             <div class="song-req-title">🎶 อ้วนอยากเพิ่มเพลงอะไร? <span style="font-size:0.6rem;color:#a1887f;">(ซิงค์ทั้งคู่ 🔄)</span></div>
             <div class="song-req-row">
@@ -508,7 +642,7 @@
         </div>
     </div>
 
-    <!-- 💬 Message Board (SYNCED) -->
+    <!-- 💬 Message Board -->
     <div class="section-header"><div class="section-line"></div><div class="section-badge">💬 MESSAGE BOARD</div><div class="section-line right"></div></div>
     <div class="board-box" style="margin-bottom:20px;">
         <div style="font-size:0.6rem;color:#9fa8da;margin-bottom:8px;text-align:right;">🔄 ซิงค์ทั้งคู่แบบ real-time</div>
@@ -524,7 +658,7 @@
         <div class="board-feed" id="board-feed"><div class="board-empty">ยังไม่มีข้อความ เริ่มโพสต์กันเลย! 💬</div></div>
     </div>
 
-    <!-- 🎯 Wishlist (SYNCED) -->
+    <!-- 🎯 Wishlist -->
     <div class="section-header"><div class="section-line"></div><div class="section-badge">🎯 COUPLE WISHLIST</div><div class="section-line right"></div></div>
     <div class="wishlist-box" style="margin-bottom:20px;">
         <div style="font-size:0.6rem;color:#a1887f;margin-bottom:8px;text-align:right;">🔄 ซิงค์ทั้งคู่แบบ real-time</div>
@@ -542,12 +676,12 @@
 
     <!-- 💌 Countdown Letters -->
     <div class="section-header" style="margin-bottom:14px;"><div class="section-line"></div><div class="section-badge">💌 LETTERS FOR YOU</div><div class="section-line right"></div></div>
-    <div class="letters-section" style="margin-bottom:20px;">
-        <div class="letters-grid" id="letters-grid"></div>
+    <div style="width:100%;margin-bottom:20px;">
+        <div id="letters-grid"></div>
     </div>
 
     <!-- Memories -->
-    <div class="memories-section">
+    <div style="width:100%;margin-bottom:20px;">
         <div class="section-header"><div class="section-line"></div><div class="section-badge outline">🖼 OUR MEMORIES</div><div class="section-line right"></div></div>
         <div class="memories-grid" id="static-memories">
             <div class="polaroid-card">
@@ -594,7 +728,7 @@
     <fieldset>
         <legend> 🎀 SHE LIKES 🎀 </legend>
         <table>
-            <thead><tr><th>Color</th><th>Flower</th><th>Hobby</th><th>Song</th><th>animals</th></tr></thead>
+            <thead><tr><th>Color</th><th>Food</th><th>Flower</th><th>Hobby</th><th>Song</th><th>Animals</th></tr></thead>
             <tbody>
                 <tr><td>ฟ้าอ่อน</td><td>ไม่กินปลา</td><td>ลาเวนเดอร์</td><td>วาดรูป</td><td>DMMA</td><td>หมา</td></tr>
                 <tr><td>ชมพูอ่อน</td><td>ขนมทุกอย่าง</td><td>ทิวลิป</td><td>ส่องป่า</td><td>ทางของฝุ่น</td><td>แมว</td></tr>
@@ -623,7 +757,38 @@
 </div>
 </div>
 
-<!-- Modals -->
+<!-- ===== MODALS ===== -->
+<!-- Password Modal -->
+<div class="pw-overlay" id="pw-overlay">
+    <div class="pw-box">
+        <div style="font-size:2rem;margin-bottom:8px">🔑</div>
+        <div class="pw-box-title">ใส่รหัสผ่าน</div>
+        <div class="pw-box-sub">แคปซูลนี้ล็อกด้วย Password</div>
+        <input type="password" class="pw-box-input" id="pw-enter" placeholder="• • • • • •" oninput="document.getElementById('pw-err').innerText=''">
+        <div class="pw-err" id="pw-err"></div>
+        <div class="pw-btn-row">
+            <button class="pw-cancel-btn" onclick="tcClosePw()">ยกเลิก</button>
+            <button class="pw-confirm-btn" onclick="tcConfirmPw()">เปิด 🔓</button>
+        </div>
+    </div>
+</div>
+
+<!-- Letter Read Modal -->
+<div id="letterModal" class="letter-modal" onclick="if(event.target===this)closeLetter2()">
+    <div class="letter-modal-content">
+        <div class="letter-modal-top">
+            <div class="letter-modal-envelope">💌</div>
+            <div class="letter-modal-num" id="letter-modal-num">LETTER #1</div>
+        </div>
+        <div class="letter-modal-body">
+            <div class="letter-modal-title" id="letter-modal-title">Dear Cake,</div>
+            <div class="letter-modal-text" id="letter-modal-text"></div>
+        </div>
+        <button class="letter-close-btn" onclick="closeLetter2()">💕 ปิด</button>
+    </div>
+</div>
+
+<!-- Gift Modal -->
 <div id="giftModal" class="gift-modal" onclick="if(event.target===this)closeGiftModal()">
     <div class="gift-modal-content">
         <div class="gift-modal-header"><h3>🎁 ของขวัญพิเศษสำหรับอ้วน</h3><p>เลือกกล่องที่อยากเปิด ✨</p></div>
@@ -640,6 +805,8 @@
         <button class="gift-detail-btn" onclick="closeGiftDetailBtn()">รับของขวัญแล้ว 💜</button>
     </div>
 </div>
+
+<!-- Coupon Modal -->
 <div id="couponModal" class="coupon-modal" onclick="if(event.target===this)closeCouponModal()">
     <div class="coupon-card">
         <div class="coupon-inner">
@@ -660,6 +827,8 @@
         </div>
     </div>
 </div>
+
+<!-- Love Letter Modal -->
 <div id="loveLetter" class="modal">
     <div class="modal-content">
         <span class="close" onclick="document.getElementById('loveLetter').style.display='none'">&times;</span>
@@ -667,12 +836,8 @@
         <p style="font-size:0.95rem;line-height:1.6;color:#555;">ถึงไอ้อ้วนที่รักมากที่สุด... ขอบคุณที่อยู่ด้วยกันมาตลอดนะ ดีใจมากที่มีอ้วนเข้ามาในชีวิต สัญญาว่าจะรักและดูแลอ้วนแบบนี้ไปนานๆ ยิ้มเยอะๆ นะครับคนเก่ง 🍰💖</p>
     </div>
 </div>
-<div id="capsuleModal" class="capsule-modal" onclick="if(event.target===this)closeCapsuleModal()">
-    <div class="capsule-modal-content">
-        <div class="capsule-modal-header"><h3>📬 Time Capsule Messages</h3><button class="capsule-close" onclick="closeCapsuleModal()">×</button></div>
-        <div class="capsule-list" id="capsule-list"></div>
-    </div>
-</div>
+
+<!-- Caption Modal -->
 <div id="captionModal" class="caption-modal">
     <div class="caption-modal-content">
         <div class="caption-modal-title">📝 ใส่คำบรรยายรูปนี้</div>
@@ -680,20 +845,9 @@
         <br><button class="caption-confirm-btn" onclick="confirmCaption()">✅ ยืนยัน</button>
     </div>
 </div>
-<!-- Letter Read Modal -->
-<div id="letterModal" class="letter-modal" onclick="if(event.target===this)closeLetter2()">
-    <div class="letter-modal-content">
-        <div class="letter-modal-top">
-            <div class="letter-modal-envelope">💌</div>
-            <div class="letter-modal-num" id="letter-modal-num">LETTER #1</div>
-        </div>
-        <div class="letter-modal-body">
-            <div class="letter-modal-title" id="letter-modal-title">Dear Cake,</div>
-            <div class="letter-modal-text" id="letter-modal-text"></div>
-        </div>
-        <button class="letter-close-btn" onclick="closeLetter2()">💕 ปิด</button>
-    </div>
-</div>
+
+<!-- Toast -->
+<div class="tc-toast" id="tc-toast"></div>
 
 <script>
 // ===== Config =====
@@ -708,9 +862,8 @@ const getTodayStr = () => new Date().toISOString().slice(0,10);
 const escapeHtml = t => String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
 // ===== Sync State =====
-let syncedData = {}; // in-memory cache of bin data
+let syncedData = {};
 let isSyncing = false;
-let lastSyncTime = null;
 
 function setSyncStatus(state, label) {
     const dot = document.getElementById('sync-dot');
@@ -733,7 +886,7 @@ async function saveBin(record) {
     } catch(e){}
 }
 
-// ===== Full Sync (pull all synced sections) =====
+// ===== Full Sync =====
 async function fullSync(silent=false) {
     if(isSyncing) return;
     isSyncing = true;
@@ -741,36 +894,26 @@ async function fullSync(silent=false) {
     try {
         const rec = await loadBin();
         syncedData = rec;
-
-        // Update each section if data changed
         renderBoardFromData(rec.boardPosts || []);
         renderWishlistFromData(rec.wishlist || []);
         renderRequestedSongsFromData(rec.songRequests || []);
-
-        capsuleMessages = rec.messages || [];
-        updateCapsuleCount();
-        document.getElementById('stat-capsules').innerText = capsuleMessages.length;
-
+        // Time Capsule sync
+        tcCapsules = rec.capsules || [];
+        tcRenderList();
+        tcRenderStats();
+        document.getElementById('stat-capsules').innerText = tcCapsules.length;
         photosData = rec.photos || [];
         renderDynamicPhotos();
         document.getElementById('stat-photos').innerText = photosData.length;
-
         updateStatsFromData(rec);
-
-        lastSyncTime = new Date();
-        const timeStr = lastSyncTime.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
+        const timeStr = new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
         setSyncStatus('ok', `ซิงค์ล่าสุด ${timeStr} ✓`);
     } catch(e) {
         setSyncStatus('error','ซิงค์ไม่สำเร็จ ⚠️');
     }
     isSyncing = false;
 }
-
-async function manualSync() {
-    await fullSync(false);
-}
-
-// Auto-sync every 10 seconds
+async function manualSync() { await fullSync(false); }
 setInterval(() => fullSync(true), 10000);
 
 // ===== Anniversary =====
@@ -788,7 +931,6 @@ function updateAnniversary() {
 // ===== 🌙 Bedtime Check-in =====
 function getCheckinData() { return JSON.parse(localStorage.getItem('checkinData')||'{"streak":0,"lastDate":"","history":[]}'); }
 function saveCheckinData(d) { localStorage.setItem('checkinData',JSON.stringify(d)); }
-
 function initCheckin() {
     const data = getCheckinData();
     if(data.lastDate && data.lastDate !== getTodayStr()) {
@@ -798,7 +940,6 @@ function initCheckin() {
     }
     renderCheckin(data);
 }
-
 function renderCheckin(data) {
     document.getElementById('streak-num').innerText = data.streak;
     document.getElementById('stat-streak').innerText = data.streak;
@@ -828,7 +969,6 @@ function renderCheckin(data) {
         row.appendChild(div);
     }
 }
-
 function doCheckin() {
     const today = getTodayStr();
     const data = getCheckinData();
@@ -843,7 +983,6 @@ function doCheckin() {
     saveCheckinData(data);
     renderCheckin(data);
     confetti({particleCount:80,spread:60,origin:{y:0.6},colors:['#9c27b0','#ce93d8','#ffffff']});
-    if(data.streak>=7) confetti({particleCount:120,spread:80,origin:{y:0.5}});
 }
 
 // ===== 📊 Stats =====
@@ -859,24 +998,294 @@ function updateStats() {
         document.getElementById('bar-'+t).style.width=(counts[t]/total*100)+'%';
     });
 }
-
 function updateStatsFromData(rec) {
     const wishes = rec.wishlist || [];
     document.getElementById('stat-wishes').innerText = wishes.filter(w=>w.done).length;
-    const posts = rec.boardPosts || [];
-    document.getElementById('stat-posts').innerText = posts.length;
+    document.getElementById('stat-posts').innerText = (rec.boardPosts||[]).length;
     updateStats();
 }
 
+// ===== 📬 TIME CAPSULE SYSTEM (SYNCED) =====
+const TC_TYPES = {
+    letter:{icon:'💌',label:'จดหมาย',bar:'bar-letter',iconBg:'icon-letter',labelClass:'label-letter'},
+    dream:{icon:'💜',label:'ความฝัน',bar:'bar-dream',iconBg:'icon-dream',labelClass:'label-dream'},
+    promise:{icon:'🌸',label:'คำสัญญา',bar:'bar-promise',iconBg:'icon-promise',labelClass:'label-promise'},
+    secret:{icon:'🔵',label:'ความลับ',bar:'bar-secret',iconBg:'icon-secret',labelClass:'label-secret'}
+};
+
+let tcCapsules = [];
+let tcType = 'letter';
+let tcWho = 'me';
+let tcLock = 'date';
+let tcFilter = 'all';
+let tcPwTargetId = null;
+
+function tcSetType(t) {
+    tcType = t;
+    ['letter','dream','promise','secret'].forEach(x => {
+        document.getElementById('tct-'+x).className = 'tc-type-btn' + (x===t?' active':'');
+    });
+}
+function tcSetWho(w) {
+    tcWho = w;
+    ['me','you'].forEach(x => {
+        document.getElementById('tcw-'+x).className = 'tc-type-btn' + (x===w?' active':'');
+    });
+}
+function tcSelectLock(l) {
+    tcLock = l;
+    ['date','password','both'].forEach(x => {
+        document.getElementById('tcl-'+x).className = 'lock-opt' + (x===l?' selected':'');
+        document.getElementById('tc-cfg-'+x).style.display = (x===l?'block':'none');
+    });
+}
+function tcSetFilter(f) {
+    tcFilter = f;
+    ['all','ready','locked'].forEach(x => {
+        document.getElementById('tcf-'+x).className = 'tc-filter-btn' + (x===f?' active':'');
+    });
+    tcRenderList();
+}
+
+function tcIsDateReady(c) {
+    if(!c.unlockTime) return true;
+    return Date.now() >= c.unlockTime;
+}
+function tcIsUnlockable(c) {
+    if(c.lockMode==='date') return tcIsDateReady(c);
+    if(c.lockMode==='password') return true;
+    if(c.lockMode==='both') return tcIsDateReady(c);
+    return true;
+}
+function tcFormatCountdown(ts) {
+    const diff = ts - Date.now();
+    if(diff<=0) return null;
+    const d=Math.floor(diff/864e5), h=Math.floor(diff/36e5)%24, m=Math.floor(diff/6e4)%60;
+    return {d,h,m};
+}
+function tcFmtDate(ts) {
+    return new Date(ts).toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+}
+
+async function tcSave() {
+    const text = document.getElementById('tc-text').value.trim();
+    if(!text){tcToast('กรุณาใส่ข้อความก่อนนะ 💌');return;}
+
+    let unlockTime=null, password=null;
+    if(tcLock==='date'||tcLock==='both'){
+        const v = document.getElementById(tcLock==='date'?'tc-unlock-date':'tc-unlock-date-both').value;
+        if(!v){tcToast('กรุณาเลือกวันที่ก่อนนะ 📅');return;}
+        unlockTime = new Date(v).getTime();
+        if(unlockTime<=Date.now()){tcToast('ต้องเลือกวันในอนาคตนะ ⏳');return;}
+    }
+    if(tcLock==='password'||tcLock==='both'){
+        password = document.getElementById(tcLock==='password'?'tc-set-pw':'tc-set-pw-both').value;
+        if(!password){tcToast('กรุณาตั้ง Password ก่อนนะ 🔑');return;}
+    }
+
+    const entry = {
+        id: Date.now(),
+        type: tcType,
+        who: tcWho,
+        text,
+        lockMode: tcLock,
+        unlockTime,
+        password,
+        created: new Date().toISOString(),
+        opened: false
+    };
+
+    setSyncStatus('syncing','กำลังบันทึก...');
+    const rec = await loadBin();
+    rec.capsules = [entry, ...(rec.capsules||[])];
+    await saveBin(rec);
+    syncedData = rec;
+    tcCapsules = rec.capsules;
+
+    document.getElementById('tc-text').value='';
+    ['tc-unlock-date','tc-unlock-date-both','tc-set-pw','tc-set-pw-both'].forEach(id=>{
+        const el=document.getElementById(id); if(el) el.value='';
+    });
+
+    tcRenderList();
+    tcRenderStats();
+    document.getElementById('stat-capsules').innerText = tcCapsules.length;
+    setSyncStatus('ok','บันทึกแล้ว ✓');
+    tcToast('🔒 ล็อกแคปซูลแล้ว! ทั้งคู่จะเห็นพร้อมกัน');
+    confetti({particleCount:60,spread:60,origin:{y:0.6},colors:['#ff7043','#ffb74d','#ffffff']});
+}
+
+function tcRenderStats() {
+    const ready = tcCapsules.filter(c=>tcIsUnlockable(c)&&!c.opened).length;
+    const locked = tcCapsules.filter(c=>!tcIsUnlockable(c)||(!c.opened&&c.lockMode!=='date'&&c.lockMode!=='password')).length;
+    const lockedCount = tcCapsules.filter(c=>!tcIsDateReady(c)).length;
+    document.getElementById('tc-stat-ready').innerText = ready;
+    document.getElementById('tc-stat-locked').innerText = lockedCount;
+    document.getElementById('tc-stat-total').innerText = tcCapsules.length;
+    const nd = document.getElementById('tc-nd');
+    nd.style.display = ready>0?'inline-block':'none';
+}
+
+function tcRenderList() {
+    const list = document.getElementById('tc-list');
+    let filtered = [...tcCapsules];
+    if(tcFilter==='ready') filtered = tcCapsules.filter(c=>tcIsUnlockable(c));
+    if(tcFilter==='locked') filtered = tcCapsules.filter(c=>!tcIsUnlockable(c)||(!c.opened&&c.lockMode==='password'));
+
+    if(!filtered.length){
+        list.innerHTML='<div class="tc-empty">ยังไม่มีแคปซูล สร้างอันแรกกันเลย! 📬</div>';
+        return;
+    }
+
+    list.innerHTML = filtered.map(c => {
+        const t = TC_TYPES[c.type] || TC_TYPES.letter;
+        const dateOk = tcIsDateReady(c);
+        const canUnlock = tcIsUnlockable(c);
+        const cd = c.unlockTime && !dateOk ? tcFormatCountdown(c.unlockTime) : null;
+        const whoLabel = c.who==='me'?'👦 จากเค้า':'🍰 จากอ้วน';
+
+        let itemClass = 'tc-item ';
+        if(!dateOk) itemClass += 'tci-locked';
+        else if(c.lockMode==='password'&&!c.opened) itemClass += 'tci-pw';
+        else itemClass += 'tci-unlocked';
+
+        let lockPill='';
+        if(!dateOk) lockPill=`<span class="tc-lock-pill pill-locked">🔒 ยังเปิดไม่ได้</span>`;
+        else if(c.lockMode==='password'&&!c.opened) lockPill=`<span class="tc-lock-pill pill-pw">🔑 ต้องใส่รหัส</span>`;
+        else if(c.opened) lockPill=`<span class="tc-lock-pill pill-unlocked">✅ เปิดแล้ว</span>`;
+        else lockPill=`<span class="tc-lock-pill pill-unlocked">✨ แตะเพื่อเปิด</span>`;
+
+        let cdHtml='';
+        if(cd){
+            cdHtml=`<div class="tc-countdown">
+                <div class="tc-count-nums">
+                    <div class="tc-count-unit"><span class="tc-count-num">${cd.d}</span><span class="tc-count-lbl">วัน</span></div>
+                    <div class="tc-count-unit"><span class="tc-count-num">${String(cd.h).padStart(2,'0')}</span><span class="tc-count-lbl">ชม</span></div>
+                    <div class="tc-count-unit"><span class="tc-count-num">${String(cd.m).padStart(2,'0')}</span><span class="tc-count-lbl">นาที</span></div>
+                </div>
+                <div class="tc-countdown-msg">เหลืออีก ${cd.d} วันจะเปิดได้ 💌<br><span style="font-size:0.55rem;opacity:0.7">${tcFmtDate(c.unlockTime)}</span></div>
+            </div>`;
+        } else if(c.unlockTime&&dateOk&&!c.opened&&c.lockMode==='date'){
+            cdHtml=`<div class="tc-countdown" style="background:rgba(165,214,167,0.15)">
+                <div class="tc-countdown-msg" style="color:#2e7d32;font-weight:700">✨ ถึงเวลาแล้ว! แตะเพื่ออ่าน</div>
+            </div>`;
+        }
+
+        let contentArea='';
+        if(c.opened||(canUnlock&&c.lockMode==='date')){
+            contentArea=`<div class="tc-content">${escapeHtml(c.text)}</div>`;
+        } else {
+            const hiddenMsg = !dateOk
+                ? '⏳ เนื้อหาถูกซ่อนจนกว่าจะถึงวัน'
+                : '🔑 แตะเพื่อใส่รหัสผ่าน';
+            contentArea=`<div class="tc-hidden-msg">${hiddenMsg}</div>`;
+        }
+
+        const previewText = (!dateOk && c.lockMode!=='password') ? '🔒 ซ่อนอยู่จนกว่าจะถึงเวลา' : escapeHtml(c.text);
+
+        return `<div class="${itemClass}" onclick="tcOpenItem(${c.id})" id="tci-${c.id}">
+            <div class="tc-left-bar ${t.bar}"></div>
+            <button class="tc-del-btn" onclick="event.stopPropagation();tcDelete(${c.id})">✕</button>
+            <div class="tc-item-top">
+                <div class="tc-type-icon ${t.iconBg}">${t.icon}</div>
+                <div class="tc-meta">
+                    <div class="tc-type-label ${t.labelClass}">${t.label} · ${whoLabel}</div>
+                    <div class="tc-preview">${previewText}</div>
+                </div>
+                <div style="text-align:right;flex-shrink:0">${lockPill}</div>
+            </div>
+            ${cdHtml}
+            ${contentArea}
+            <div style="font-size:0.58rem;color:#bcaaa4;margin-top:8px;text-align:right">สร้างเมื่อ ${tcFmtDate(new Date(c.created).getTime())}</div>
+        </div>`;
+    }).join('');
+}
+
+function tcOpenItem(id) {
+    const c = tcCapsules.find(x=>x.id===id);
+    if(!c) return;
+    if(!tcIsDateReady(c)){
+        const cd = tcFormatCountdown(c.unlockTime);
+        tcToast(`⏳ รออีก ${cd?cd.d:0} วันนะ ยังเปิดไม่ได้`);
+        return;
+    }
+    if(c.opened||(c.lockMode==='date')){
+        // Already readable, toggle view
+        return;
+    }
+    if(c.lockMode==='password'||c.lockMode==='both'){
+        tcPwTargetId = id;
+        document.getElementById('pw-enter').value='';
+        document.getElementById('pw-err').innerText='';
+        document.getElementById('pw-overlay').classList.add('show');
+        setTimeout(()=>document.getElementById('pw-enter').focus(),100);
+    }
+}
+
+function tcClosePw() {
+    document.getElementById('pw-overlay').classList.remove('show');
+    tcPwTargetId = null;
+}
+async function tcConfirmPw() {
+    const c = tcCapsules.find(x=>x.id===tcPwTargetId);
+    if(!c) return tcClosePw();
+    const entered = document.getElementById('pw-enter').value;
+    if(entered===c.password){
+        c.opened = true;
+        setSyncStatus('syncing','กำลังบันทึก...');
+        const rec = await loadBin();
+        const idx = (rec.capsules||[]).findIndex(x=>x.id===c.id);
+        if(idx>=0) rec.capsules[idx].opened = true;
+        await saveBin(rec);
+        syncedData = rec;
+        tcCapsules = rec.capsules;
+        tcClosePw();
+        tcRenderList();
+        tcToast('🔓 เปิดแล้ว! ✨');
+        setSyncStatus('ok','บันทึกแล้ว ✓');
+        confetti({particleCount:60,spread:60,origin:{y:0.6},colors:['#ce93d8','#ff80ab','#ffffff']});
+    } else {
+        document.getElementById('pw-err').innerText='รหัสไม่ถูกต้อง ลองอีกครั้งนะ';
+        document.getElementById('pw-enter').value='';
+    }
+}
+
+async function tcDelete(id) {
+    if(!confirm('ลบแคปซูลนี้เลยนะ?')) return;
+    setSyncStatus('syncing','กำลังลบ...');
+    const rec = await loadBin();
+    rec.capsules = (rec.capsules||[]).filter(x=>x.id!==id);
+    await saveBin(rec);
+    syncedData = rec;
+    tcCapsules = rec.capsules;
+    tcRenderList();
+    tcRenderStats();
+    document.getElementById('stat-capsules').innerText = tcCapsules.length;
+    setSyncStatus('ok','ลบแล้ว ✓');
+}
+
+function tcToast(msg) {
+    const t=document.getElementById('tc-toast');
+    t.innerText=msg; t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+// Set min datetime
+const minDt = new Date(Date.now()+60000).toISOString().slice(0,16);
+document.getElementById('tc-unlock-date').min = minDt;
+document.getElementById('tc-unlock-date-both').min = minDt;
+
+// Update countdown every minute
+setInterval(()=>{tcRenderList();tcRenderStats();}, 60000);
+
 // ===== 💌 Countdown Letters =====
 const letters = [
-    { num:1, title:'จดหมายฉบับแรก 💕', unlockDays:0, content:'ถึงไอ้อ้วนที่รักมากที่สุด\n\nตั้งแต่วันแรกที่เราคบกัน เค้ารู้สึกว่าชีวิตมันสดใสขึ้นมากเลยนะ ขอบคุณที่ยอมรับเค้าในทุกรูปแบบ ทั้งตอนที่เค้าน่ารักและตอนที่เค้าอ๋อง 😅\n\nสัญญาว่าจะทำให้อ้วนยิ้มทุกวัน รักอ้วนนะ 🍰💖' },
-    { num:2, title:'จดหมาย 7 วัน 🌸', unlockDays:7, content:'อ้วน 🍰\n\nผ่านมา 1 สัปดาห์แล้วนะ เวลาผ่านไปเร็วมากเลย แต่ทุกวันที่มีอ้วนอยู่ด้วยมันพิเศษทุกวันเลย\n\nขอบคุณที่อยู่ข้างๆ กันนะ จะดูแลอ้วนไปอีกนานๆ 💕' },
-    { num:3, title:'จดหมาย 1 เดือน 🌙', unlockDays:30, content:'ครบ 1 เดือนแล้วนะอ้วน! 🎉\n\nเค้าอยากบอกว่า ทุกช่วงเวลาที่ผ่านมามันทำให้เค้ายิ่งรักอ้วนมากขึ้นเรื่อยๆ อ้วนทำให้ชีวิตเค้าสมบูรณ์ขึ้นมากจริงๆ\n\nรักอ้วนที่สุดในโลก 🌍💖' },
-    { num:4, title:'จดหมาย 3 เดือน ⭐', unlockDays:90, content:'3 เดือนแล้วน้า! 🥰\n\nตอนนี้เค้ารู้สึกว่าอ้วนเป็นส่วนหนึ่งของชีวิตที่ขาดไม่ได้เลย ขอบคุณที่รักและดูแลเค้านะ\n\nยังอยากอยู่ด้วยกันไปอีกนานๆ เลยนะ 💕✨' },
-    { num:5, title:'จดหมาย 6 เดือน 🌺', unlockDays:180, content:'ครึ่งปีแล้วนะอ้วน! 🎊\n\nมองย้อนกลับไป ทุกความทรงจำที่เรามีด้วยกันมันล้วนแต่สวยงามทั้งนั้นเลย แม้จะมีเรื่องทะเลาะกันบ้าง แต่มันก็ทำให้เราแข็งแกร่งขึ้น\n\nรักอ้วนมากเท่าท้องฟ้า ☁️💙' },
+    {num:1,title:'จดหมายฉบับแรก 💕',unlockDays:0,content:'ถึงไอ้อ้วนที่รักมากที่สุด\n\nตั้งแต่วันแรกที่เราคบกัน เค้ารู้สึกว่าชีวิตมันสดใสขึ้นมากเลยนะ ขอบคุณที่ยอมรับเค้าในทุกรูปแบบ ทั้งตอนที่เค้าน่ารักและตอนที่เค้าอ๋อง 😅\n\nสัญญาว่าจะทำให้อ้วนยิ้มทุกวัน รักอ้วนนะ 🍰💖'},
+    {num:2,title:'จดหมาย 7 วัน 🌸',unlockDays:7,content:'อ้วน 🍰\n\nผ่านมา 1 สัปดาห์แล้วนะ เวลาผ่านไปเร็วมากเลย แต่ทุกวันที่มีอ้วนอยู่ด้วยมันพิเศษทุกวันเลย\n\nขอบคุณที่อยู่ข้างๆ กันนะ จะดูแลอ้วนไปอีกนานๆ 💕'},
+    {num:3,title:'จดหมาย 1 เดือน 🌙',unlockDays:30,content:'ครบ 1 เดือนแล้วนะอ้วน! 🎉\n\nเค้าอยากบอกว่า ทุกช่วงเวลาที่ผ่านมามันทำให้เค้ายิ่งรักอ้วนมากขึ้นเรื่อยๆ อ้วนทำให้ชีวิตเค้าสมบูรณ์ขึ้นมากจริงๆ\n\nรักอ้วนที่สุดในโลก 🌍💖'},
+    {num:4,title:'จดหมาย 3 เดือน ⭐',unlockDays:90,content:'3 เดือนแล้วน้า! 🥰\n\nตอนนี้เค้ารู้สึกว่าอ้วนเป็นส่วนหนึ่งของชีวิตที่ขาดไม่ได้เลย ขอบคุณที่รักและดูแลเค้านะ\n\nยังอยากอยู่ด้วยกันไปอีกนานๆ เลยนะ 💕✨'},
+    {num:5,title:'จดหมาย 6 เดือน 🌺',unlockDays:180,content:'ครึ่งปีแล้วนะอ้วน! 🎊\n\nมองย้อนกลับไป ทุกความทรงจำที่เรามีด้วยกันมันล้วนแต่สวยงามทั้งนั้นเลย แม้จะมีเรื่องทะเลาะกันบ้าง แต่มันก็ทำให้เราแข็งแกร่งขึ้น\n\nรักอ้วนมากเท่าท้องฟ้า ☁️💙'},
 ];
-
 function initLetters() {
     const now = new Date();
     const daysTogether = Math.floor((now - startDate) / 864e5);
@@ -899,7 +1308,6 @@ function initLetters() {
         </div>`;
     }).join('');
 }
-
 function readLetter(num) {
     const l = letters.find(x=>x.num===num);
     if(!l) return;
@@ -913,7 +1321,7 @@ function readLetter(num) {
 }
 function closeLetter2() { document.getElementById('letterModal').style.display='none'; }
 
-// ===== 💬 Message Board (SYNCED via JSONBin) =====
+// ===== 💬 Message Board =====
 let boardWho = 'me';
 function setBoardWho(w) {
     boardWho = w;
@@ -924,7 +1332,6 @@ function updateBoardChar() {
     const v = document.getElementById('board-textarea').value;
     document.getElementById('board-char-count').innerText=`${v.length}/200`;
 }
-
 function renderBoardFromData(posts) {
     const feed = document.getElementById('board-feed');
     if(!posts.length){feed.innerHTML='<div class="board-empty">ยังไม่มีข้อความ เริ่มโพสต์กันเลย! 💬</div>';return;}
@@ -939,7 +1346,6 @@ function renderBoardFromData(posts) {
     }).join('');
     document.getElementById('stat-posts').innerText=posts.length;
 }
-
 async function addBoardPost() {
     const ta = document.getElementById('board-textarea');
     const text = ta.value.trim();
@@ -948,35 +1354,27 @@ async function addBoardPost() {
     const rec = await loadBin();
     const posts = rec.boardPosts || [];
     const now = new Date();
-    posts.push({who:boardWho, text, time: now.toLocaleDateString('th-TH',{day:'numeric',month:'short'})+' '+now.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'})});
+    posts.push({who:boardWho,text,time:now.toLocaleDateString('th-TH',{day:'numeric',month:'short'})+' '+now.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'})});
     rec.boardPosts = posts;
-    await saveBin(rec);
-    syncedData = rec;
+    await saveBin(rec); syncedData=rec;
     ta.value=''; updateBoardChar();
     renderBoardFromData(posts);
     setSyncStatus('ok','โพสต์แล้ว ✓');
     confetti({particleCount:30,spread:50,origin:{y:0.7},colors:['#7986cb','#ce93d8','#ffffff']});
 }
-
 async function deleteBoardPost(i) {
     const rec = await loadBin();
     const posts = rec.boardPosts || [];
-    posts.splice(i,1);
-    rec.boardPosts = posts;
-    await saveBin(rec);
-    syncedData = rec;
-    renderBoardFromData(posts);
+    posts.splice(i,1); rec.boardPosts=posts;
+    await saveBin(rec); syncedData=rec; renderBoardFromData(posts);
 }
 
-// ===== 🎯 Wishlist (SYNCED via JSONBin) =====
+// ===== 🎯 Wishlist =====
 let wishWho = 'both';
 function setWishWho(w) {
     wishWho=w;
-    ['me','you','both'].forEach(x=>{
-        document.getElementById('wish-'+x+'-btn').className='who-btn'+(x===w?' active':'');
-    });
+    ['me','you','both'].forEach(x=>{ document.getElementById('wish-'+x+'-btn').className='who-btn'+(x===w?' active':''); });
 }
-
 function renderWishlistFromData(wishes) {
     const list = document.getElementById('wish-list');
     if(!wishes.length){list.innerHTML='<div class="wish-empty">ยังไม่มี Wishlist เพิ่มเข้ามาเลย! 🎯</div>';return;}
@@ -986,151 +1384,56 @@ function renderWishlistFromData(wishes) {
             <span class="wish-text">${escapeHtml(w.text)}</span>
             <span class="wish-who">${w.who==='me'?'👦':w.who==='you'?'🍰':'💕'}</span>
             <button class="wish-del" onclick="deleteWish(${i})">✕</button>
-        </div>
-    `).join('');
+        </div>`).join('');
     document.getElementById('stat-wishes').innerText=wishes.filter(w=>w.done).length;
 }
-
 async function addWish() {
-    const inp = document.getElementById('wish-input');
-    const text = inp.value.trim();
+    const inp=document.getElementById('wish-input'), text=inp.value.trim();
     if(!text) return;
-    setSyncStatus('syncing','กำลังเพิ่ม Wish...');
-    const rec = await loadBin();
-    const wishes = rec.wishlist || [];
-    wishes.push({text, who:wishWho, done:false});
-    rec.wishlist = wishes;
-    await saveBin(rec);
-    syncedData = rec;
-    inp.value='';
-    renderWishlistFromData(wishes);
-    setSyncStatus('ok','เพิ่ม Wish แล้ว ✓');
+    const rec=await loadBin(); const wishes=rec.wishlist||[];
+    wishes.push({text,who:wishWho,done:false}); rec.wishlist=wishes;
+    await saveBin(rec); syncedData=rec; inp.value=''; renderWishlistFromData(wishes);
 }
-
 async function toggleWish(i) {
-    const rec = await loadBin();
-    const wishes = rec.wishlist || [];
+    const rec=await loadBin(); const wishes=rec.wishlist||[];
     if(!wishes[i]) return;
-    wishes[i].done=!wishes[i].done;
-    rec.wishlist = wishes;
-    await saveBin(rec);
-    syncedData = rec;
-    renderWishlistFromData(wishes);
+    wishes[i].done=!wishes[i].done; rec.wishlist=wishes;
+    await saveBin(rec); syncedData=rec; renderWishlistFromData(wishes);
     if(wishes[i].done) confetti({particleCount:60,spread:60,origin:{y:0.6},colors:['#ff7043','#ffb74d','#ffffff']});
 }
-
 async function deleteWish(i) {
-    const rec = await loadBin();
-    const wishes = rec.wishlist || [];
-    wishes.splice(i,1);
-    rec.wishlist = wishes;
-    await saveBin(rec);
-    syncedData = rec;
-    renderWishlistFromData(wishes);
+    const rec=await loadBin(); const wishes=rec.wishlist||[];
+    wishes.splice(i,1); rec.wishlist=wishes;
+    await saveBin(rec); syncedData=rec; renderWishlistFromData(wishes);
 }
 
-// ===== 🎵 Song Request (SYNCED via JSONBin) =====
+// ===== 🎵 Song Request =====
 function renderRequestedSongsFromData(songs) {
-    const container = document.getElementById('requested-songs');
+    const container=document.getElementById('requested-songs');
     if(!songs.length){container.innerHTML='';return;}
-    container.innerHTML = songs.map((s,i)=>`
+    container.innerHTML=songs.map((s,i)=>`
         <div class="track-card requested" style="cursor:default;">
             <div class="track-icon-wrap request-color">🎵</div>
-            <div class="track-info">
-                <div class="track-name">${escapeHtml(s.name)}</div>
-                <div class="track-sub"><span class="request-tag">📬 ขอโดย ${s.who==='me'?'เค้า':'อ้วน'}</span></div>
-            </div>
+            <div class="track-info"><div class="track-name">${escapeHtml(s.name)}</div><div class="track-sub"><span class="request-tag">📬 ขอโดย ${s.who==='me'?'เค้า':'อ้วน'}</span></div></div>
             <button onclick="deleteRequest(${i})" style="background:none;border:none;color:#ffcdd2;font-size:0.8rem;cursor:pointer;padding:4px;">✕</button>
-        </div>
-    `).join('');
-}
-
-async function addSongRequest() {
-    const inp = document.getElementById('song-req-input');
-    const name = inp.value.trim();
-    if(!name) return;
-    setSyncStatus('syncing','กำลังเพิ่มเพลง...');
-    const rec = await loadBin();
-    const songs = rec.songRequests || [];
-    songs.push({name, who:'you'});
-    rec.songRequests = songs;
-    await saveBin(rec);
-    syncedData = rec;
-    inp.value='';
-    renderRequestedSongsFromData(songs);
-    setSyncStatus('ok','เพิ่มเพลงแล้ว ✓');
-    confetti({particleCount:40,spread:50,origin:{y:0.6},colors:['#ff80ab','#ffb3c6','#fff']});
-}
-
-async function deleteRequest(i) {
-    const rec = await loadBin();
-    const songs = rec.songRequests || [];
-    songs.splice(i,1);
-    rec.songRequests = songs;
-    await saveBin(rec);
-    syncedData = rec;
-    renderRequestedSongsFromData(songs);
-}
-
-// ===== Time Capsule =====
-let capsuleMessages=[];
-async function initCapsule() {
-    const rec = await loadBin();
-    capsuleMessages = rec.messages||[];
-    updateCapsuleCount();
-    document.getElementById('stat-capsules').innerText=capsuleMessages.length;
-}
-function updateCapsuleCount() {
-    document.getElementById('capsule-count').innerText=capsuleMessages.length;
-    document.getElementById('stat-capsules').innerText=capsuleMessages.length;
-}
-async function saveCapsuleMessage() {
-    const input=document.getElementById('capsule-input'), text=input.value.trim();
-    if(!text){input.style.borderColor='#ff5252';setTimeout(()=>input.style.borderColor='#ffcc80',1000);return;}
-    const btn=document.querySelector('.capsule-save-btn');
-    btn.innerText='⏳ กำลังบันทึก...';btn.disabled=true;
-    const now=new Date(), diff=now-startDate;
-    const entry={id:Date.now(),message:text,timestamp:now.toISOString(),
-        displayDate:now.toLocaleDateString('th-TH',{year:'numeric',month:'long',day:'numeric'}),
-        displayTime:now.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'}),
-        daysTogether:Math.floor(diff/864e5)};
-    const rec=await loadBin();
-    rec.messages=[entry,...(rec.messages||[])];
-    await saveBin(rec);
-    syncedData=rec;
-    capsuleMessages=rec.messages; updateCapsuleCount();
-    input.value=''; btn.innerText='📸 บันทึกช่วงเวลานี้'; btn.disabled=false;
-    document.getElementById('capsule-meta-info').innerText=`✅ บันทึกแล้ว! (${entry.displayDate} ${entry.displayTime})`;
-    setTimeout(()=>document.getElementById('capsule-meta-info').innerText='วันที่ + เวลาจะถูกบันทึกอัตโนมัติ',3000);
-    confetti({particleCount:50,spread:60,origin:{y:0.6},colors:['#ff7043','#ffb74d','#ffffff']});
-}
-function renderCapsuleList() {
-    const list=document.getElementById('capsule-list');
-    if(!capsuleMessages.length){list.innerHTML='<div class="capsule-empty">ยังไม่มีข้อความ 💌</div>';return;}
-    list.innerHTML=capsuleMessages.map(e=>`
-        <div class="capsule-entry">
-            <button class="capsule-delete-btn" onclick="deleteCapsuleEntry(${e.id})">🗑</button>
-            <div class="capsule-entry-msg">${escapeHtml(e.message)}</div>
-            <div class="capsule-entry-time">📅 ${e.displayDate} เวลา ${e.displayTime}</div>
-            <div class="capsule-entry-days">💕 วันที่ ${e.daysTogether} ของเรา</div>
         </div>`).join('');
 }
-async function deleteCapsuleEntry(id) {
-    const rec=await loadBin(); rec.messages=(rec.messages||[]).filter(e=>e.id!==id);
-    await saveBin(rec); syncedData=rec; capsuleMessages=rec.messages; updateCapsuleCount(); renderCapsuleList();
+async function addSongRequest() {
+    const inp=document.getElementById('song-req-input'), name=inp.value.trim();
+    if(!name) return;
+    const rec=await loadBin(); const songs=rec.songRequests||[];
+    songs.push({name,who:'you'}); rec.songRequests=songs;
+    await saveBin(rec); syncedData=rec; inp.value=''; renderRequestedSongsFromData(songs);
+    confetti({particleCount:40,spread:50,origin:{y:0.6},colors:['#ff80ab','#ffb3c6','#fff']});
 }
-async function openCapsuleModal() {
-    const rec=await loadBin(); capsuleMessages=rec.messages||[]; updateCapsuleCount(); renderCapsuleList();
-    document.getElementById('capsuleModal').style.display='block';
+async function deleteRequest(i) {
+    const rec=await loadBin(); const songs=rec.songRequests||[];
+    songs.splice(i,1); rec.songRequests=songs;
+    await saveBin(rec); syncedData=rec; renderRequestedSongsFromData(songs);
 }
-function closeCapsuleModal() { document.getElementById('capsuleModal').style.display='none'; }
 
 // ===== Photos =====
 let photosData=[], pendingUploadFile=null;
-async function initPhotos() {
-    const rec=await loadBin(); photosData=rec.photos||[]; renderDynamicPhotos();
-    document.getElementById('stat-photos').innerText=photosData.length;
-}
 function renderDynamicPhotos() {
     const grid=document.getElementById('dynamic-photos');
     if(!photosData.length){grid.innerHTML='';return;}
@@ -1316,6 +1619,7 @@ function closeGiftDetailBtn(){
     document.getElementById('giftDetailModal').style.display='none'; renderGifts();
 }
 
+// ===== Coupon =====
 const coupons=[
     {emoji:'🤗',title:'คูปองกอด',desc:'สามารถขอกอดเค้าได้ 1 ครั้ง ไม่มีเงื่อนไข 🤗'},
     {emoji:'🍡',title:'คูปองของหวาน',desc:'เค้าจะพาอ้วนไปกินของหวานที่อ้วนอยากกิน! 🍡🍰'},
@@ -1354,7 +1658,7 @@ function closeCouponModal(){document.getElementById('couponModal').style.display
 
 // ===== Click hearts / floating =====
 document.addEventListener('click',e=>{
-    const skip=['.capsule-modal-content','.capsule-box','.gift-modal-content','.gift-detail-content','.coupon-card','.gift-section','.photo-upload-area','.memories-section','.caption-modal-content','.board-box','.wishlist-box','.song-request-box','.letters-section','.checkin-box'];
+    const skip=['.pw-overlay','.tc-create-box','.gift-modal-content','.gift-detail-content','.coupon-card','.photo-upload-area','.caption-modal-content','.board-box','.wishlist-box','.song-request-box','.letter-modal-content'];
     if(skip.some(s=>e.target.closest(s))) return;
     const h=document.createElement('div');
     h.innerHTML=['❤️','🌸','💖','✨'][Math.floor(Math.random()*4)];
@@ -1371,24 +1675,23 @@ setInterval(()=>{
 },800);
 
 // Allow user-select on inputs
-['capsule-input','caption-input','board-textarea','wish-input','song-req-input'].forEach(id=>{
+['tc-text','tc-set-pw','tc-set-pw-both','pw-enter','board-textarea','wish-input','song-req-input','caption-input'].forEach(id=>{
     const el=document.getElementById(id);
     if(!el) return;
     el.addEventListener('click',e=>e.stopPropagation());
     el.style.userSelect='text';
     el.addEventListener('mousedown',e=>e.stopPropagation());
 });
-document.getElementById('caption-input').addEventListener('keydown',e=>{if(e.key==='Enter')confirmCaption();});
+document.getElementById('pw-enter').addEventListener('keydown',e=>{if(e.key==='Enter')tcConfirmPw();});
 document.getElementById('wish-input').addEventListener('keydown',e=>{if(e.key==='Enter')addWish();});
 document.getElementById('song-req-input').addEventListener('keydown',e=>{if(e.key==='Enter')addSongRequest();});
+document.getElementById('caption-input').addEventListener('keydown',e=>{if(e.key==='Enter')confirmCaption();});
+document.getElementById('pw-overlay').addEventListener('click',e=>{if(e.target===document.getElementById('pw-overlay'))tcClosePw();});
 
-// ===== Init =====
 setInterval(()=>{updateAnniversary();updateGreeting();updateBirthday();},1000);
 updateAnniversary(); updateGreeting(); updateBirthday();
 initCalendar(); updateTreeUI(); updateStats();
 initCheckin(); initLetters();
-
-// Initial full sync (loads board, wishlist, songs, capsule, photos all at once)
 fullSync(false);
 </script>
 </body>
