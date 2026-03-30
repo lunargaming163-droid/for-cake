@@ -12,6 +12,7 @@
             --card-bg: rgba(255,255,255,0.75);
             --text-main: #d81b60; --text-sub: #880e4f;
             --accent: #ff4081; --border-color: #ffffff;
+            --max-width: 700px;
         }
         body.night-mode {
             --bg-gradient: radial-gradient(circle, #2c3e50 0%, #000000 100%);
@@ -23,7 +24,7 @@
         body { min-height:100vh; display:flex; justify-content:center; align-items:center; background:var(--bg-gradient); font-family:'Anuphan',sans-serif; overflow-x:hidden; padding:60px 0; cursor:crosshair; position:relative; }
         #heart-container,#click-container { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1; }
         .container { width:100%; display:flex; flex-direction:column; align-items:center; z-index:10; }
-        .card { background:var(--card-bg); backdrop-filter:blur(15px); padding:3.5rem 1rem 2.5rem; border-radius:40px; box-shadow:0 20px 50px rgba(0,0,0,0.2); text-align:center; max-width:500px; width:92%; border:3px solid var(--border-color); position:relative; margin:0 auto; }
+        .card { background:var(--card-bg); backdrop-filter:blur(15px); padding:3.5rem 1.2rem 2.5rem; border-radius:40px; box-shadow:0 20px 50px rgba(0,0,0,0.2); text-align:center; max-width:var(--max-width); width:94%; border:3px solid var(--border-color); position:relative; margin:0 auto; }
         .image-container { width:130px; height:130px; border-radius:50%; overflow:hidden; margin:-100px auto 1rem; box-shadow:0 10px 25px rgba(0,0,0,0.15); animation:float-img 3s ease-in-out infinite; border:6px solid #fff; background:white; }
         @keyframes float-img { 0%,100%{transform:translateY(0) rotate(-2deg)} 50%{transform:translateY(-10px) rotate(2deg)} }
         .cat-image { width:100%; height:100%; object-fit:cover; }
@@ -34,8 +35,8 @@
         .anniversary-box::before { content:'💞'; position:absolute; top:-10px; right:-10px; font-size:3rem; opacity:0.12; }
         .anniv-label { font-size:0.65rem; color:var(--text-main); font-weight:700; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px; display:block; }
         .anniv-counter { display:flex; justify-content:center; gap:8px; margin-bottom:8px; }
-        .anniv-unit { display:flex; flex-direction:column; align-items:center; background:var(--card-bg); border-radius:14px; padding:8px 10px; min-width:54px; box-shadow:0 2px 8px rgba(216,27,96,0.1); border:1px solid rgba(255,64,129,0.2); }
-        .anniv-num { font-family:'Caveat',cursive; font-size:1.8rem; color:var(--accent); line-height:1; font-weight:700; }
+        .anniv-unit { display:flex; flex-direction:column; align-items:center; background:var(--card-bg); border-radius:14px; padding:8px 14px; min-width:64px; box-shadow:0 2px 8px rgba(216,27,96,0.1); border:1px solid rgba(255,64,129,0.2); }
+        .anniv-num { font-family:'Caveat',cursive; font-size:2rem; color:var(--accent); line-height:1; font-weight:700; }
         .anniv-unit-label { font-size:0.55rem; color:var(--text-sub); font-weight:600; text-transform:uppercase; letter-spacing:0.5px; margin-top:2px; }
         .anniv-since { font-size:0.7rem; color:var(--text-sub); opacity:0.8; }
 
@@ -91,10 +92,138 @@
         .mood-bar-fill { height:100%; border-radius:4px; transition:width 0.6s ease; }
         .mood-bar-count { font-size:0.6rem; color:#999; width:16px; text-align:right; }
 
-        /* 🎵 PLAYLIST — Enhanced with YouTube + Lyrics */
-        .playlist-box { width:100%; margin-bottom:20px; }
+        /* 🎮 MINI GAMES */
+        .games-box { background:linear-gradient(135deg,#0a0a1a,#1a0a2e); border-radius:28px; padding:20px 16px; margin-bottom:20px; width:100%; border:2px solid rgba(255,64,129,0.3); position:relative; overflow:hidden; }
+        .games-box::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at top left, rgba(123,31,162,0.15), transparent 60%); pointer-events:none; }
+        .games-title { font-size:0.9rem; font-weight:700; color:#ff80ab; margin-bottom:16px; display:flex; align-items:center; gap:8px; }
+        .games-tabs { display:flex; gap:6px; margin-bottom:16px; flex-wrap:wrap; }
+        .game-tab { padding:6px 12px; border-radius:50px; border:1.5px solid rgba(255,64,129,0.3); background:rgba(255,255,255,0.05); font-size:0.68rem; font-weight:700; cursor:pointer; color:#ff80ab; font-family:'Anuphan',sans-serif; transition:all 0.2s; white-space:nowrap; }
+        .game-tab.active { background:linear-gradient(135deg,#ff4081,#c2185b); color:white; border-color:transparent; box-shadow:0 4px 12px rgba(255,64,129,0.35); }
+        .game-panel { display:none; animation:fadeInUp 0.3s ease; }
+        .game-panel.active { display:block; }
+        @keyframes fadeInUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
 
-        /* Now Playing Bar */
+        /* ทายใจกัน */
+        .quiz-q { background:rgba(255,255,255,0.08); border-radius:20px; padding:18px; margin-bottom:14px; border:1.5px solid rgba(255,64,129,0.2); }
+        .quiz-q-text { font-size:0.9rem; color:#f0c0d8; font-weight:600; margin-bottom:14px; line-height:1.5; }
+        .quiz-opts { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+        .quiz-opt { background:rgba(255,255,255,0.07); border:1.5px solid rgba(255,64,129,0.25); border-radius:14px; padding:10px; font-size:0.78rem; color:#f0c0d8; cursor:pointer; font-family:'Anuphan',sans-serif; transition:all 0.2s; }
+        .quiz-opt:hover { background:rgba(255,64,129,0.15); border-color:rgba(255,64,129,0.5); }
+        .quiz-opt.correct { background:linear-gradient(135deg,#1b5e20,#2e7d32); border-color:#66bb6a; color:white; }
+        .quiz-opt.wrong { background:linear-gradient(135deg,#b71c1c,#c62828); border-color:#ef5350; color:white; }
+        .quiz-result { background:rgba(255,255,255,0.08); border-radius:16px; padding:14px; text-align:center; margin-top:8px; }
+        .quiz-score { font-family:'Caveat',cursive; font-size:2.5rem; color:#ff80ab; font-weight:700; }
+        .quiz-score-label { font-size:0.7rem; color:#9575cd; }
+        .quiz-next-btn { background:linear-gradient(135deg,#ff4081,#c2185b); color:white; border:none; border-radius:50px; padding:10px 24px; font-size:0.8rem; font-weight:700; cursor:pointer; font-family:'Anuphan',sans-serif; margin-top:10px; }
+        .quiz-progress { display:flex; justify-content:center; gap:4px; margin-bottom:12px; }
+        .quiz-pip { width:8px; height:8px; border-radius:50%; background:rgba(255,64,129,0.3); }
+        .quiz-pip.done-correct { background:#4caf50; }
+        .quiz-pip.done-wrong { background:#ef5350; }
+        .quiz-pip.current { background:#ff80ab; transform:scale(1.3); }
+
+        /* Memory Card */
+        .memory-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:14px; }
+        .mem-card { aspect-ratio:1; border-radius:12px; cursor:pointer; position:relative; transition:transform 0.4s; transform-style:preserve-3d; }
+        .mem-card.flipped { transform:rotateY(180deg); }
+        .mem-card.matched { transform:rotateY(180deg); opacity:0.7; pointer-events:none; }
+        .mem-front,.mem-back { position:absolute; inset:0; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.5rem; backface-visibility:hidden; }
+        .mem-front { background:linear-gradient(135deg,#ff4081,#c2185b); box-shadow:0 3px 10px rgba(255,64,129,0.3); }
+        .mem-back { background:rgba(255,255,255,0.1); border:1.5px solid rgba(255,64,129,0.3); transform:rotateY(180deg); }
+        .mem-info { display:flex; justify-content:space-between; align-items:center; }
+        .mem-moves { font-size:0.75rem; color:#9575cd; }
+        .mem-timer { font-family:'Caveat',cursive; font-size:1.2rem; color:#ffb74d; }
+        .mem-win { text-align:center; padding:20px; }
+        .mem-win-emoji { font-size:3rem; margin-bottom:8px; }
+        .mem-win-text { font-size:0.9rem; color:#f0c0d8; margin-bottom:12px; }
+        .game-btn { background:linear-gradient(135deg,#ff4081,#c2185b); color:white; border:none; border-radius:50px; padding:10px 20px; font-size:0.78rem; font-weight:700; cursor:pointer; font-family:'Anuphan',sans-serif; }
+
+        /* เป่ายิ้ง */
+        .rps-arena { display:flex; align-items:center; justify-content:center; gap:16px; margin:16px 0; }
+        .rps-side { text-align:center; flex:1; }
+        .rps-choice { font-size:3.5rem; width:90px; height:90px; border-radius:50%; background:rgba(255,255,255,0.08); border:2px solid rgba(255,64,129,0.3); display:flex; align-items:center; justify-content:center; margin:0 auto 8px; transition:all 0.3s; }
+        .rps-choice.winner { border-color:#4caf50; background:rgba(76,175,80,0.15); box-shadow:0 0 20px rgba(76,175,80,0.3); }
+        .rps-choice.loser { border-color:#ef5350; background:rgba(239,83,80,0.1); }
+        .rps-label { font-size:0.65rem; color:#9575cd; font-weight:700; }
+        .rps-vs { font-family:'Caveat',cursive; font-size:1.8rem; color:#ff80ab; }
+        .rps-btns { display:flex; gap:10px; justify-content:center; margin-bottom:14px; }
+        .rps-btn { width:62px; height:62px; border-radius:50%; background:rgba(255,255,255,0.08); border:2px solid rgba(255,64,129,0.3); font-size:1.8rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.2s; }
+        .rps-btn:hover { background:rgba(255,64,129,0.2); transform:scale(1.1); }
+        .rps-result { background:rgba(255,255,255,0.08); border-radius:16px; padding:14px; text-align:center; margin-bottom:10px; min-height:56px; }
+        .rps-result-text { font-size:0.95rem; color:#f0c0d8; font-weight:700; }
+        .rps-score { display:flex; justify-content:center; gap:20px; }
+        .rps-score-item { text-align:center; }
+        .rps-score-num { font-family:'Caveat',cursive; font-size:1.8rem; color:#ff80ab; font-weight:700; line-height:1; }
+        .rps-score-lbl { font-size:0.55rem; color:#9575cd; text-transform:uppercase; letter-spacing:0.5px; }
+
+        /* Spin the Wheel */
+        .wheel-wrap { position:relative; width:240px; height:240px; margin:0 auto 16px; }
+        .wheel-canvas { border-radius:50%; box-shadow:0 8px 30px rgba(255,64,129,0.3); }
+        .wheel-pointer { position:absolute; top:-14px; left:50%; transform:translateX(-50%); font-size:1.6rem; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3)); z-index:10; }
+        .wheel-center { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:36px; height:36px; border-radius:50%; background:white; box-shadow:0 2px 10px rgba(0,0,0,0.3); z-index:10; display:flex; align-items:center; justify-content:center; font-size:1rem; }
+        .wheel-spin-btn { background:linear-gradient(135deg,#ff4081,#c2185b); color:white; border:none; border-radius:50px; padding:12px 32px; font-size:0.88rem; font-weight:700; cursor:pointer; font-family:'Anuphan',sans-serif; box-shadow:0 6px 20px rgba(255,64,129,0.35); display:block; margin:0 auto; transition:all 0.2s; }
+        .wheel-spin-btn:disabled { opacity:0.5; cursor:not-allowed; }
+        .wheel-result-box { background:rgba(255,255,255,0.08); border-radius:16px; padding:14px; text-align:center; margin-top:12px; min-height:56px; border:1.5px solid rgba(255,64,129,0.2); }
+        .wheel-result-text { font-size:0.9rem; color:#f0c0d8; font-weight:700; }
+        .wheel-custom-row { display:flex; gap:6px; margin-bottom:10px; }
+        .wheel-inp { flex:1; background:rgba(255,255,255,0.08); border:1.5px solid rgba(255,64,129,0.3); border-radius:10px; padding:8px 10px; font-size:0.75rem; color:#f0c0d8; outline:none; font-family:'Anuphan',sans-serif; user-select:text; }
+        .wheel-inp::placeholder { color:#6e7681; }
+        .wheel-add-btn { background:rgba(255,64,129,0.3); border:none; border-radius:10px; padding:8px 12px; color:#ff80ab; font-size:0.75rem; font-weight:700; cursor:pointer; font-family:'Anuphan',sans-serif; }
+        .wheel-items-list { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px; }
+        .wheel-item-chip { background:rgba(255,255,255,0.08); border:1px solid rgba(255,64,129,0.3); border-radius:50px; padding:4px 10px; font-size:0.65rem; color:#f0c0d8; display:flex; align-items:center; gap:4px; }
+        .wheel-item-del { background:none; border:none; color:#ff80ab; cursor:pointer; font-size:0.65rem; }
+
+        /* 💌 SPECIAL CARD SENDER */
+        .card-sender-box { background:linear-gradient(135deg,#fff9fb,#fce4ec); border:2px solid #f48fb1; border-radius:28px; padding:20px 16px; margin-bottom:20px; width:100%; }
+        .card-templates { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-bottom:16px; }
+        .card-template { border-radius:20px; padding:18px 14px; cursor:pointer; border:2px solid transparent; transition:all 0.25s; position:relative; overflow:hidden; text-align:center; }
+        .card-template:hover { transform:translateY(-3px); }
+        .card-template.selected { border-color:var(--accent); box-shadow:0 8px 24px rgba(255,64,129,0.25); }
+        .ct-romantic { background:linear-gradient(135deg,#fce4ec,#fdd8e5); }
+        .ct-birthday { background:linear-gradient(135deg,#fff9c4,#fce4ec); }
+        .ct-goodnight { background:linear-gradient(135deg,#1a0a2e,#2d1b4e); }
+        .ct-justbecause { background:linear-gradient(135deg,#e8f5e9,#e1f5fe); }
+        .ct-emoji { font-size:2rem; margin-bottom:6px; display:block; }
+        .ct-name { font-size:0.72rem; font-weight:700; }
+        .ct-romantic .ct-name { color:#c2185b; }
+        .ct-birthday .ct-name { color:#f57f17; }
+        .ct-goodnight .ct-name { color:#ce93d8; }
+        .ct-justbecause .ct-name { color:#2e7d32; }
+
+        /* Card Preview */
+        .card-preview-wrap { margin-bottom:14px; }
+        .card-preview { border-radius:20px; padding:24px 20px; text-align:center; min-height:160px; display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative; overflow:hidden; transition:all 0.4s; }
+        .cp-romantic { background:linear-gradient(135deg,#ff80ab,#ff4081); color:white; }
+        .cp-birthday { background:linear-gradient(135deg,#ffcc02,#ff6f00); color:white; }
+        .cp-goodnight { background:linear-gradient(135deg,#1a0a2e,#2d1b4e); color:#f0c0d8; border:2px solid rgba(206,147,216,0.3); }
+        .cp-justbecause { background:linear-gradient(135deg,#e8f5e9,#f1f8e9); color:#2e7d32; border:2px solid #a5d6a7; }
+        .cp-deco { position:absolute; inset:0; pointer-events:none; }
+        .cp-main-emoji { font-size:2.5rem; margin-bottom:10px; }
+        .cp-title { font-family:'Caveat',cursive; font-size:1.6rem; font-weight:700; margin-bottom:8px; }
+        .cp-msg { font-size:0.85rem; line-height:1.6; max-width:280px; }
+        .cp-from { font-size:0.65rem; opacity:0.75; margin-top:10px; }
+        .card-msg-input { width:100%; border:2px solid #f48fb1; border-radius:16px; padding:10px 14px; font-family:'Anuphan',sans-serif; font-size:0.82rem; color:#5d4037; background:rgba(255,255,255,0.9); outline:none; resize:none; margin-bottom:10px; user-select:text; }
+        .card-msg-input:focus { border-color:var(--accent); }
+        .card-send-section { display:flex; gap:8px; }
+        .card-send-me-btn, .card-send-you-btn { flex:1; padding:10px; border-radius:50px; border:none; font-size:0.78rem; font-weight:700; cursor:pointer; font-family:'Anuphan',sans-serif; }
+        .card-send-me-btn { background:linear-gradient(135deg,#ff4081,#c2185b); color:white; }
+        .card-send-you-btn { background:linear-gradient(135deg,#7b1fa2,#9c27b0); color:white; }
+
+        /* Card received notification */
+        .card-inbox { margin-top:12px; }
+        .card-inbox-item { background:rgba(255,255,255,0.8); border-radius:16px; padding:12px 14px; margin-bottom:8px; border:1.5px solid rgba(244,143,177,0.5); display:flex; align-items:center; gap:10px; cursor:pointer; transition:all 0.2s; }
+        .card-inbox-item:hover { transform:translateX(4px); }
+        .card-inbox-emoji { font-size:1.8rem; flex-shrink:0; }
+        .card-inbox-info { flex:1; text-align:left; }
+        .card-inbox-title { font-size:0.82rem; font-weight:700; color:#c2185b; }
+        .card-inbox-meta { font-size:0.6rem; color:#888; }
+        .card-inbox-del { background:none; border:none; color:#ffcdd2; font-size:0.7rem; cursor:pointer; }
+        .card-view-modal { display:none; position:fixed; z-index:5000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.7); backdrop-filter:blur(10px); align-items:center; justify-content:center; }
+        .card-view-modal.show { display:flex; }
+        .card-view-inner { max-width:380px; width:88%; }
+        .card-view-close { width:100%; background:rgba(255,255,255,0.15); border:1.5px solid rgba(255,255,255,0.3); color:white; padding:10px; border-radius:50px; margin-top:12px; font-weight:700; cursor:pointer; font-family:'Anuphan',sans-serif; font-size:0.82rem; }
+
+        /* 🎵 PLAYLIST */
+        .playlist-box { width:100%; margin-bottom:20px; }
         .now-playing-bar { background:linear-gradient(135deg,#1a0a2e,#2d1b4e); border-radius:20px; padding:14px 16px; margin-bottom:12px; display:none; border:1.5px solid rgba(255,64,129,0.3); position:relative; overflow:hidden; }
         .now-playing-bar::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(45deg,rgba(255,64,129,0.03) 0px,rgba(255,64,129,0.03) 1px,transparent 1px,transparent 8px); }
         .np-top { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
@@ -105,39 +234,27 @@
         .np-title { font-size:0.88rem; font-weight:700; color:#ff80ab; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
         .np-who { font-size:0.6rem; color:#9575cd; margin-top:2px; }
         .np-ctrl-btn { width:36px; height:36px; border-radius:50%; background:rgba(255,64,129,0.2); border:1.5px solid rgba(255,64,129,0.4); color:#ff80ab; font-size:0.9rem; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-        .np-ctrl-btn:active { transform:scale(0.9); }
-
-        /* Wave bars */
         .np-wave { display:flex; align-items:flex-end; gap:2px; height:20px; margin-bottom:8px; }
         .np-bar { width:3px; background:var(--accent); border-radius:2px; opacity:0.7; animation:waveBar 0.6s ease-in-out infinite alternate; }
         .np-bar:nth-child(1){height:6px;animation-delay:0s}.np-bar:nth-child(2){height:14px;animation-delay:0.1s}.np-bar:nth-child(3){height:10px;animation-delay:0.2s}.np-bar:nth-child(4){height:18px;animation-delay:0.05s}.np-bar:nth-child(5){height:8px;animation-delay:0.15s}.np-bar:nth-child(6){height:16px;animation-delay:0.25s}.np-bar:nth-child(7){height:12px;animation-delay:0.08s}.np-bar:nth-child(8){height:6px;animation-delay:0.18s}
         @keyframes waveBar { from{transform:scaleY(0.3)} to{transform:scaleY(1)} }
         .np-wave.paused .np-bar { animation-play-state:paused; }
-
-        /* YouTube embed */
         .yt-embed-wrap { border-radius:14px; overflow:hidden; margin-bottom:10px; position:relative; background:#000; display:none; }
         .yt-embed-wrap iframe { width:100%; height:200px; border:none; display:block; }
         .yt-embed-wrap.visible { display:block; }
-
-        /* Lyrics Panel */
         .lyrics-panel { background:rgba(26,10,46,0.85); border-radius:16px; padding:14px; margin-bottom:10px; display:none; border:1px solid rgba(255,64,129,0.2); max-height:200px; overflow-y:auto; }
         .lyrics-panel.visible { display:block; }
         .lyrics-panel::-webkit-scrollbar { width:4px; }
         .lyrics-panel::-webkit-scrollbar-thumb { background:rgba(255,64,129,0.4); border-radius:2px; }
         .lyrics-text { font-size:0.8rem; color:#f0c0d8; line-height:1.9; white-space:pre-wrap; text-align:center; }
         .lyrics-label { font-size:0.6rem; color:#9575cd; font-weight:700; letter-spacing:1px; margin-bottom:8px; text-align:center; }
-
-        /* Lyrics toggle */
         .lyrics-toggle-btn { background:rgba(255,64,129,0.1); border:1.5px solid rgba(255,64,129,0.3); border-radius:50px; padding:5px 14px; font-size:0.65rem; color:#ff80ab; cursor:pointer; font-family:'Anuphan',sans-serif; font-weight:700; }
         .lyrics-toggle-btn.active { background:rgba(255,64,129,0.25); }
-
-        /* Track cards */
         .playlist-tracks { display:flex; flex-direction:column; gap:10px; }
         .track-card { background:white; border-radius:20px; padding:12px 14px; display:flex; align-items:center; gap:12px; box-shadow:0 4px 14px rgba(216,27,96,0.1); border:1.5px solid rgba(255,179,198,0.4); cursor:pointer; transition:all 0.25s; position:relative; overflow:hidden; }
         .track-card:hover { transform:translateX(4px); }
         .track-card.playing { background:linear-gradient(135deg,#fff0f5,#fce4ec); border-color:var(--accent); box-shadow:0 6px 20px rgba(255,64,129,0.25); }
         .track-card.playing::before { content:''; position:absolute; top:0; left:0; bottom:0; width:4px; background:var(--accent); border-radius:20px 0 0 20px; }
-        .track-card.requested { border-color:#ffcc80; background:linear-gradient(135deg,#fff8e1,#fff3e0); }
         .track-card.yt-track { border-color:#ff3d3d44; background:linear-gradient(135deg,#fff5f5,#fff0f0); }
         .track-card.yt-track.playing { border-color:#ff3d3d; background:linear-gradient(135deg,#fff0f0,#fce4e4); }
         .track-card.yt-track.playing::before { background:#ff3d3d; }
@@ -160,8 +277,6 @@
         .track-bar:nth-child(1){height:8px;animation-delay:0s}.track-bar:nth-child(2){height:14px;animation-delay:0.15s}.track-bar:nth-child(3){height:10px;animation-delay:0.3s}.track-bar:nth-child(4){height:16px;animation-delay:0.1s}
         @keyframes barBounce { from{transform:scaleY(0.4)} to{transform:scaleY(1)} }
         .yt-badge { font-size:0.55rem; background:#ffebee; color:#c62828; border-radius:4px; padding:2px 5px; font-weight:700; margin-left:4px; }
-
-        /* Add YouTube song box */
         .yt-add-box { background:linear-gradient(135deg,#fff5f5,#ffebee); border:2px dashed #ffcdd2; border-radius:20px; padding:14px; margin-top:10px; }
         .yt-add-title { font-size:0.75rem; font-weight:700; color:#c62828; margin-bottom:10px; display:flex; align-items:center; gap:6px; }
         .yt-add-row { display:flex; gap:8px; margin-bottom:8px; }
@@ -169,11 +284,9 @@
         .yt-inp:focus { border-color:#ff5252; }
         .yt-add-btn { background:linear-gradient(135deg,#ff5252,#ff1744); color:white; border:none; border-radius:50px; padding:9px 14px; font-size:0.75rem; font-weight:700; cursor:pointer; font-family:'Anuphan',sans-serif; white-space:nowrap; }
         .yt-lyrics-inp { width:100%; border:2px solid #ffcdd2; border-radius:12px; padding:9px 12px; font-family:'Anuphan',sans-serif; font-size:0.75rem; color:#5d4037; background:rgba(255,255,255,0.9); outline:none; resize:none; user-select:text; margin-top:6px; }
-        .yt-lyrics-inp:focus { border-color:#ff5252; }
         .yt-who-row { display:flex; gap:6px; margin-bottom:8px; }
         .yt-who-btn { flex:1; padding:6px; border-radius:50px; border:2px solid #ffcdd2; background:white; font-size:0.7rem; font-weight:700; cursor:pointer; font-family:'Anuphan',sans-serif; color:#c62828; transition:all 0.15s; }
         .yt-who-btn.active { background:linear-gradient(135deg,#ff5252,#ff1744); color:white; border-color:transparent; }
-        .yt-del-btn { position:absolute; top:8px; right:8px; background:none; border:none; color:#ffcdd2; font-size:0.72rem; cursor:pointer; }
 
         /* 💬 REAL-TIME CHAT */
         .chat-box { background:linear-gradient(135deg,#0d1117,#161b22); border-radius:28px; padding:18px 14px; margin-bottom:20px; width:100%; border:2px solid #30363d; position:relative; overflow:hidden; }
@@ -235,7 +348,7 @@
         .who-btn.active { background:linear-gradient(135deg,#ff7043,#ffb74d); color:white; border-color:transparent; }
         .wish-empty { text-align:center; color:#bcaaa4; font-size:0.82rem; padding:16px; }
 
-        /* 💌 Countdown Letters */
+        /* 💌 Letters */
         .letter-card { border-radius:22px; overflow:hidden; border:2px solid; margin-bottom:10px; }
         .letter-card.locked { border-color:#e0e0e0; background:linear-gradient(135deg,#f5f5f5,#eeeeee); }
         .letter-card.unlocked { border-color:#f48fb1; background:linear-gradient(135deg,#fff0f5,#fce4ec); cursor:pointer; }
@@ -275,17 +388,14 @@
         .lock-opt-icon { font-size:1.2rem; display:block; margin-bottom:4px; }
         .lock-opt-name { font-size:0.62rem; font-weight:700; color:#e65100; }
         .lock-opt-desc { font-size:0.52rem; color:#a1887f; margin-top:2px; }
-        .lock-cfg { background:#fff8f0; border-radius:12px; padding:12px; margin-top:10px; border:1.5px dashed #ffcc80; animation:fadeInUp 0.3s ease; }
+        .lock-cfg { background:#fff8f0; border-radius:12px; padding:12px; margin-top:10px; border:1.5px dashed #ffcc80; }
         .tc-save-btn { width:100%; background:linear-gradient(135deg,#ff7043,#ffb74d); color:white; border:none; padding:12px; border-radius:50px; font-size:0.85rem; font-weight:700; cursor:pointer; margin-top:12px; font-family:'Anuphan',sans-serif; }
         .tc-item { background:white; border-radius:16px; padding:14px; margin-bottom:10px; border:1.5px solid; position:relative; overflow:hidden; cursor:pointer; }
         .tc-item.tci-locked { border-color:#ffcc80; background:linear-gradient(135deg,#fff8f0,#fff3e0); }
         .tc-item.tci-unlocked { border-color:#a5d6a7; background:linear-gradient(135deg,#f1f8e9,#e8f5e9); }
         .tc-item.tci-pw { border-color:#ce93d8; background:linear-gradient(135deg,#f9f0ff,#f3e5f5); }
         .tc-left-bar { position:absolute; left:0; top:0; bottom:0; width:4px; border-radius:16px 0 0 16px; }
-        .bar-dream { background:linear-gradient(180deg,#7c4dff,#b39ddb); }
-        .bar-promise { background:linear-gradient(180deg,#ff4081,#f48fb1); }
-        .bar-secret { background:linear-gradient(180deg,#00bcd4,#80deea); }
-        .bar-letter { background:linear-gradient(180deg,#ff7043,#ffb74d); }
+        .bar-dream{background:linear-gradient(180deg,#7c4dff,#b39ddb)}.bar-promise{background:linear-gradient(180deg,#ff4081,#f48fb1)}.bar-secret{background:linear-gradient(180deg,#00bcd4,#80deea)}.bar-letter{background:linear-gradient(180deg,#ff7043,#ffb74d)}
         .tc-item-top { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
         .tc-type-icon { width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; }
         .icon-dream{background:#ede7f6}.icon-promise{background:#fce4ec}.icon-secret{background:#e0f7fa}.icon-letter{background:#fff3e0}
@@ -311,7 +421,7 @@
 
         /* Modals */
         .letter-modal { display:none; position:fixed; z-index:5000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.65); backdrop-filter:blur(8px); }
-        .letter-modal-content { background:linear-gradient(160deg,#fff9fb,#fce4ec); margin:8% auto; border-radius:32px; width:88%; max-width:420px; overflow:hidden; animation:popIn 0.4s cubic-bezier(0.175,0.885,0.32,1.275); border:3px solid #f48fb1; }
+        .letter-modal-content { background:linear-gradient(160deg,#fff9fb,#fce4ec); margin:8% auto; border-radius:32px; width:88%; max-width:460px; overflow:hidden; animation:popIn 0.4s cubic-bezier(0.175,0.885,0.32,1.275); border:3px solid #f48fb1; }
         .letter-modal-top { background:linear-gradient(135deg,#ff80ab,#ff4081); padding:20px; text-align:center; }
         .letter-modal-envelope { font-size:2.5rem; }
         .letter-modal-num { font-size:0.7rem; color:rgba(255,255,255,0.85); margin-top:4px; letter-spacing:2px; }
@@ -331,7 +441,6 @@
         .pw-cancel-btn { background:none; border:1.5px solid #ce93d8; color:#9575cd; padding:11px 14px; border-radius:12px; font-weight:700; cursor:pointer; font-family:'Anuphan',sans-serif; font-size:0.82rem; }
         .pw-err { color:#e53935; font-size:0.7rem; margin-top:8px; min-height:1.2rem; }
         @keyframes popIn { from{transform:scale(0.7);opacity:0} to{transform:scale(1);opacity:1} }
-        @keyframes fadeInUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
 
         /* Gift */
         .gift-section { width:100%; margin-bottom:20px; display:flex; flex-direction:column; gap:10px; }
@@ -345,7 +454,7 @@
         @keyframes shimmer { 0%,100%{transform:translateX(-30%) translateY(-30%)} 50%{transform:translateX(10%) translateY(10%)} }
         .btn-coupon { background:linear-gradient(135deg,#1565c0,#1976d2,#64b5f6); color:white; box-shadow:0 6px 20px rgba(21,101,192,0.35); }
         .gift-modal { display:none; position:fixed; z-index:3000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6); backdrop-filter:blur(8px); }
-        .gift-modal-content { background:linear-gradient(160deg,#f3e5f5,#e8eaf6,#fce4ec); margin:10% auto; border-radius:32px; width:88%; max-width:420px; border:3px solid #ce93d8; overflow:hidden; animation:popIn 0.4s cubic-bezier(0.175,0.885,0.32,1.275); }
+        .gift-modal-content { background:linear-gradient(160deg,#f3e5f5,#e8eaf6,#fce4ec); margin:10% auto; border-radius:32px; width:88%; max-width:460px; border:3px solid #ce93d8; overflow:hidden; animation:popIn 0.4s cubic-bezier(0.175,0.885,0.32,1.275); }
         .gift-modal-header { background:linear-gradient(135deg,#7b1fa2,#9c27b0); color:white; padding:20px; text-align:center; }
         .gift-modal-header h3 { font-size:1.1rem; font-weight:700; margin-bottom:2px; }
         .gift-modal-header p { font-size:0.7rem; opacity:0.85; }
@@ -360,7 +469,7 @@
         .gift-unlock-badge { position:absolute; top:-6px; right:-6px; background:#ff4081; color:white; border-radius:50%; width:18px; height:18px; font-size:0.55rem; display:flex; align-items:center; justify-content:center; font-weight:700; }
         .gift-modal-close { width:100%; background:rgba(123,31,162,0.1); border:2px solid #ce93d8; color:#7b1fa2; padding:10px; border-radius:20px; margin-top:12px; font-weight:700; font-size:0.8rem; cursor:pointer; font-family:'Anuphan',sans-serif; }
         .gift-detail-modal { display:none; position:fixed; z-index:4000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.7); backdrop-filter:blur(10px); }
-        .gift-detail-content { background:white; margin:15% auto; border-radius:28px; width:82%; max-width:360px; overflow:hidden; animation:popIn 0.35s cubic-bezier(0.175,0.885,0.32,1.275); border:4px solid #ce93d8; }
+        .gift-detail-content { background:white; margin:15% auto; border-radius:28px; width:82%; max-width:380px; overflow:hidden; animation:popIn 0.35s cubic-bezier(0.175,0.885,0.32,1.275); border:4px solid #ce93d8; }
         .gift-detail-top { padding:30px 20px 20px; text-align:center; }
         .gift-detail-emoji { font-size:4rem; margin-bottom:10px; }
         .gift-detail-title { font-size:1.1rem; font-weight:700; color:#4a148c; margin-bottom:8px; }
@@ -385,10 +494,10 @@
         .coupon-close-btn { width:100%; background:none; border:2px solid #ddd; color:#999; padding:9px; border-radius:50px; font-size:0.75rem; cursor:pointer; font-family:'Anuphan',sans-serif; }
         .coupon-used-note { font-size:0.7rem; color:#f44336; margin-top:6px; }
         .modal { display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.5); backdrop-filter:blur(5px); }
-        .modal-content { background:#fff; margin:15% auto; padding:30px; border-radius:30px; width:85%; max-width:400px; text-align:left; position:relative; border:5px solid var(--accent); }
+        .modal-content { background:#fff; margin:15% auto; padding:30px; border-radius:30px; width:85%; max-width:440px; text-align:left; position:relative; border:5px solid var(--accent); }
         .close { position:absolute; right:20px; top:15px; font-size:28px; font-weight:bold; color:var(--accent); cursor:pointer; }
         .caption-modal { display:none; position:fixed; z-index:5000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6); backdrop-filter:blur(6px); }
-        .caption-modal-content { background:white; margin:30% auto; border-radius:24px; width:80%; max-width:340px; padding:24px; text-align:center; border:3px solid #ffb3c6; }
+        .caption-modal-content { background:white; margin:30% auto; border-radius:24px; width:80%; max-width:360px; padding:24px; text-align:center; border:3px solid #ffb3c6; }
         .caption-modal-title { font-size:0.95rem; font-weight:700; color:var(--text-main); margin-bottom:14px; }
         .caption-input { width:100%; border:2px solid #ffb3c6; border-radius:12px; padding:10px 14px; font-family:'Anuphan',sans-serif; font-size:0.85rem; color:#555; outline:none; margin-bottom:14px; user-select:text; }
         .caption-input:focus { border-color:var(--accent); }
@@ -536,7 +645,7 @@
         </div>
     </div>
 
-    <!-- ===== 💬 REAL-TIME CHAT (NEW) ===== -->
+    <!-- ===== 💬 REAL-TIME CHAT ===== -->
     <div class="section-header"><div class="section-line"></div><div class="section-badge">💬 REAL-TIME CHAT</div><div class="section-line right"></div></div>
     <div class="chat-box" style="margin-bottom:20px;">
         <div class="chat-header">
@@ -565,10 +674,145 @@
         </div>
     </div>
 
-    <!-- ===== 🎵 PLAYLIST (Enhanced with YouTube + Lyrics) ===== -->
+    <!-- ===== 🎮 MINI GAMES ===== -->
+    <div class="section-header"><div class="section-line"></div><div class="section-badge">🎮 MINI GAMES</div><div class="section-line right"></div></div>
+    <div class="games-box" style="margin-bottom:20px;">
+        <div class="games-title">🎮 เล่นด้วยกันเลย!</div>
+        <div class="games-tabs">
+            <button class="game-tab active" onclick="switchGame('quiz')">🎲 ทายใจกัน</button>
+            <button class="game-tab" onclick="switchGame('memory')">🧩 Memory</button>
+            <button class="game-tab" onclick="switchGame('rps')">🪨 เป่ายิ้ง</button>
+            <button class="game-tab" onclick="switchGame('wheel')">🎯 Spin Wheel</button>
+        </div>
+
+        <!-- 🎲 Quiz -->
+        <div class="game-panel active" id="game-quiz">
+            <div class="quiz-progress" id="quiz-progress"></div>
+            <div class="quiz-q" id="quiz-q-box">
+                <div class="quiz-q-text" id="quiz-q-text">กำลังโหลด...</div>
+                <div class="quiz-opts" id="quiz-opts"></div>
+            </div>
+            <div class="quiz-result" id="quiz-result" style="display:none">
+                <div class="quiz-score" id="quiz-score-display">0/0</div>
+                <div class="quiz-score-label">คะแนน 💕</div>
+                <div id="quiz-result-msg" style="font-size:0.8rem;color:#f0c0d8;margin-top:8px;"></div>
+                <button class="quiz-next-btn" onclick="quizRestart()">🔄 เล่นอีกรอบ</button>
+            </div>
+        </div>
+
+        <!-- 🧩 Memory Card -->
+        <div class="game-panel" id="game-memory">
+            <div class="mem-info" style="margin-bottom:10px;">
+                <span class="mem-moves">ความพยายาม: <b id="mem-moves">0</b></span>
+                <span class="mem-timer" id="mem-timer">00:00</span>
+                <button class="game-btn" onclick="memInit()">🔄 ใหม่</button>
+            </div>
+            <div class="memory-grid" id="memory-grid"></div>
+            <div class="mem-win" id="mem-win" style="display:none">
+                <div class="mem-win-emoji">🎉</div>
+                <div class="mem-win-text" id="mem-win-text">เก่งมากเลย!</div>
+                <button class="game-btn" onclick="memInit()">🔄 เล่นอีกรอบ</button>
+            </div>
+        </div>
+
+        <!-- 🪨 Rock Paper Scissors -->
+        <div class="game-panel" id="game-rps">
+            <div class="rps-score" style="margin-bottom:16px;">
+                <div class="rps-score-item"><div class="rps-score-num" id="rps-score-me">0</div><div class="rps-score-lbl">👦 เค้า</div></div>
+                <div class="rps-score-item"><div class="rps-score-num" id="rps-score-draw">0</div><div class="rps-score-lbl">เสมอ</div></div>
+                <div class="rps-score-item"><div class="rps-score-num" id="rps-score-cpu">0</div><div class="rps-score-lbl">🍰 อ้วน</div></div>
+            </div>
+            <div class="rps-arena">
+                <div class="rps-side">
+                    <div class="rps-choice" id="rps-me-choice">❓</div>
+                    <div class="rps-label">👦 เค้า</div>
+                </div>
+                <div class="rps-vs">VS</div>
+                <div class="rps-side">
+                    <div class="rps-choice" id="rps-cpu-choice">❓</div>
+                    <div class="rps-label">🍰 อ้วน (AI)</div>
+                </div>
+            </div>
+            <div class="rps-result" id="rps-result">
+                <div class="rps-result-text">เลือกเลย! 👇</div>
+            </div>
+            <div class="rps-btns">
+                <button class="rps-btn" onclick="rpsPlay('rock')" title="หิน">🪨</button>
+                <button class="rps-btn" onclick="rpsPlay('paper')" title="กระดาษ">📄</button>
+                <button class="rps-btn" onclick="rpsPlay('scissors')" title="กรรไกร">✂️</button>
+            </div>
+            <button class="game-btn" style="display:block;margin:0 auto;" onclick="rpsReset()">🔄 รีเซ็ต</button>
+        </div>
+
+        <!-- 🎯 Spin the Wheel -->
+        <div class="game-panel" id="game-wheel">
+            <div style="margin-bottom:10px;">
+                <div class="wheel-custom-row">
+                    <input class="wheel-inp" id="wheel-new-item" placeholder="เพิ่มตัวเลือก เช่น ดูหนัง" maxlength="15">
+                    <button class="wheel-add-btn" onclick="wheelAddItem()">+ เพิ่ม</button>
+                </div>
+                <div class="wheel-items-list" id="wheel-items-list"></div>
+            </div>
+            <div class="wheel-wrap">
+                <div class="wheel-pointer">▼</div>
+                <canvas class="wheel-canvas" id="wheel-canvas" width="240" height="240"></canvas>
+                <div class="wheel-center">🎯</div>
+            </div>
+            <button class="wheel-spin-btn" id="wheel-spin-btn" onclick="wheelSpin()">🎯 หมุนเลย!</button>
+            <div class="wheel-result-box" id="wheel-result-box">
+                <div class="wheel-result-text" id="wheel-result-text">กด หมุนเลย! เพื่อสุ่ม 🎲</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 💌 SPECIAL CARD SENDER ===== -->
+    <div class="section-header"><div class="section-line"></div><div class="section-badge">💌 SPECIAL CARDS</div><div class="section-line right"></div></div>
+    <div class="card-sender-box" style="margin-bottom:20px;">
+        <div style="font-size:0.75rem;font-weight:700;color:#c2185b;margin-bottom:12px;">✉️ ส่งการ์ดพิเศษให้กัน <span style="font-size:0.6rem;color:#888;font-weight:400">(Real-time ซิงค์ 🔄)</span></div>
+        <div class="card-templates">
+            <div class="card-template ct-romantic selected" onclick="selectCardTemplate('romantic')" id="ct-romantic">
+                <span class="ct-emoji">🌹</span>
+                <div class="ct-name">Romantic</div>
+            </div>
+            <div class="card-template ct-birthday" onclick="selectCardTemplate('birthday')" id="ct-birthday">
+                <span class="ct-emoji">🎂</span>
+                <div class="ct-name">Birthday</div>
+            </div>
+            <div class="card-template ct-goodnight" onclick="selectCardTemplate('goodnight')" id="ct-goodnight">
+                <span class="ct-emoji">🌙</span>
+                <div class="ct-name">Good Night</div>
+            </div>
+            <div class="card-template ct-justbecause" onclick="selectCardTemplate('justbecause')" id="ct-justbecause">
+                <span class="ct-emoji">🌈</span>
+                <div class="ct-name">Just Because</div>
+            </div>
+        </div>
+
+        <!-- Card Preview -->
+        <div class="card-preview-wrap">
+            <div class="card-preview cp-romantic" id="card-preview">
+                <div class="cp-main-emoji" id="cp-emoji">🌹</div>
+                <div class="cp-title" id="cp-title">Dear อ้วน,</div>
+                <div class="cp-msg" id="cp-msg">รักอ้วนมากที่สุดในโลกเลยนะ 💕</div>
+                <div class="cp-from" id="cp-from">จากเค้า 👦</div>
+            </div>
+        </div>
+
+        <textarea class="card-msg-input" id="card-msg-input" rows="3" placeholder="เขียนข้อความลงการ์ด..." maxlength="150" oninput="updateCardPreview()"></textarea>
+        <div class="card-send-section">
+            <button class="card-send-me-btn" onclick="sendCard('me')">👦 ส่งจากเค้า</button>
+            <button class="card-send-you-btn" onclick="sendCard('you')">🍰 ส่งจากอ้วน</button>
+        </div>
+
+        <!-- Card Inbox -->
+        <div class="card-inbox" id="card-inbox" style="margin-top:14px;">
+            <div style="font-size:0.65rem;color:#c2185b;font-weight:700;margin-bottom:8px;">📥 การ์ดที่ได้รับ</div>
+        </div>
+    </div>
+
+    <!-- ===== 🎵 PLAYLIST ===== -->
     <div class="section-header"><div class="section-line"></div><div class="section-badge">🎵 OUR PLAYLIST</div><div class="section-line right"></div></div>
     <div class="playlist-box">
-        <!-- Now Playing Bar -->
         <div class="now-playing-bar" id="now-playing-bar">
             <div class="np-top">
                 <div class="np-disc" id="np-disc">🎵</div>
@@ -583,19 +827,13 @@
                 <div class="np-bar"></div><div class="np-bar"></div><div class="np-bar"></div><div class="np-bar"></div>
             </div>
         </div>
-
-        <!-- Lyrics Panel -->
         <div class="lyrics-panel" id="lyrics-panel">
             <div class="lyrics-label">🎵 เนื้อเพลง</div>
             <div class="lyrics-text" id="lyrics-text">ยังไม่มีเนื้อเพลง</div>
         </div>
-
-        <!-- YouTube Embed -->
         <div class="yt-embed-wrap" id="yt-embed-wrap">
             <iframe id="yt-iframe" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
         </div>
-
-        <!-- Built-in Tracks -->
         <div class="playlist-tracks" id="playlist-tracks">
             <div class="track-card" id="track-proud" onclick="playLocalTrack('proud')">
                 <div class="track-icon-wrap proud-color"><div class="track-vinyl"></div>🌸</div>
@@ -610,11 +848,7 @@
                 <button class="track-play-btn" id="btn-happy">▶</button>
             </div>
         </div>
-
-        <!-- YouTube songs (synced) -->
         <div id="yt-tracks-list" style="margin-top:10px;display:flex;flex-direction:column;gap:10px;"></div>
-
-        <!-- Add YouTube Box -->
         <div class="yt-add-box" style="margin-top:12px;">
             <div class="yt-add-title">▶️ เพิ่มเพลงจาก YouTube <span style="font-size:0.6rem;color:#a1887f;font-weight:400">(ซิงค์ทั้งคู่ 🔄)</span></div>
             <div class="yt-who-row">
@@ -626,14 +860,13 @@
                 <button class="yt-add-btn" onclick="addYtSong()">+ เพิ่ม</button>
             </div>
             <input class="yt-inp" id="yt-name-inp" placeholder="ชื่อเพลง - ศิลปิน" maxlength="60" style="margin-bottom:6px;">
-            <textarea class="yt-lyrics-inp" id="yt-lyrics-inp" placeholder="เนื้อเพลง (ไม่บังคับ) วางได้เลยนะ 🎵" rows="3"></textarea>
+            <textarea class="yt-lyrics-inp" id="yt-lyrics-inp" placeholder="เนื้อเพลง (ไม่บังคับ)" rows="3"></textarea>
         </div>
     </div>
 
     <!-- Birthday -->
     <div class="birthday-box" style="margin-top:20px;"><span class="bday-title">🎂 เคาท์ดาวน์วันเกิดอ้วน (7 ก.ย.)</span><div class="bday-days" id="bday-timer">เหลืออีก -- วัน</div></div>
 
-    <!-- Audio elements -->
     <audio id="mySong" loop><source src="015 Proud.mp3" type="audio/mpeg"></audio>
     <audio id="happySong" loop><source src="เวลาเธอยิ้ม.mp3" type="audio/mpeg"></audio>
 
@@ -657,7 +890,7 @@
         </div>
     </div>
 
-    <!-- 💬 Message Board (kept for legacy) -->
+    <!-- 💬 Message Board -->
     <div class="section-header"><div class="section-line"></div><div class="section-badge">📌 MESSAGE BOARD</div><div class="section-line right"></div></div>
     <div class="board-box" style="margin-bottom:20px;">
         <div style="font-size:0.6rem;color:#9fa8da;margin-bottom:8px;text-align:right;">🔄 ซิงค์ทั้งคู่</div>
@@ -860,6 +1093,20 @@
         <br><button class="caption-confirm-btn" onclick="confirmCaption()">✅ ยืนยัน</button>
     </div>
 </div>
+
+<!-- Card View Modal -->
+<div class="card-view-modal" id="card-view-modal" onclick="if(event.target===this)closeCardViewModal()">
+    <div class="card-view-inner">
+        <div class="card-preview" id="card-view-preview" style="min-height:220px;">
+            <div class="cp-main-emoji" id="cv-emoji">🌹</div>
+            <div class="cp-title" id="cv-title">Dear...</div>
+            <div class="cp-msg" id="cv-msg"></div>
+            <div class="cp-from" id="cv-from"></div>
+        </div>
+        <button class="card-view-close" onclick="closeCardViewModal()">💕 ปิด</button>
+    </div>
+</div>
+
 <div class="tc-toast" id="tc-toast"></div>
 
 <script>
@@ -904,6 +1151,7 @@ async function fullSync(silent=false) {
         renderWishlistFromData(rec.wishlist||[]);
         renderChatFromData(rec.chatMessages||[]);
         renderYtTracksFromData(rec.ytSongs||[]);
+        renderCardInbox(rec.specialCards||[]);
         tcCapsules=rec.capsules||[];
         tcRenderList(); tcRenderStats();
         document.getElementById('stat-capsules').innerText=tcCapsules.length;
@@ -993,6 +1241,333 @@ function updateStatsFromData(rec){
     updateStats();
 }
 
+// ===== 🎮 MINI GAMES =====
+function switchGame(name){
+    document.querySelectorAll('.game-tab').forEach((t,i)=>{
+        const names=['quiz','memory','rps','wheel'];
+        t.className='game-tab'+(names[i]===name?' active':'');
+    });
+    document.querySelectorAll('.game-panel').forEach(p=>p.className='game-panel');
+    document.getElementById('game-'+name).className='game-panel active';
+    if(name==='memory'&&!memStarted) memInit();
+    if(name==='wheel') wheelDraw();
+}
+
+// --- 🎲 Quiz Game ---
+const quizQuestions = [
+    {q:'อ้วนชอบสีอะไรที่สุด?', opts:['ชมพูอ่อน','ฟ้าอ่อน','ม่วง','เขียว'], correct:1},
+    {q:'อ้วนชอบดอกไม้อะไร?', opts:['กุหลาบ','ทิวลิป','ลาเวนเดอร์','ดอกไม้ป่า'], correct:1},
+    {q:'อ้วนชอบกินอะไร?', opts:['ปลาย่าง','ขนมทุกอย่าง','ผัดกะเพรา','ข้าวต้ม'], correct:1},
+    {q:'วันเกิดอ้วนวันไหน?', opts:['7 ก.ย.','9 ก.ค.','17 ส.ค.','7 ต.ค.'], correct:0},
+    {q:'อ้วนชอบสัตว์อะไร?', opts:['แมวน้ำ','ปลาโลมา','หมูป่า','ลิง'], correct:0},
+    {q:'อ้วนชอบทำงานอดิเรกอะไร?', opts:['วิ่ง','วาดรูป','เล่นกีต้าร์','ทำอาหาร'], correct:1},
+    {q:'อ้วนไม่กินอะไร?', opts:['ไก่','ปลา','หมู','เนื้อ'], correct:1},
+    {q:'เราคบกันวันที่เท่าไหร่?', opts:['25 มี.ค. 2569','1 เม.ย. 2569','25 ก.พ. 2569','10 มี.ค. 2569'], correct:0},
+];
+let quizIdx=0, quizScore=0, quizAnswered=false, quizShuffled=[];
+
+function quizInit(){
+    quizShuffled=[...quizQuestions].sort(()=>Math.random()-0.5);
+    quizIdx=0; quizScore=0; quizAnswered=false;
+    document.getElementById('quiz-result').style.display='none';
+    document.getElementById('quiz-q-box').style.display='block';
+    quizRenderQ();
+}
+function quizRenderQ(){
+    if(quizIdx>=quizShuffled.length){quizFinish();return;}
+    const q=quizShuffled[quizIdx];
+    const prog=document.getElementById('quiz-progress');
+    prog.innerHTML=quizShuffled.map((_,i)=>`<div class="quiz-pip ${i<quizIdx?(quizShuffled[i]._correct?'done-correct':'done-wrong'):i===quizIdx?'current':''}"></div>`).join('');
+    document.getElementById('quiz-q-text').innerText=`${quizIdx+1}/${quizShuffled.length} — ${q.q}`;
+    const optsEl=document.getElementById('quiz-opts');
+    optsEl.innerHTML=q.opts.map((o,i)=>`<button class="quiz-opt" onclick="quizAnswer(${i})">${o}</button>`).join('');
+    quizAnswered=false;
+}
+function quizAnswer(i){
+    if(quizAnswered) return;
+    quizAnswered=true;
+    const q=quizShuffled[quizIdx];
+    const buttons=document.querySelectorAll('.quiz-opt');
+    buttons[i].className='quiz-opt '+(i===q.correct?'correct':'wrong');
+    buttons[q.correct].className='quiz-opt correct';
+    if(i===q.correct){quizScore++;q._correct=true;} else {q._correct=false;}
+    setTimeout(()=>{quizIdx++;quizRenderQ();},1200);
+}
+function quizFinish(){
+    document.getElementById('quiz-q-box').style.display='none';
+    document.getElementById('quiz-result').style.display='block';
+    document.getElementById('quiz-score-display').innerText=`${quizScore}/${quizShuffled.length}`;
+    const msgs=['เก่งมากเลย! รู้จักอ้วนดีมาก 💕','ดีมากเลย! ใกล้เคียงมาก 🌸','พยายามอีกนิดนะ 💪','เรียนรู้เพิ่มขึ้นเรื่อยๆ นะ 🤍'];
+    const pct=quizScore/quizShuffled.length;
+    document.getElementById('quiz-result-msg').innerText=pct>=0.9?msgs[0]:pct>=0.7?msgs[1]:pct>=0.5?msgs[2]:msgs[3];
+    if(pct>=0.8) confetti({particleCount:100,spread:70,origin:{y:0.6}});
+    const prog=document.getElementById('quiz-progress');
+    prog.innerHTML=quizShuffled.map(q=>`<div class="quiz-pip ${q._correct?'done-correct':'done-wrong'}"></div>`).join('');
+}
+function quizRestart(){ quizInit(); }
+quizInit();
+
+// --- 🧩 Memory Card ---
+const memEmojis = ['🌸','🍰','💖','🌙','✨','🌈','🎵','💜'];
+let memCards=[], memFlipped=[], memMatched=0, memMoves=0, memTimer=null, memSeconds=0, memStarted=false, memLocked=false;
+
+function memInit(){
+    memStarted=true; memMoves=0; memMatched=0; memSeconds=0; memLocked=false;
+    clearInterval(memTimer);
+    document.getElementById('mem-moves').innerText=0;
+    document.getElementById('mem-timer').innerText='00:00';
+    document.getElementById('mem-win').style.display='none';
+    const pairs=[...memEmojis,...memEmojis].sort(()=>Math.random()-0.5);
+    memCards=pairs.map((e,i)=>({id:i,emoji:e,flipped:false,matched:false}));
+    memFlipped=[];
+    renderMemGrid();
+    memTimer=setInterval(()=>{memSeconds++;const m=Math.floor(memSeconds/60),s=memSeconds%60;document.getElementById('mem-timer').innerText=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;},1000);
+}
+function renderMemGrid(){
+    const grid=document.getElementById('memory-grid');
+    grid.innerHTML=memCards.map(c=>`
+        <div class="mem-card ${c.flipped||c.matched?'flipped':''} ${c.matched?'matched':''}" onclick="memFlip(${c.id})">
+            <div class="mem-front">🎀</div>
+            <div class="mem-back">${c.emoji}</div>
+        </div>`).join('');
+}
+function memFlip(id){
+    if(memLocked) return;
+    const card=memCards[id];
+    if(card.flipped||card.matched) return;
+    card.flipped=true; memFlipped.push(id); renderMemGrid();
+    if(memFlipped.length===2){
+        memLocked=true; memMoves++;
+        document.getElementById('mem-moves').innerText=memMoves;
+        const [a,b]=memFlipped.map(i=>memCards[i]);
+        if(a.emoji===b.emoji){
+            a.matched=b.matched=true; memMatched++;
+            memFlipped=[]; memLocked=false; renderMemGrid();
+            if(memMatched===memEmojis.length){
+                clearInterval(memTimer);
+                setTimeout(()=>{
+                    document.getElementById('mem-win').style.display='block';
+                    document.getElementById('mem-win-text').innerText=`เก่งมาก! ${memMoves} ครั้ง ⏱${document.getElementById('mem-timer').innerText} 🎉`;
+                    confetti({particleCount:120,spread:80,origin:{y:0.6}});
+                },300);
+            }
+        } else {
+            setTimeout(()=>{a.flipped=b.flipped=false;memFlipped=[];memLocked=false;renderMemGrid();},900);
+        }
+    }
+}
+
+// --- 🪨 RPS ---
+const rpsEmoji={rock:'🪨',paper:'📄',scissors:'✂️'};
+const rpsLabels={rock:'หิน',paper:'กระดาษ',scissors:'กรรไกร'};
+let rpsScores={me:0,draw:0,cpu:0};
+
+function rpsPlay(choice){
+    const choices=['rock','paper','scissors'];
+    const cpu=choices[Math.floor(Math.random()*3)];
+    const meEl=document.getElementById('rps-me-choice'), cpuEl=document.getElementById('rps-cpu-choice');
+    const resultEl=document.getElementById('rps-result');
+
+    // animate
+    meEl.innerText='🤔'; cpuEl.innerText='🤔';
+    resultEl.innerHTML='<div class="rps-result-text">กำลังคิด... 🤔</div>';
+    setTimeout(()=>{
+        meEl.innerText=rpsEmoji[choice]; cpuEl.innerText=rpsEmoji[cpu];
+        let result, resultMsg;
+        if(choice===cpu){result='draw';resultMsg='🤝 เสมอกัน!';}
+        else if((choice==='rock'&&cpu==='scissors')||(choice==='paper'&&cpu==='rock')||(choice==='scissors'&&cpu==='paper')){
+            result='me';resultMsg=`🎉 เค้าชนะ! ${rpsLabels[choice]} ชนะ ${rpsLabels[cpu]}`;
+            meEl.className='rps-choice winner'; cpuEl.className='rps-choice loser';
+        } else {
+            result='cpu';resultMsg=`🍰 อ้วนชนะ! ${rpsLabels[cpu]} ชนะ ${rpsLabels[choice]}`;
+            meEl.className='rps-choice loser'; cpuEl.className='rps-choice winner';
+        }
+        if(result==='draw'){meEl.className='rps-choice';cpuEl.className='rps-choice';}
+        rpsScores[result]++;
+        document.getElementById('rps-score-me').innerText=rpsScores.me;
+        document.getElementById('rps-score-draw').innerText=rpsScores.draw;
+        document.getElementById('rps-score-cpu').innerText=rpsScores.cpu;
+        resultEl.innerHTML=`<div class="rps-result-text">${resultMsg}</div>`;
+        if(result==='me') confetti({particleCount:50,spread:60,origin:{y:0.6}});
+    },600);
+}
+function rpsReset(){
+    rpsScores={me:0,draw:0,cpu:0};
+    document.getElementById('rps-score-me').innerText=0;
+    document.getElementById('rps-score-draw').innerText=0;
+    document.getElementById('rps-score-cpu').innerText=0;
+    document.getElementById('rps-me-choice').innerText='❓';
+    document.getElementById('rps-me-choice').className='rps-choice';
+    document.getElementById('rps-cpu-choice').innerText='❓';
+    document.getElementById('rps-cpu-choice').className='rps-choice';
+    document.getElementById('rps-result').innerHTML='<div class="rps-result-text">เลือกเลย! 👇</div>';
+}
+
+// --- 🎯 Spin the Wheel ---
+let wheelItems = ['ดูหนัง','กินไอติม','อ่านนิยาย','เดินเล่น','ร้องเพลง','สั่งของหวาน','ดูดาว','นอนกอดกัน'];
+let wheelAngle = 0, wheelSpinning = false;
+
+function wheelDraw(){
+    const canvas=document.getElementById('wheel-canvas');
+    if(!canvas) return;
+    const ctx=canvas.getContext('2d');
+    const cx=120,cy=120,r=112;
+    const n=wheelItems.length; if(n===0) return;
+    const colors=['#ff80ab','#ff4081','#c2185b','#f48fb1','#ba68c8','#9c27b0','#ce93d8','#7b1fa2','#ff7043','#ffb74d'];
+    ctx.clearRect(0,0,240,240);
+    for(let i=0;i<n;i++){
+        const start=wheelAngle+i*(2*Math.PI/n), end=wheelAngle+(i+1)*(2*Math.PI/n);
+        ctx.beginPath(); ctx.moveTo(cx,cy); ctx.arc(cx,cy,r,start,end); ctx.closePath();
+        ctx.fillStyle=colors[i%colors.length]; ctx.fill();
+        ctx.strokeStyle='rgba(255,255,255,0.3)'; ctx.lineWidth=2; ctx.stroke();
+        ctx.save(); ctx.translate(cx,cy); ctx.rotate(start+(end-start)/2);
+        ctx.fillStyle='white'; ctx.font='bold 11px Anuphan,sans-serif';
+        ctx.shadowColor='rgba(0,0,0,0.3)'; ctx.shadowBlur=4;
+        ctx.fillText(wheelItems[i].slice(0,8),r*0.35,-4);
+        ctx.restore();
+    }
+    renderWheelChips();
+}
+
+function renderWheelChips(){
+    const list=document.getElementById('wheel-items-list');
+    list.innerHTML=wheelItems.map((item,i)=>`<div class="wheel-item-chip">${item}<button class="wheel-item-del" onclick="wheelDeleteItem(${i})">✕</button></div>`).join('');
+}
+
+function wheelAddItem(){
+    const inp=document.getElementById('wheel-new-item');
+    const val=inp.value.trim();
+    if(!val) return;
+    wheelItems.push(val); inp.value=''; wheelDraw();
+}
+function wheelDeleteItem(i){
+    wheelItems.splice(i,1); wheelDraw();
+}
+
+function wheelSpin(){
+    if(wheelSpinning||wheelItems.length===0) return;
+    wheelSpinning=true;
+    document.getElementById('wheel-spin-btn').disabled=true;
+    document.getElementById('wheel-result-text').innerText='กำลังหมุน... 🎲';
+    const totalRot=(Math.random()*4+6)*2*Math.PI; // 6-10 rounds
+    const duration=3500;
+    const start=performance.now();
+    const startAngle=wheelAngle;
+    function animate(now){
+        const elapsed=now-start, t=Math.min(elapsed/duration,1);
+        // Ease out cubic
+        const eased=1-Math.pow(1-t,3);
+        wheelAngle=startAngle+totalRot*eased;
+        wheelDraw();
+        if(t<1){requestAnimationFrame(animate);}
+        else{
+            wheelSpinning=false;
+            document.getElementById('wheel-spin-btn').disabled=false;
+            // Determine result: pointer is at top (270°), so find which segment is there
+            const n=wheelItems.length;
+            const segAngle=2*Math.PI/n;
+            const pointer=(3*Math.PI/2); // top = 270deg
+            let normalized=((pointer-wheelAngle)%(2*Math.PI)+2*Math.PI)%(2*Math.PI);
+            const idx=Math.floor(normalized/segAngle)%n;
+            const winner=wheelItems[idx];
+            document.getElementById('wheel-result-text').innerText=`🎉 ได้เลย: "${winner}"!`;
+            confetti({particleCount:80,spread:70,origin:{y:0.6},colors:['#ff4081','#ffb74d','#ffffff','#ce93d8']});
+        }
+    }
+    requestAnimationFrame(animate);
+}
+document.getElementById('wheel-new-item').addEventListener('keydown',e=>{if(e.key==='Enter')wheelAddItem();});
+
+// ===== 💌 SPECIAL CARD SENDER =====
+const cardTemplates = {
+    romantic: {emoji:'🌹',title:'Dear อ้วน,',defaultMsg:'รักอ้วนมากที่สุดในโลกเลยนะ 💕',previewClass:'cp-romantic'},
+    birthday: {emoji:'🎂',title:'สุขสันต์วันเกิด! 🎉',defaultMsg:'ขอให้วันเกิดอ้วนมีแต่ความสุขนะ 🥳🎂',previewClass:'cp-birthday'},
+    goodnight: {emoji:'🌙',title:'ราตรีสวัสดิ์ 🌙',defaultMsg:'ฝันดีนะอ้วน คืนนี้นอนหลับพักผ่อนให้เต็มอิ่มเลย ✨',previewClass:'cp-goodnight'},
+    justbecause: {emoji:'🌈',title:'แค่อยากบอกว่า...',defaultMsg:'แค่อยากให้อ้วนรู้ว่า เค้าคิดถึงอ้วนตลอดเลยนะ 🌈',previewClass:'cp-justbecause'}
+};
+let selectedCardTemplate = 'romantic';
+let cardSender = 'me';
+
+function selectCardTemplate(name){
+    selectedCardTemplate=name;
+    document.querySelectorAll('.card-template').forEach(el=>el.classList.remove('selected'));
+    document.getElementById('ct-'+name).classList.add('selected');
+    updateCardPreview();
+}
+
+function updateCardPreview(){
+    const t=cardTemplates[selectedCardTemplate];
+    const preview=document.getElementById('card-preview');
+    preview.className='card-preview '+t.previewClass;
+    document.getElementById('cp-emoji').innerText=t.emoji;
+    document.getElementById('cp-title').innerText=t.title;
+    const msg=document.getElementById('card-msg-input').value.trim()||t.defaultMsg;
+    document.getElementById('cp-msg').innerText=msg;
+    document.getElementById('cp-from').innerText=cardSender==='me'?'จากเค้า 👦':'จากอ้วน 🍰';
+}
+
+async function sendCard(who){
+    cardSender=who;
+    updateCardPreview();
+    const t=cardTemplates[selectedCardTemplate];
+    const msg=document.getElementById('card-msg-input').value.trim()||t.defaultMsg;
+    setSyncStatus('syncing','กำลังส่งการ์ด...');
+    const rec=await loadBin();
+    const cards=rec.specialCards||[];
+    const now=new Date();
+    cards.unshift({
+        id:Date.now(), template:selectedCardTemplate, who, msg,
+        emoji:t.emoji, title:t.title,
+        time:now.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'})+' '+now.toLocaleDateString('th-TH',{day:'numeric',month:'short'})
+    });
+    if(cards.length>20) cards.splice(20);
+    rec.specialCards=cards;
+    await saveBin(rec); syncedData=rec;
+    renderCardInbox(cards);
+    document.getElementById('card-msg-input').value='';
+    setSyncStatus('ok','ส่งการ์ดแล้ว ✓');
+    tcToast('💌 ส่งการ์ดแล้ว! ทั้งคู่จะเห็นพร้อมกัน 🔄');
+    confetti({particleCount:60,spread:70,origin:{y:0.6},colors:['#ff80ab','#ffd6e0','#ffffff']});
+}
+
+function renderCardInbox(cards){
+    const inbox=document.getElementById('card-inbox');
+    let html='<div style="font-size:0.65rem;color:#c2185b;font-weight:700;margin-bottom:8px;">📥 การ์ดที่ได้รับ</div>';
+    if(!cards.length){html+='<div style="font-size:0.78rem;color:#bcaaa4;text-align:center;padding:12px;">ยังไม่มีการ์ด ส่งให้กันเลย! 💌</div>';inbox.innerHTML=html;return;}
+    html+=cards.map((c,i)=>`
+        <div class="card-inbox-item" onclick="viewCard(${i})">
+            <div class="card-inbox-emoji">${c.emoji}</div>
+            <div class="card-inbox-info">
+                <div class="card-inbox-title">${c.title}</div>
+                <div class="card-inbox-meta">${c.who==='me'?'👦 จากเค้า':'🍰 จากอ้วน'} · ${c.time}</div>
+            </div>
+            <button class="card-inbox-del" onclick="event.stopPropagation();deleteCard(${c.id})">✕</button>
+        </div>`).join('');
+    inbox.innerHTML=html;
+}
+
+let currentCardInbox=[];
+function viewCard(i){
+    const rec=syncedData;
+    const cards=rec.specialCards||[];
+    currentCardInbox=cards;
+    const c=cards[i]; if(!c) return;
+    const t=cardTemplates[c.template]||cardTemplates.romantic;
+    const preview=document.getElementById('card-view-preview');
+    preview.className='card-preview '+t.previewClass;
+    document.getElementById('cv-emoji').innerText=c.emoji;
+    document.getElementById('cv-title').innerText=c.title;
+    document.getElementById('cv-msg').innerText=c.msg;
+    document.getElementById('cv-from').innerText=c.who==='me'?'จากเค้า 👦 · '+c.time:'จากอ้วน 🍰 · '+c.time;
+    document.getElementById('card-view-modal').classList.add('show');
+    confetti({particleCount:40,spread:60,origin:{y:0.5},colors:['#ff80ab','#ffd6e0','#ffffff']});
+}
+function closeCardViewModal(){ document.getElementById('card-view-modal').classList.remove('show'); }
+async function deleteCard(id){
+    const rec=await loadBin(); rec.specialCards=(rec.specialCards||[]).filter(c=>c.id!==id);
+    await saveBin(rec); syncedData=rec; renderCardInbox(rec.specialCards);
+}
+
 // ===== 💬 REAL-TIME CHAT =====
 let chatWho = 'me';
 function setChatWho(w){
@@ -1002,8 +1577,7 @@ function setChatWho(w){
 }
 function insertEmoji(e){
     const inp=document.getElementById('chat-input');
-    inp.value+=e; inp.focus();
-    autoresizeChatInput(inp);
+    inp.value+=e; inp.focus(); autoresizeChatInput(inp);
 }
 function autoresizeChatInput(el){
     el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,100)+'px';
@@ -1020,7 +1594,6 @@ function renderChatFromData(msgs){
                 <button class="chat-del" onclick="deleteChatMsg(${i})">✕</button>
             </div>
         </div>`).join('');
-    // Auto scroll to bottom
     feed.scrollTop=feed.scrollHeight;
     document.getElementById('stat-posts').innerText=msgs.length;
 }
@@ -1031,11 +1604,7 @@ async function sendChatMsg(){
     const rec=await loadBin();
     const msgs=rec.chatMessages||[];
     const now=new Date();
-    msgs.push({
-        who:chatWho, text,
-        time:now.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'})
-    });
-    // keep last 100 messages
+    msgs.push({who:chatWho,text,time:now.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'})});
     if(msgs.length>100) msgs.splice(0,msgs.length-100);
     rec.chatMessages=msgs;
     await saveBin(rec); syncedData=rec;
@@ -1049,36 +1618,29 @@ async function deleteChatMsg(i){
     msgs.splice(i,1); rec.chatMessages=msgs;
     await saveBin(rec); syncedData=rec; renderChatFromData(msgs);
 }
-// Enter to send
 document.getElementById('chat-input').addEventListener('keydown',e=>{
     if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendChatMsg();}
 });
 
-// ===== 🎵 PLAYLIST — YouTube system =====
+// ===== 🎵 PLAYLIST =====
 let currentTrack=null, currentYtId=null, ytWho='me', lyricsVisible=false;
-const ytSongs_local=[]; // local built-in
 let ytSongsData=[];
 
 function extractYtId(url){
     if(!url) return null;
-    // Standard: youtube.com/watch?v=ID
     let m=url.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
     if(m) return m[1];
-    // Short: youtu.be/ID
     m=url.match(/youtu\.be\/([a-zA-Z0-9_-]{11})/);
     if(m) return m[1];
-    // Embed: youtube.com/embed/ID
     m=url.match(/embed\/([a-zA-Z0-9_-]{11})/);
     if(m) return m[1];
     return null;
 }
-
 function ytSetWho(w){
     ytWho=w;
     document.getElementById('yt-who-me').className='yt-who-btn'+(w==='me'?' active':'');
     document.getElementById('yt-who-you').className='yt-who-btn'+(w==='you'?' active':'');
 }
-
 async function addYtSong(){
     const url=document.getElementById('yt-url-inp').value.trim();
     const name=document.getElementById('yt-name-inp').value.trim();
@@ -1087,22 +1649,19 @@ async function addYtSong(){
     const ytId=extractYtId(url);
     if(!ytId){tcToast('⚠️ Link ไม่ถูกต้อง ลองใหม่นะ');return;}
     if(!name){tcToast('กรุณาใส่ชื่อเพลงด้วยนะ 🎵');return;}
-
     setSyncStatus('syncing','กำลังเพิ่มเพลง...');
     const rec=await loadBin();
     const songs=rec.ytSongs||[];
-    songs.push({id:Date.now(), ytId, name, who:ytWho, lyrics, added:new Date().toISOString()});
+    songs.push({id:Date.now(),ytId,name,who:ytWho,lyrics,added:new Date().toISOString()});
     rec.ytSongs=songs; await saveBin(rec); syncedData=rec; ytSongsData=songs;
-
     document.getElementById('yt-url-inp').value='';
     document.getElementById('yt-name-inp').value='';
     document.getElementById('yt-lyrics-inp').value='';
     renderYtTracksFromData(songs);
     setSyncStatus('ok','เพิ่มเพลงแล้ว ✓');
-    tcToast('🎵 เพิ่มเพลงแล้ว! ทั้งคู่จะเห็นพร้อมกัน');
+    tcToast('🎵 เพิ่มเพลงแล้ว!');
     confetti({particleCount:50,spread:60,origin:{y:0.6},colors:['#ff5252','#ffffff','#ffcdd2']});
 }
-
 function renderYtTracksFromData(songs){
     ytSongsData=songs;
     const container=document.getElementById('yt-tracks-list');
@@ -1119,11 +1678,9 @@ function renderYtTracksFromData(songs){
             <button onclick="event.stopPropagation();deleteYtSong(${s.id})" style="background:none;border:none;color:#ffcdd2;font-size:0.75rem;cursor:pointer;padding:2px 4px;margin-left:2px;">✕</button>
         </div>`).join('');
 }
-
 function playYtTrack(id){
     const song=ytSongsData.find(s=>s.id===id);
     if(!song) return;
-    // Stop local music
     document.getElementById('mySong').pause();
     document.getElementById('happySong').pause();
     ['proud','happy'].forEach(t=>{
@@ -1131,9 +1688,7 @@ function playYtTrack(id){
         const b=document.getElementById('btn-'+t); if(b) b.innerHTML='▶';
     });
     currentTrack=null;
-
     if(currentYtId===id){
-        // Toggle: hide embed
         currentYtId=null;
         document.getElementById('yt-embed-wrap').classList.remove('visible');
         document.getElementById('now-playing-bar').style.display='none';
@@ -1141,98 +1696,56 @@ function playYtTrack(id){
         updateNpDisc(false);
         renderYtTracksFromData(ytSongsData); return;
     }
-
     currentYtId=id;
-    // Show embed with autoplay
     const embedUrl=`https://www.youtube.com/embed/${song.ytId}?autoplay=1&rel=0&modestbranding=1`;
     document.getElementById('yt-iframe').src=embedUrl;
     document.getElementById('yt-embed-wrap').classList.add('visible');
-
-    // Now Playing bar
     const bar=document.getElementById('now-playing-bar');
     bar.style.display='block';
     document.getElementById('np-title').innerText=song.name;
     document.getElementById('np-who').innerText=song.who==='me'?'👦 เค้าเลือก':'🍰 อ้วนเลือก';
     document.getElementById('np-disc').innerText='🎵';
     updateNpDisc(true);
-
-    // Lyrics
-    if(song.lyrics){
-        document.getElementById('lyrics-text').innerText=song.lyrics;
-        document.getElementById('lyrics-toggle').style.display='block';
-    } else {
-        document.getElementById('lyrics-text').innerText='ไม่มีเนื้อเพลงสำหรับเพลงนี้';
-        document.getElementById('lyrics-toggle').style.display='none';
-        if(lyricsVisible){document.getElementById('lyrics-panel').classList.remove('visible');lyricsVisible=false;}
-    }
-
+    if(song.lyrics){document.getElementById('lyrics-text').innerText=song.lyrics;document.getElementById('lyrics-toggle').style.display='block';}
+    else{document.getElementById('lyrics-text').innerText='ไม่มีเนื้อเพลงสำหรับเพลงนี้';document.getElementById('lyrics-toggle').style.display='none';if(lyricsVisible){document.getElementById('lyrics-panel').classList.remove('visible');lyricsVisible=false;}}
     renderYtTracksFromData(ytSongsData);
     confetti({particleCount:30,spread:50,origin:{y:0.7},colors:['#ff5252','#ffffff']});
 }
-
 function updateNpDisc(playing){
     const disc=document.getElementById('np-disc'), wave=document.getElementById('np-wave');
     if(playing){disc.classList.remove('paused');wave.classList.remove('paused');}
     else{disc.classList.add('paused');wave.classList.add('paused');}
 }
-
 function toggleLyrics(){
     lyricsVisible=!lyricsVisible;
     const panel=document.getElementById('lyrics-panel'), btn=document.getElementById('lyrics-toggle');
     if(lyricsVisible){panel.classList.add('visible');btn.classList.add('active');btn.innerText='🙈 ซ่อน';}
     else{panel.classList.remove('visible');btn.classList.remove('active');btn.innerText='📝 เนื้อเพลง';}
 }
-
 async function deleteYtSong(id){
     if(!confirm('ลบเพลงนี้เลยนะ?')) return;
-    if(currentYtId===id){
-        currentYtId=null;
-        document.getElementById('yt-embed-wrap').classList.remove('visible');
-        document.getElementById('now-playing-bar').style.display='none';
-        document.getElementById('yt-iframe').src='';
-    }
+    if(currentYtId===id){currentYtId=null;document.getElementById('yt-embed-wrap').classList.remove('visible');document.getElementById('now-playing-bar').style.display='none';document.getElementById('yt-iframe').src='';}
     const rec=await loadBin(); rec.ytSongs=(rec.ytSongs||[]).filter(s=>s.id!==id);
     await saveBin(rec); syncedData=rec; ytSongsData=rec.ytSongs; renderYtTracksFromData(ytSongsData);
 }
-
-// Local tracks (Proud, เวลาเธอยิ้ม)
-const localLyrics = {
-    proud: 'เพลง Proud - fellow fellow\n\nภูมิใจที่ได้รักเธอ\nภูมิใจที่ได้อยู่ข้างๆ เธอ\nทุกวันที่มีเธอมันงดงาม\nรักเธอมากที่สุดในโลก 🌸',
-    happy: 'เวลาเธอยิ้ม - Polycat\n\nเวลาเธอยิ้ม โลกทั้งใบก็สดใส\nเวลาเธอยิ้ม ใจฉันก็พลอยสุขไปด้วย\nเธอคือแสงสว่างในชีวิตฉัน ✨'
-};
-
+const localLyrics={proud:'เพลง Proud - fellow fellow\n\nภูมิใจที่ได้รักเธอ\nภูมิใจที่ได้อยู่ข้างๆ เธอ\nทุกวันที่มีเธอมันงดงาม\nรักเธอมากที่สุดในโลก 🌸',happy:'เวลาเธอยิ้ม - Polycat\n\nเวลาเธอยิ้ม โลกทั้งใบก็สดใส\nเวลาเธอยิ้ม ใจฉันก็พลอยสุขไปด้วย\nเธอคือแสงสว่างในชีวิตฉัน ✨'};
 function playLocalTrack(track){
     const mySong=document.getElementById('mySong'), happySong=document.getElementById('happySong');
     const pc=document.getElementById('track-proud'), hc=document.getElementById('track-happy');
     const bp=document.getElementById('btn-proud'), bh=document.getElementById('btn-happy');
-    // Stop YouTube
-    if(currentYtId!==null){
-        currentYtId=null;
-        document.getElementById('yt-embed-wrap').classList.remove('visible');
-        document.getElementById('yt-iframe').src='';
-        renderYtTracksFromData(ytSongsData);
-    }
-    if(currentTrack===track){
-        mySong.pause(); happySong.pause();
-        pc.classList.remove('playing'); hc.classList.remove('playing');
-        bp.innerHTML='▶'; bh.innerHTML='▶';
-        currentTrack=null;
-        document.getElementById('now-playing-bar').style.display='none';
-        return;
-    }
-    mySong.pause(); happySong.pause(); pc.classList.remove('playing'); hc.classList.remove('playing'); bp.innerHTML='▶'; bh.innerHTML='▶';
+    if(currentYtId!==null){currentYtId=null;document.getElementById('yt-embed-wrap').classList.remove('visible');document.getElementById('yt-iframe').src='';renderYtTracksFromData(ytSongsData);}
+    if(currentTrack===track){mySong.pause();happySong.pause();pc.classList.remove('playing');hc.classList.remove('playing');bp.innerHTML='▶';bh.innerHTML='▶';currentTrack=null;document.getElementById('now-playing-bar').style.display='none';return;}
+    mySong.pause();happySong.pause();pc.classList.remove('playing');hc.classList.remove('playing');bp.innerHTML='▶';bh.innerHTML='▶';
     const song=track==='proud'?mySong:happySong;
-    const card=track==='proud'?pc:hc, btn=track==='proud'?bp:bh;
+    const card2=track==='proud'?pc:hc, btn=track==='proud'?bp:bh;
     song.play().then(()=>{
-        card.classList.add('playing'); btn.innerHTML='⏸'; currentTrack=track;
-        // Now playing bar
+        card2.classList.add('playing'); btn.innerHTML='⏸'; currentTrack=track;
         const names={proud:'Proud - fellow fellow',happy:'เวลาเธอยิ้ม - Polycat'};
         document.getElementById('now-playing-bar').style.display='block';
         document.getElementById('np-title').innerText=names[track];
         document.getElementById('np-who').innerText='🌸 เพลงในใจ';
         document.getElementById('np-disc').innerText=track==='proud'?'🌸':'🌟';
         updateNpDisc(true);
-        // Lyrics
         document.getElementById('lyrics-text').innerText=localLyrics[track]||'ยังไม่มีเนื้อเพลง';
         document.getElementById('lyrics-toggle').style.display='block';
     }).catch(()=>{});
@@ -1324,11 +1837,9 @@ async function tcConfirmPw(){
 }
 async function tcDelete(id){
     if(!confirm('ลบแคปซูลนี้เลยนะ?')) return;
-    setSyncStatus('syncing','กำลังลบ...');
     const rec=await loadBin(); rec.capsules=(rec.capsules||[]).filter(x=>x.id!==id);
     await saveBin(rec); syncedData=rec; tcCapsules=rec.capsules;
     tcRenderList(); tcRenderStats(); document.getElementById('stat-capsules').innerText=tcCapsules.length;
-    setSyncStatus('ok','ลบแล้ว ✓');
 }
 setInterval(()=>{tcRenderList();tcRenderStats();},60000);
 const minDt=new Date(Date.now()+60000).toISOString().slice(0,16);
@@ -1367,7 +1878,7 @@ function readLetter(num){
 }
 function closeLetter2(){document.getElementById('letterModal').style.display='none';}
 
-// ===== Board (legacy) =====
+// ===== Board =====
 let boardWho='me';
 function setBoardWho(w){boardWho=w;document.getElementById('board-me-btn').className='board-who-btn'+(w==='me'?' active':'');document.getElementById('board-you-btn').className='board-who-btn'+(w==='you'?' active':'');}
 function updateBoardChar(){const v=document.getElementById('board-textarea').value;document.getElementById('board-char-count').innerText=`${v.length}/200`;}
@@ -1378,10 +1889,9 @@ function renderBoardFromData(posts){
 }
 async function addBoardPost(){
     const ta=document.getElementById('board-textarea'), text=ta.value.trim();if(!text) return;
-    setSyncStatus('syncing','กำลังโพสต์...');
     const rec=await loadBin(); const posts=rec.boardPosts||[];
     const now=new Date(); posts.push({who:boardWho,text,time:now.toLocaleDateString('th-TH',{day:'numeric',month:'short'})+' '+now.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'})});
-    rec.boardPosts=posts; await saveBin(rec); syncedData=rec; ta.value=''; updateBoardChar(); renderBoardFromData(posts); setSyncStatus('ok','โพสต์แล้ว ✓');
+    rec.boardPosts=posts; await saveBin(rec); syncedData=rec; ta.value=''; updateBoardChar(); renderBoardFromData(posts);
 }
 async function deleteBoardPost(i){const rec=await loadBin();const posts=rec.boardPosts||[];posts.splice(i,1);rec.boardPosts=posts;await saveBin(rec);syncedData=rec;renderBoardFromData(posts);}
 
@@ -1574,7 +2084,7 @@ function closeCouponModal(){document.getElementById('couponModal').style.display
 
 // ===== Click hearts =====
 document.addEventListener('click',e=>{
-    const skip=['.pw-overlay','.tc-create-box','.gift-modal-content','.gift-detail-content','.coupon-card','.photo-upload-area','.caption-modal-content','.board-box','.wishlist-box','.yt-add-box','.chat-box','.letter-modal-content'];
+    const skip=['.pw-overlay','.tc-create-box','.gift-modal-content','.gift-detail-content','.coupon-card','.photo-upload-area','.caption-modal-content','.board-box','.wishlist-box','.yt-add-box','.chat-box','.letter-modal-content','.games-box','.card-sender-box','.card-view-modal'];
     if(skip.some(s=>e.target.closest(s))) return;
     const h=document.createElement('div');
     h.innerHTML=['❤️','🌸','💖','✨'][Math.floor(Math.random()*4)];
@@ -1590,8 +2100,8 @@ setInterval(()=>{
     setTimeout(()=>item.remove(),5000);
 },800);
 
-// User-select fix for inputs
-['tc-text','tc-set-pw','tc-set-pw-both','pw-enter','board-textarea','wish-input','caption-input','yt-url-inp','yt-name-inp','yt-lyrics-inp','chat-input'].forEach(id=>{
+// Fix inputs
+['tc-text','tc-set-pw','tc-set-pw-both','pw-enter','board-textarea','wish-input','caption-input','yt-url-inp','yt-name-inp','yt-lyrics-inp','chat-input','card-msg-input','wheel-new-item'].forEach(id=>{
     const el=document.getElementById(id);if(!el) return;
     el.addEventListener('click',e=>e.stopPropagation());
     el.style.userSelect='text';
@@ -1601,14 +2111,13 @@ document.getElementById('pw-enter').addEventListener('keydown',e=>{if(e.key==='E
 document.getElementById('wish-input').addEventListener('keydown',e=>{if(e.key==='Enter')addWish();});
 document.getElementById('pw-overlay').addEventListener('click',e=>{if(e.target===document.getElementById('pw-overlay'))tcClosePw();});
 
-// Toast
 function tcToast(msg){const t=document.getElementById('tc-toast');t.innerText=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
 
-// Init
 setInterval(()=>{updateAnniversary();updateGreeting();updateBirthday();},1000);
 updateAnniversary();updateGreeting();updateBirthday();
 initCalendar();updateTreeUI();updateStats();
 initCheckin();initLetters();
+wheelDraw();
 fullSync(false);
 </script>
 </body>
