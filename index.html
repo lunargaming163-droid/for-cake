@@ -576,6 +576,42 @@
         .board-del-btn { position:absolute; top:8px; right:8px; background:none; border:none; color:#ccc; font-size:0.72rem; cursor:pointer; }
         .board-empty { text-align:center; color:#b0bec5; font-size:0.82rem; padding:16px; }
         .board-char-count { font-size:0.6rem; color:#9fa8da; text-align:right; margin-top:2px; }
+        .btn-next {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    background: linear-gradient(135deg, #007AFF, #00C6FF); /* สีฟ้าไล่เฉด */
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-family: 'Prompt', sans-serif; /* แนะนำให้ใช้ฟอนต์ Prompt */
+    font-weight: 500;
+    font-size: 18px;
+    box-shadow: 0 10px 20px rgba(0, 122, 255, 0.3);
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1); /* แอนิเมชันแบบนุ่มนวล */
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-next:hover {
+    transform: translateY(-4px) scale(1.02); /* ลอยขึ้นและขยายใหญ่ขึ้นนิดหน่อย */
+    box-shadow: 0 15px 30px rgba(0, 122, 255, 0.4);
+    filter: brightness(1.1);
+  }
+
+  .btn-next:active {
+    transform: translateY(-1px);
+  }
+
+  .btn-next span {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+  }
+
+  .btn-next:hover span {
+    transform: translateX(5px); /* ลูกศรขยับไปทางขวาเมื่อชี้ */
+  }
     </style>
 </head>
 <body>
@@ -2120,5 +2156,8 @@ initCheckin();initLetters();
 wheelDraw();
 fullSync(false);
 </script>
+    <a href="page.html" class="btn-next">
+  ไปที่หน้าถัดไป <span>→</span>
+</a>
 </body>
 </html>
