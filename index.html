@@ -594,24 +594,31 @@
     border: none;
   }
 
-  .btn-next:hover {
-    transform: translateY(-4px) scale(1.02); /* ลอยขึ้นและขยายใหญ่ขึ้นนิดหน่อย */
-    box-shadow: 0 15px 30px rgba(0, 122, 255, 0.4);
-    filter: brightness(1.1);
+ .btn-pastel {
+    display: inline-block;
+    padding: 15px 35px;
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    color: #444; /* สีตัวอักษรไม่ต้องเข้มมาก */
+    text-decoration: none;
+    font-family: 'Prompt', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    border: none;
+    border-radius: 15px; /* ขอบมนกำลังดี */
+    box-shadow: 0 10px 25px rgba(248, 187, 208, 0.5); /* เงาสีพาสเทลฟุ้งๆ */
+    transition: all 0.3s ease;
   }
 
-  .btn-next:active {
-    transform: translateY(-1px);
+  .btn-pastel:hover {
+    filter: brightness(1.03); /* สว่างขึ้นเล็กน้อย */
+    transform: scale(1.05); /* ขยายใหญ่ขึ้นเล็กน้อย */
+    box-shadow: 0 15px 35px rgba(248, 187, 208, 0.7); /* เงาฟุ้งขึ้น */
   }
 
-  .btn-next span {
-    margin-left: 10px;
-    transition: transform 0.3s ease;
+  .btn-pastel:active {
+    transform: scale(1);
   }
 
-  .btn-next:hover span {
-    transform: translateX(5px); /* ลูกศรขยับไปทางขวาเมื่อชี้ */
-  }
     </style>
 </head>
 <body>
@@ -2156,8 +2163,8 @@ initCheckin();initLetters();
 wheelDraw();
 fullSync(false);
 </script>
-    <a href="page.html" class="btn-next">
-  ไปที่หน้าถัดไป <span>→</span>
+   <a href="page.html" class="btn-pastel">
+  Next page
 </a>
 </body>
 </html>
