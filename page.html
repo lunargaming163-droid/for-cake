@@ -634,14 +634,14 @@ renderCare();
 
 // Music
 const playlists={
-  chill:[{icon:'🌙',name:'Proud',artist:'fellow fellow'},{icon:'🌿',name:'ทางของฝุ่น',artist:'Polycat'},{icon:'🌊',name:'ไม่รู้ทำไม',artist:'-'}],
+  chill:[{icon:'🌙',name:'Proud',artist:'fellow fellow'},{icon:'🌿',name:'Bad Habit',artist:'Steve Lacy'},{icon:'🌊',name:'ไม่รู้ทำไม',artist:'-'}],
   uplift:[{icon:'⭐',name:'เวลาเธอยิ้ม',artist:'Polycat'},{icon:'🌟',name:'DMMA',artist:'-'},{icon:'🎸',name:'baby tee',artist:'-'}],
-  cry:[{icon:'😢',name:'ทางของฝุ่น',artist:'ให้มันออกมาเลยนะอ้วน'},{icon:'💙',name:'Sorry',artist:'ร้องแล้วดีขึ้นนะ'},{icon:'🌧️',name:'pretty girl',artist:'เค้าอยู่ด้วยนะ'}],
-  cute:[{icon:'🌸',name:'baby tee',artist:'หวานๆ เหมือนอ้วน'},{icon:'🍰',name:'pretty girl',artist:'-'},{icon:'💕',name:'Proud',artist:'เพลงที่เค้าชอบเปิดให้อ้วนฟัง'}],
+  cry:[{icon:'😢',name:'ทางของฝุ่น',artist:'ให้มันออกมาเลยนะอ้วน'},{icon:'💙',name:'Sorry',artist:'ร้องแล้วดีขึ้นนะ'},{icon:'🌧️',name:'อ้าว',artist:'Atom ชนกันต์'}],
+  cute:[{icon:'🌸',name:'baby tee',artist:'หวานๆ เหมือนอ้วน'},{icon:'🍰',name:'pretty girl',artist:'-'},{icon:'💕',name:' Pink + White',artist:'Frank Ocean'}],
 };
 function selectVibe(v,el){
   document.querySelectorAll('.vibe-pill').forEach(x=>x.classList.remove('active'));
-  el.classList.add('active'); renderPlaylist(v);
+  el.classList.add('active'); renderPlaylist(v);  
 }
 function renderPlaylist(v='chill'){
   document.getElementById('playlist-rec').innerHTML=playlists[v].map((s,i)=>`
