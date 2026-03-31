@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>หน้าของอ้วน เวลาเส้า 🫂</title>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;600;700&family=Caveat:wght@400;700&display=swap');
+
+:root {
+  --bg: #0d0d1a;
+  --surface: rgba(255,255,255,0.04);
+  --border: rgba(255,255,255,0.08);
+  --pink: #ff80ab;
+  --purple: #ce93d8;
+  --text: #f0d9ff;
+  --sub: rgba(240,217,255,0.5);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+
+body {
+  min-height: 100vh;
+  background: var(--bg);
+  font-family: 'Anuphan', sans-serif;
+  color: var(--text);
+  overflow-x: hidden;
+  position: relative;
+}
+
+.bg-orbs { position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+.orb { position:absolute; border-radius:50%; filter:blur(80px); opacity:0.15; animation:orbFloat 8s ease-in-out infinite; }
+.orb-1 { width:400px; height:400px; background:#7b1fa2; top:-100px; left:-100px; }
+.orb-2 { width:300px; height:300px; background:#e91e63; bottom:-50px; right:-80px; animation-delay:2s; }
+.orb-3 { width:250px; height:250px; background:#3f51b5; top:50%; left:50%; transform:translate(-50%,-50%); animation-delay:4s; }
+@keyframes orbFloat {
+  0%,100% { transform:translate(0,0) scale(1); }
+  33% { transform:translate(30px,-20px) scale(1.05); }
+  66% { transform:translate(-20px,30px) scale(0.95); }
+}
+.orb-3 { animation:orbFloat3 10s ease-in-out infinite; }
+@keyframes orbFloat3 {
+  0%,100% { transform:translate(-50%,-50%) scale(1); }
+  50% { transform:translate(-50%,-50%) scale(1.3); }
+}
+
+.stars { position:fixed; inset:0; z-index:0; pointer-events:none; }
+.star { position:absolute; border-radius:50%; background:white; animation:twinkle 3s ease-in-out infinite; }
+@keyframes twinkle { 0%,100%{opacity:0.1;transform:scale(1)} 50%{opacity:0.7;transform:scale(1.3)} }
+
+.container {
+  position:relative; z-index:10;
+  max-width:480px; margin:0 auto;
+  padding:40px 20px 80px;
+  display:flex; flex-direction:column; align-items:center; gap:20px;
+}
+
+.header { text-align:center; padding:30px 20px 10px; }
+.header-emoji { font-size:3.5rem; animation:breathe 3s ease-in-out infinite; display:block; margin-bottom:16px; }
+@keyframes breathe { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
+.header-title { font-family:'Caveat',cursive; font-size:2rem; font-weight:700; color:var(--pink); margin-bottom:8px; line-height:1.2; }
+.header-sub { font-size:0.85rem; color:var(--sub); line-height:1.7; }
+
+.card {
+  width:100%; background:var(--surface);
+  border:1px solid var(--border); border-radius:24px; padding:22px 20px;
+  backdrop-filter:blur(20px); position:relative; overflow:hidden;
+}
+.card::before {
+  content:''; position:absolute; inset:0; border-radius:24px;
+  background:linear-gradient(135deg,rgba(255,128,171,0.05),transparent); pointer-events:none;
+}
+
+.section-label {
+  font-size:0.6rem; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+  color:var(--purple); margin-bottom:16px; display:flex; align-items:center; gap:8px;
+}
+.section-label::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,var(--border),transparent); }
+
+/* Mood */
+.mood-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:16px; }
+.mood-option {
+  border-radius:16px; padding:14px 8px; background:rgba(255,255,255,0.04);
+  border:1px solid var(--border); cursor:pointer; text-align:center; transition:all 0.2s;
+}
+.mood-option.selected { background:rgba(255,128,171,0.15); border-color:rgba(255,128,171,0.4); box-shadow:0 0 20px rgba(255,128,171,0.15); }
+.mood-option:active { transform:scale(0.93); }
+.mood-o-emoji { font-size:1.6rem; display:block; margin-bottom:4px; }
+.mood-o-label { font-size:0.6rem; color:var(--sub); font-weight:600; }
+.comfort-response {
+  background:rgba(255,255,255,0.04); border-radius:16px; padding:16px;
+  font-size:0.88rem; color:var(--text); line-height:1.7; display:none; animation:fadeIn 0.4s ease;
+}
+.comfort-response.show { display:block; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:translateY(0)} }
+
+/* Breathing */
+.breath-container { display:flex; flex-direction:column; align-items:center; gap:20px; }
+.breath-circle-wrap { position:relative; width:160px; height:160px; }
+.breath-ring { position:absolute; inset:0; border-radius:50%; border:2px solid rgba(255,128,171,0.2); animation:ringPulse 4s ease-in-out infinite; }
+.breath-ring:nth-child(2) { inset:-15px; animation-delay:0.5s; opacity:0.5; }
+.breath-ring:nth-child(3) { inset:-30px; animation-delay:1s; opacity:0.2; }
+@keyframes ringPulse { 0%,100%{transform:scale(1);opacity:0.3} 50%{transform:scale(1.1);opacity:0.6} }
+.breath-circle {
+  position:absolute; inset:0; border-radius:50%;
+  background:radial-gradient(circle,rgba(255,128,171,0.3),rgba(206,147,216,0.1));
+  border:2px solid rgba(255,128,171,0.4);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; animation:breatheCircle 4s ease-in-out infinite;
+}
+@keyframes breatheCircle { 0%,100%{transform:scale(1)} 50%{transform:scale(1.15)} }
+.breath-circle.inhale { animation:inhaleC 4s ease-in-out forwards; }
+.breath-circle.hold   { animation:holdC 7s ease-in-out forwards; }
+.breath-circle.exhale { animation:exhaleC 8s ease-in-out forwards; }
+@keyframes inhaleC { 0%{transform:scale(1)} 100%{transform:scale(1.4)} }
+@keyframes holdC   { 0%,100%{transform:scale(1.4)} }
+@keyframes exhaleC { 0%{transform:scale(1.4)} 100%{transform:scale(1)} }
+.breath-icon { font-size:2.5rem; pointer-events:none; }
+.breath-text  { font-family:'Caveat',cursive; font-size:1.3rem; color:var(--pink); text-align:center; min-height:2rem; }
+.breath-phase { font-size:0.8rem; color:var(--sub); text-align:center; min-height:1.2rem; }
+.breath-count { font-family:'Caveat',cursive; font-size:3rem; color:var(--purple); line-height:1; }
+
+/* Hugs */
+.hugs-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+.hug-btn {
+  aspect-ratio:1; border-radius:20px; background:rgba(255,255,255,0.04);
+  border:1px solid var(--border); display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:6px; cursor:pointer; transition:all 0.2s;
+}
+.hug-btn:active { transform:scale(0.9); }
+.hug-btn:hover  { background:rgba(255,128,171,0.1); border-color:rgba(255,128,171,0.3); }
+.hug-emoji { font-size:2rem; }
+.hug-label { font-size:0.6rem; color:var(--sub); font-weight:600; font-family:'Anuphan',sans-serif; }
+.hug-msg-box {
+  background:rgba(255,128,171,0.08); border:1px solid rgba(255,128,171,0.2);
+  border-radius:16px; padding:16px; margin-top:12px; min-height:56px;
+  font-size:0.88rem; color:var(--pink); text-align:center; line-height:1.6;
+  display:none; animation:fadeIn 0.4s ease;
+}
+.hug-msg-box.show { display:block; }
+
+/* Letters */
+.letter-envelope {
+  background:linear-gradient(135deg,rgba(255,128,171,0.12),rgba(206,147,216,0.08));
+  border:1px solid rgba(255,128,171,0.25); border-radius:20px; padding:20px;
+  cursor:pointer; transition:all 0.3s; text-align:center;
+}
+.letter-envelope:hover { transform:translateY(-3px); box-shadow:0 12px 40px rgba(255,128,171,0.15); }
+.envelope-emoji { font-size:3rem; display:block; margin-bottom:10px; animation:wobble 3s ease-in-out infinite; }
+@keyframes wobble { 0%,100%{transform:rotate(-3deg)} 50%{transform:rotate(3deg)} }
+.letter-content { display:none; animation:letterOpen 0.5s cubic-bezier(0.175,0.885,0.32,1.275); }
+.letter-content.show { display:block; }
+@keyframes letterOpen { from{opacity:0;transform:scale(0.8) translateY(10px)} to{opacity:1;transform:scale(1) translateY(0)} }
+.letter-text {
+  font-size:0.92rem; line-height:1.9; color:var(--text); white-space:pre-wrap;
+  background:rgba(255,255,255,0.03); border-radius:16px; padding:16px;
+  border-left:3px solid var(--pink);
+}
+.letter-nav { display:flex; justify-content:space-between; align-items:center; margin-top:14px; }
+.letter-nav-btn {
+  background:rgba(255,255,255,0.06); border:1px solid var(--border);
+  color:var(--purple); border-radius:50px; padding:8px 16px;
+  font-size:0.72rem; cursor:pointer; font-family:'Anuphan',sans-serif; font-weight:700; transition:all 0.15s;
+}
+.letter-nav-btn:hover { background:rgba(255,128,171,0.12); }
+.letter-num { font-family:'Caveat',cursive; color:var(--pink); font-size:1rem; }
+
+/* Reasons */
+.reason-display {
+  background:rgba(255,255,255,0.04); border:1px solid rgba(255,128,171,0.2);
+  border-radius:20px; padding:28px 20px; min-height:120px;
+  display:flex; align-items:center; justify-content:center; margin-bottom:14px;
+}
+.reason-text {
+  font-family:'Caveat',cursive; font-size:1.4rem; color:var(--pink);
+  line-height:1.5; text-align:center;
+}
+.reason-idx { font-size:0.6rem; color:var(--sub); margin-bottom:10px; text-align:center; }
+.reason-btn {
+  background:rgba(255,128,171,0.12); border:1px solid rgba(255,128,171,0.3);
+  color:var(--pink); border-radius:50px; padding:10px 24px;
+  font-size:0.82rem; font-weight:700; cursor:pointer; font-family:'Anuphan',sans-serif;
+  display:block; margin:0 auto; transition:all 0.2s;
+}
+.reason-btn:active { transform:scale(0.95); }
+
+/* Self-care */
+.care-list { display:flex; flex-direction:column; gap:8px; }
+.care-item {
+  display:flex; align-items:center; gap:12px; padding:12px 14px;
+  border-radius:14px; background:rgba(255,255,255,0.03);
+  border:1px solid var(--border); cursor:pointer; transition:all 0.2s;
+}
+.care-item.done { background:rgba(76,175,80,0.08); border-color:rgba(76,175,80,0.25); }
+.care-check {
+  width:22px; height:22px; border-radius:50%; border:2px solid rgba(255,128,171,0.4);
+  display:flex; align-items:center; justify-content:center; font-size:0.7rem; flex-shrink:0; transition:all 0.2s;
+}
+.care-item.done .care-check { background:#4caf50; border-color:#4caf50; color:white; }
+.care-icon { font-size:1.2rem; flex-shrink:0; }
+.care-text { flex:1; font-size:0.82rem; color:var(--text); }
+.care-item.done .care-text { color:var(--sub); text-decoration:line-through; }
+.care-bar-track { width:100%; height:6px; background:rgba(255,255,255,0.06); border-radius:3px; overflow:hidden; margin-top:12px; }
+.care-bar-fill { height:100%; background:linear-gradient(90deg,var(--pink),var(--purple)); border-radius:3px; transition:width 0.5s ease; }
+.care-bar-label { font-size:0.62rem; color:var(--sub); margin-top:6px; text-align:right; }
+
+/* Music */
+.vibes-row { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+.vibe-pill {
+  padding:8px 14px; border-radius:50px; background:rgba(255,255,255,0.04);
+  border:1px solid var(--border); font-size:0.72rem; cursor:pointer;
+  color:var(--sub); font-weight:600; transition:all 0.2s; white-space:nowrap; font-family:'Anuphan',sans-serif;
+}
+.vibe-pill.active { background:rgba(206,147,216,0.15); border-color:rgba(206,147,216,0.4); color:var(--purple); }
+.playlist-rec { display:flex; flex-direction:column; gap:8px; }
+.song-row {
+  display:flex; align-items:center; gap:12px;
+  background:rgba(255,255,255,0.04); border-radius:14px; padding:12px 14px; border:1px solid var(--border);
+}
+.song-num { font-family:'Caveat',cursive; font-size:1.1rem; color:var(--sub); width:20px; flex-shrink:0; }
+.song-icon { font-size:1.2rem; flex-shrink:0; }
+.song-info { flex:1; min-width:0; }
+.song-name   { font-size:0.82rem; font-weight:700; color:var(--text); }
+.song-artist { font-size:0.65rem; color:var(--sub); }
+
+/* Dice */
+.dice-wrap { font-size:4rem; cursor:pointer; display:inline-block; transition:transform 0.3s; margin-bottom:12px; }
+.game-result {
+  font-size:0.9rem; color:var(--text); min-height:60px; line-height:1.7;
+  background:rgba(255,255,255,0.04); border-radius:14px; padding:14px; text-align:center;
+}
+.game-hint { font-size:0.7rem; color:var(--sub); margin-top:8px; text-align:center; }
+
+/* Big hug */
+.hug-big-btn {
+  width:100%; background:linear-gradient(135deg,#880e4f,#4a148c);
+  border:none; border-radius:24px; padding:22px; cursor:pointer;
+  font-family:'Anuphan',sans-serif; position:relative; overflow:hidden; transition:transform 0.2s;
+}
+.hug-big-btn::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 30% 50%,rgba(255,128,171,0.2),transparent 60%); }
+.hug-big-btn:active { transform:scale(0.97); }
+.hug-big-inner { position:relative; z-index:1; }
+.hug-big-emoji { font-size:2.8rem; display:block; margin-bottom:6px; animation:hugging 2s ease-in-out infinite; }
+@keyframes hugging { 0%,100%{transform:scale(1) rotate(-3deg)} 50%{transform:scale(1.08) rotate(3deg)} }
+.hug-big-text { font-size:1.1rem; font-weight:700; color:white; }
+.hug-big-sub  { font-size:0.72rem; color:rgba(255,255,255,0.65); margin-top:4px; }
+
+.toast {
+  position:fixed; bottom:24px; left:50%; transform:translateX(-50%);
+  background:rgba(30,10,50,0.95); border:1px solid rgba(255,128,171,0.3);
+  color:var(--pink); padding:12px 22px; border-radius:50px; font-size:0.78rem;
+  font-weight:700; z-index:9999; opacity:0; transition:opacity 0.3s;
+  white-space:nowrap; pointer-events:none; backdrop-filter:blur(20px);
+}
+.toast.show { opacity:1; }
+
+.particle { position:fixed; pointer-events:none; z-index:5; font-size:1.4rem; animation:particleFloat 4s ease-out forwards; }
+@keyframes particleFloat { 0%{opacity:0;transform:translateY(0) scale(0.5)} 15%{opacity:1} 100%{opacity:0;transform:translateY(-120px) scale(1.2) rotate(20deg)} }
+
+.fade-in { opacity:0; transform:translateY(20px); transition:opacity 0.6s ease,transform 0.6s ease; }
+.fade-in.visible { opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="bg-orbs">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+<div class="stars" id="stars"></div>
+
+<div class="container">
+
+  <div class="header fade-in">
+    <span class="header-emoji">🫂</span>
+    <div class="header-title">เค้าอยู่ตรงนี้นะ อ้วน</div>
+    <div class="header-sub">เวลาเส้า เวลาหนัก หรือแค่ต้องการใครสักคน<br>เค้าทำหน้านี้ไว้เพื่ออ้วนคนเดียวเลยนะ 💜</div>
+  </div>
+
+  <!-- Mood -->
+  <div class="card fade-in">
+    <div class="section-label">😶 ตอนนี้อ้วนเป็นยังไงบ้าง</div>
+    <div class="mood-grid">
+      <div class="mood-option" onclick="selectMood('stressed',this)"><span class="mood-o-emoji">😤</span><span class="mood-o-label">เครียด</span></div>
+      <div class="mood-option" onclick="selectMood('sad',this)"><span class="mood-o-emoji">😔</span><span class="mood-o-label">เศร้า</span></div>
+      <div class="mood-option" onclick="selectMood('tired',this)"><span class="mood-o-emoji">😩</span><span class="mood-o-label">เหนื่อย</span></div>
+      <div class="mood-option" onclick="selectMood('angry',this)"><span class="mood-o-emoji">😠</span><span class="mood-o-label">หัวร้อน</span></div>
+      <div class="mood-option" onclick="selectMood('lonely',this)"><span class="mood-o-emoji">🥺</span><span class="mood-o-label">เหงา</span></div>
+      <div class="mood-option" onclick="selectMood('overwhelmed',this)"><span class="mood-o-emoji">😵</span><span class="mood-o-label">ท่วมหัว</span></div>
+    </div>
+    <div class="comfort-response" id="comfort-response"></div>
+  </div>
+
+  <!-- Breathing -->
+  <div class="card fade-in">
+    <div class="section-label">🌬️ หายใจด้วยกันนะ อ้วน</div>
+    <div class="breath-container">
+      <div class="breath-circle-wrap">
+        <div class="breath-ring"></div><div class="breath-ring"></div><div class="breath-ring"></div>
+        <div class="breath-circle" id="breath-circle" onclick="startBreathing()">
+          <div class="breath-icon">🌸</div>
+        </div>
+      </div>
+      <div class="breath-count" id="breath-count">0</div>
+      <div class="breath-text" id="breath-text">แตะวงกลมเพื่อเริ่ม</div>
+      <div class="breath-phase" id="breath-phase">4-7-8 breathing technique</div>
+    </div>
+  </div>
+
+  <!-- Hugs -->
+  <div class="card fade-in">
+    <div class="section-label">🤗 กอดเสมือนจากเค้า</div>
+    <div class="hugs-grid">
+      <div class="hug-btn" onclick="sendHug('gentle')"><div class="hug-emoji">🌸</div><div class="hug-label">กอดอ่อนๆ</div></div>
+      <div class="hug-btn" onclick="sendHug('tight')"><div class="hug-emoji">🫂</div><div class="hug-label">กอดแน่นๆ</div></div>
+      <div class="hug-btn" onclick="sendHug('head')"><div class="hug-emoji">🥰</div><div class="hug-label">กอดหัว</div></div>
+      <div class="hug-btn" onclick="sendHug('cuddle')"><div class="hug-emoji">🛋️</div><div class="hug-label">กอดนอน</div></div>
+      <div class="hug-btn" onclick="sendHug('forehead')"><div class="hug-emoji">😘</div><div class="hug-label">จูบหน้าผาก</div></div>
+      <div class="hug-btn" onclick="sendHug('pat')"><div class="hug-emoji">🤚</div><div class="hug-label">ลูบหัว</div></div>
+    </div>
+    <div class="hug-msg-box" id="hug-msg-box"></div>
+  </div>
+
+  <!-- Letters -->
+  <div class="card fade-in">
+    <div class="section-label">💌 จดหมายจากเค้าถึงอ้วน</div>
+    <div id="letter-envelope-wrap">
+      <div class="letter-envelope" onclick="openLetterBox()">
+        <span class="envelope-emoji">💌</span>
+        <div style="font-family:'Caveat',cursive;font-size:1.3rem;color:var(--pink);margin-bottom:6px;">แตะเพื่อเปิดอ่าน</div>
+        <div style="font-size:0.78rem;color:var(--sub);">มีจดหมายรออ้วนอยู่นะ ✨</div>
+      </div>
+    </div>
+    <div class="letter-content" id="letter-content">
+      <div class="letter-text" id="letter-text"></div>
+      <div class="letter-nav">
+        <button class="letter-nav-btn" onclick="prevLetter()">← ก่อนหน้า</button>
+        <span class="letter-num" id="letter-num-display">1/5</span>
+        <button class="letter-nav-btn" onclick="nextLetter()">ต่อไป →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reasons -->
+  <div class="card fade-in">
+    <div class="section-label">💕 เหตุผลที่เค้ารักอ้วน</div>
+    <div class="reason-idx" id="reason-idx">กด ✨ เพื่อดูเลย</div>
+    <div class="reason-display">
+      <div class="reason-text" id="reason-text">กดปุ่มด้านล่างเพื่อเห็นว่าเค้ารักอ้วนแค่ไหน 🌸</div>
+    </div>
+    <button class="reason-btn" onclick="showReason()">✨ ดูเหตุผลถัดไป</button>
+  </div>
+
+  <!-- Self-care -->
+  <div class="card fade-in">
+    <div class="section-label">✅ ดูแลตัวเองก่อนนะ อ้วน</div>
+    <div class="care-list" id="care-list"></div>
+    <div class="care-bar-track"><div class="care-bar-fill" id="care-bar-fill" style="width:0%"></div></div>
+    <div class="care-bar-label" id="care-bar-label">0 / 6 ทำแล้ว</div>
+  </div>
+
+  <!-- Music -->
+  <div class="card fade-in">
+    <div class="section-label">🎵 เพลงตามอารมณ์อ้วน</div>
+    <div class="vibes-row">
+      <div class="vibe-pill active" onclick="selectVibe('chill',this)">🌙 ชิลๆ</div>
+      <div class="vibe-pill" onclick="selectVibe('uplift',this)">🌟 ปลุกใจ</div>
+      <div class="vibe-pill" onclick="selectVibe('cry',this)">😢 ร้องไห้บ้าง</div>
+      <div class="vibe-pill" onclick="selectVibe('cute',this)">🌸 หวานๆ</div>
+    </div>
+    <div class="playlist-rec" id="playlist-rec"></div>
+  </div>
+
+  <!-- Dice -->
+  <div class="card fade-in">
+    <div class="section-label">🎲 ให้เค้าสุ่มกิจกรรมให้อ้วน</div>
+    <div style="text-align:center;">
+      <div class="dice-wrap" id="dice" onclick="rollDice()">🎲</div>
+      <div class="game-result" id="game-result">กดลูกเต๋าเพื่อให้เค้าส่งกิจกรรมมาให้! ✨</div>
+      <div class="game-hint">กิจกรรมเบี่ยงเบนความสนใจจากความเครียด 💜</div>
+    </div>
+  </div>
+
+  <!-- Big Hug -->
+  <button class="hug-big-btn" onclick="bigHug()">
+    <div class="hug-big-inner">
+      <span class="hug-big-emoji">🫂</span>
+      <div class="hug-big-text">กดรับกอดจากเค้า</div>
+      <div class="hug-big-sub">กดได้ตลอดเวลาเลยนะ ไม่มีลิมิต เพราะรักอ้วนมาก 💜</div>
+    </div>
+  </button>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// Stars
+const starsEl = document.getElementById('stars');
+for(let i = 0; i < 60; i++) {
+  const s = document.createElement('div'); s.className = 'star';
+  const sz = Math.random()*3+1;
+  s.style.cssText = `width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*4}s;animation-duration:${2+Math.random()*3}s`;
+  starsEl.appendChild(s);
+}
+
+// Fade in
+const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold:0.1 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+// Toast
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.innerText = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// Particles
+function spawnParticles(x, y, emojis=['💕','✨','🌸','💜']) {
+  for(let i=0;i<6;i++) {
+    const p = document.createElement('div'); p.className='particle';
+    p.innerText = emojis[Math.floor(Math.random()*emojis.length)];
+    p.style.left = (x-20+Math.random()*40)+'px';
+    p.style.top = (y+10)+'px';
+    p.style.animationDelay = (Math.random()*0.3)+'s';
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),4000);
+  }
+}
+
+// Mood
+const moodComfort = {
+  stressed:`<strong>เค้าอยู่นี่นะ อ้วน 💜</strong><br><br>รู้ว่ามันหนักแค่ไหน ไม่ต้องแบกคนเดียวนะ ถ้าอยากระบายบอกเค้าได้เลย ลองหายใจลึกๆ ก่อน แล้วค่อยๆ ปล่อยมันออกมา อ้วนเก่งมากที่ผ่านมาได้ขนาดนี้ 🫂`,
+  sad:`<strong>เศร้าได้นะ ไม่เป็นไร 💙</strong><br><br>ร้องไห้ได้เลยถ้าอยาก เค้าจะนั่งอยู่ด้วยนะ ไม่ไปไหน ทุกอย่างมันผ่านไปได้เสมอ อ้วนไม่ได้เผชิญคนเดียว เดี๋ยวเค้ากอดนะ ✨`,
+  tired:`<strong>เหนื่อยมาเยอะแล้วนะอ้วน 🌙</strong><br><br>พักได้เลย ไม่มีใครตัดสินหรอก การหยุดพักก็คือความกล้าหาญ นอนก็ได้ วางทุกอย่างลงก่อน เค้ารออ้วนอยู่นะ 🛋️`,
+  angry:`<strong>หัวร้อนแล้วใช่มั้ย? ระบายออกมาเลย 😤</strong><br><br>เค้าพร้อมฟังนะ แต่ก่อนอื่นลองหายใจลึกๆ 4-7-8 ก่อน แล้วค่อยเล่าให้ฟัง เค้าจะรับฟังอ้วนทุกอย่าง 💜`,
+  lonely:`<strong>เหงาเหรอ? เค้าอยู่ตรงนี้นะ 💕</strong><br><br>รู้ว่าบางทีมันเปล่าเปลี่ยว แต่อยากให้อ้วนรู้ว่าในใจเค้ามีอ้วนเต็มๆ เลย ไม่มีวันเหงาคนเดียวหรอก เค้าคิดถึงอ้วนอยู่เสมอ ✨`,
+  overwhelmed:`<strong>มันเยอะเกินไปใช่มั้ย? 💜</strong><br><br>หายใจก่อนนะ ไม่ต้องแก้ทุกอย่างพร้อมกัน ทำทีละขั้น เค้าจะช่วยคิดด้วยกัน ไม่ได้ให้อ้วนแบกคนเดียวหรอก 🫂`,
+};
+function selectMood(m, el) {
+  document.querySelectorAll('.mood-option').forEach(x=>x.classList.remove('selected'));
+  el.classList.add('selected');
+  const resp = document.getElementById('comfort-response');
+  resp.innerHTML = moodComfort[m];
+  resp.classList.remove('show'); void resp.offsetWidth; resp.classList.add('show');
+  confetti({particleCount:30,spread:50,origin:{y:0.5},colors:['#ff80ab','#ce93d8','#fff']});
+}
+
+// Breathing
+let breathPhase='idle', breathTout=null, breathCycles=0, countTout=null, phaseIdx=0, secsLeft=0;
+const phases=[
+  {name:'หายใจเข้า...',duration:4000,cls:'inhale',text:'สูดหายใจเข้าลึกๆ นะอ้วน 🌬️'},
+  {name:'กลั้นหายใจ...',duration:7000,cls:'hold',text:'กลั้นไว้นะ 7 วินาที 🌸'},
+  {name:'หายใจออก...',duration:8000,cls:'exhale',text:'ปล่อยออกช้าๆ... 🌊'},
+];
+function startBreathing(){
+  if(breathPhase==='running'){stopBreathing();return;}
+  breathPhase='running';phaseIdx=0;
+  document.getElementById('breath-text').innerText='เริ่มแล้ว! ทำตามเลยนะ 💜';
+  runPhase();
+}
+function runPhase(){
+  if(breathPhase!=='running') return;
+  const ph=phases[phaseIdx];
+  document.getElementById('breath-circle').className='breath-circle '+ph.cls;
+  document.getElementById('breath-text').innerText=ph.text;
+  document.getElementById('breath-phase').innerText=ph.name;
+  clearInterval(countTout); secsLeft=Math.ceil(ph.duration/1000);
+  countTout=setInterval(()=>{secsLeft--;document.getElementById('breath-count').innerText=secsLeft>0?secsLeft:'';},1000);
+  breathTout=setTimeout(()=>{
+    phaseIdx=(phaseIdx+1)%3;
+    if(phaseIdx===0){breathCycles++;showToast(`✨ รอบที่ ${breathCycles} เก่งมากเลยอ้วน!`);}
+    runPhase();
+  },ph.duration);
+}
+function stopBreathing(){
+  breathPhase='idle';clearTimeout(breathTout);clearInterval(countTout);
+  document.getElementById('breath-circle').className='breath-circle';
+  document.getElementById('breath-text').innerText='แตะวงกลมเพื่อเริ่ม';
+  document.getElementById('breath-phase').innerText='4-7-8 breathing technique';
+  document.getElementById('breath-count').innerText=breathCycles>0?breathCycles:'0';
+}
+
+// Hugs
+const hugMessages={
+  gentle:['กอดเบาๆ ส่งความอบอุ่นมาเต็มๆ เลยนะ อ้วน 🌸','อ้วนรู้สึกได้มั้ย? เค้ากอดอยู่นะ ไม่ไปไหนหรอก 💕'],
+  tight:['กอดแน่นๆ ให้ตัวเค้าชนตัวอ้วน รู้สึกไหม? ไม่ยอมปล่อยเลย 🫂','แน่นมากเลย เพราะรักอ้วนมากด้วย 💜'],
+  head:['โน้มหัวอ้วนมาพิงบ่าเค้าเลยนะ พักได้ 🌙','กอดหัวอ้วน แล้วกระซิบ "เก่งมากเลยนะ" 💕'],
+  cuddle:['จินตนาการว่ากำลังนอนกอดกันอยู่นะ อุ่นๆ สบายๆ ✨','กอดนอนด้วยกัน ไม่มีอะไรน่ากังวลเลย 🛋️'],
+  forehead:['จูบหน้าผากอ้วนเบาๆ แปลว่า "เค้าอยู่ตรงนี้นะ" 😘','หน้าผากอุ่นๆ เพราะจูบส่งมาทางโทรศัพท์ 💕'],
+  pat:['ลูบหัวอ้วนช้าๆ บอกว่า "เก่งมากเลย ผ่านมาได้ขนาดนี้" 🤚','ตบหัวเบาๆ ว่า "อ้วนไม่ได้คนเดียวนะ เค้าอยู่นี่" 💜'],
+};
+function sendHug(type){
+  const msgs=hugMessages[type];
+  const msg=msgs[Math.floor(Math.random()*msgs.length)];
+  const box=document.getElementById('hug-msg-box');
+  box.innerText=msg;box.classList.remove('show');void box.offsetWidth;box.classList.add('show');
+  const rect=event.currentTarget.getBoundingClientRect();
+  spawnParticles(rect.left+rect.width/2,rect.top);
+  confetti({particleCount:25,spread:50,origin:{y:0.5},colors:['#ff80ab','#ce93d8','#fff']});
+}
+
+// Letters
+const letters=[
+  `ถึงอ้วนที่เค้ารักที่สุด,
+
+รู้ว่าตอนนี้มันหนักนะ แต่อยากให้อ้วนรู้ว่า ทุกอย่างที่อ้วนเผชิญอยู่ มันทำให้เค้าเห็นว่าอ้วนเก่งแค่ไหน
+
+เค้ารักอ้วนนะ ไม่ว่าจะวันไหนก็ตาม 🌸`,
+  `อ้วนคนเก่ง,
+
+บางวันมันแย่จริงๆ และก็โอเคที่จะรู้สึกแบบนั้น ไม่มีใครต้องยิ้มตลอดเวลา
+
+แต่รู้ไว้นะว่า เค้าจะอยู่ตรงนี้ทุกวัน ทั้งวันที่ดีและวันที่แย่ 💜`,
+  `Dear อ้วน,
+
+อยากให้อ้วนมองตัวเองผ่านตาเค้าสักครั้ง จะเห็นคนที่น่ารัก เก่ง และพยายามมากๆ
+
+อ้วนทำให้เค้าภูมิใจเสมอนะ ✨`,
+  `อ้วนที่รัก,
+
+ขอบคุณที่อยู่ข้างๆ กัน ขอบคุณที่ยอมรับเค้าในทุกแบบ
+
+เค้าจะพยายามเป็นที่พักใจที่ดีสำหรับอ้วนด้วยนะ 🫂`,
+  `ถึงอ้วนที่เค้ารัก,
+
+ไม่ว่าวันนี้จะเป็นยังไง เค้าอยากให้อ้วนนอนหลับฝันดี ตื่นขึ้นมาแล้วพบวันใหม่ที่ดีกว่า
+
+รักอ้วนมากที่สุดในโลกเลยนะ 🍰💕`,
+];
+let curLetter=0;
+function openLetterBox(){
+  document.getElementById('letter-envelope-wrap').style.display='none';
+  document.getElementById('letter-content').classList.add('show');
+  showLetter(0);
+  confetti({particleCount:40,spread:60,origin:{y:0.5},colors:['#ff80ab','#ffd6e0','#fff']});
+}
+function showLetter(idx){
+  curLetter=idx;
+  document.getElementById('letter-text').innerText=letters[idx];
+  document.getElementById('letter-num-display').innerText=`${idx+1}/${letters.length}`;
+}
+function prevLetter(){showLetter(Math.max(0,curLetter-1));}
+function nextLetter(){showLetter(Math.min(letters.length-1,curLetter+1));}
+
+// Reasons
+const reasons=[
+  'เพราะรอยยิ้มของอ้วนทำให้วันแย่ๆ ของเค้าดีขึ้นได้ทันที 🌸',
+  'เพราะอ้วนน่ารักโดยไม่รู้ตัวเลย 🥰',
+  'เพราะอ้วนทำให้เค้ารู้สึกปลอดภัยทุกครั้งที่อยู่ด้วยกัน 💜',
+  'เพราะเวลาอ้วนอยู่ข้างๆ เค้ารู้สึกว่าทุกอย่างโอเคแล้ว ✨',
+  'เพราะอ้วนเข้าใจเค้าแบบที่ไม่มีใครเข้าใจได้ 💕',
+  'เพราะอ้วนทำให้เค้าอยากเป็นคนที่ดีขึ้นทุกวัน 🌟',
+  'เพราะเสียงหัวเราะของอ้วนมันน่ารักที่สุดในโลกเลย 🎵',
+  'เพราะอ้วนไม่เคยปล่อยให้เค้ารู้สึกคนเดียว 🌙',
+  'เพราะอ้วนคืออ้วน ไม่ต้องเปลี่ยนอะไรเลย 💖',
+  'เพราะแค่มีอ้วนอยู่ในชีวิต เค้าก็มีความสุขมากแล้ว 🍰',
+];
+let reasonIdx=-1;
+function showReason(){
+  reasonIdx=(reasonIdx+1)%reasons.length;
+  const el=document.getElementById('reason-text');
+  el.style.animation='none';void el.offsetWidth;
+  el.style.animation='reasonPop 0.4s cubic-bezier(0.175,0.885,0.32,1.275)';
+  el.innerText=reasons[reasonIdx];
+  document.getElementById('reason-idx').innerText=`ข้อ ${reasonIdx+1} จาก ${reasons.length} ✨`;
+  spawnParticles(window.innerWidth/2,window.innerHeight/2,['💕','🌸','✨','💜','🥰']);
+}
+
+// Self-care
+const careItems=[
+  {icon:'💧',text:'ดื่มน้ำสักแก้วก่อนนะ'},
+  {icon:'🌬️',text:'หายใจลึกๆ 5 ครั้ง'},
+  {icon:'🚶',text:'ขยับร่างกายนิดนึง'},
+  {icon:'🍫',text:'กินของอร่อยๆ บ้าง'},
+  {icon:'📵',text:'วางโทรศัพท์พักสัก 10 นาที'},
+  {icon:'🛁',text:'อาบน้ำอุ่นๆ ผ่อนคลาย'},
+];
+let careDone=new Set();
+function renderCare(){
+  document.getElementById('care-list').innerHTML=careItems.map((item,i)=>`
+    <div class="care-item ${careDone.has(i)?'done':''}" onclick="toggleCare(${i})">
+      <div class="care-check">${careDone.has(i)?'✓':''}</div>
+      <span class="care-icon">${item.icon}</span>
+      <span class="care-text">${item.text}</span>
+    </div>`).join('');
+  const pct=Math.round(careDone.size/careItems.length*100);
+  document.getElementById('care-bar-fill').style.width=pct+'%';
+  document.getElementById('care-bar-label').innerText=`${careDone.size} / ${careItems.length} ทำแล้ว`;
+  if(careDone.size===careItems.length){
+    showToast('✨ เก่งมากเลยอ้วน! ดูแลตัวเองได้ดีมาก 💜');
+    confetti({particleCount:80,spread:70,origin:{y:0.6},colors:['#ff80ab','#ce93d8','#fff']});
+  }
+}
+function toggleCare(i){
+  if(careDone.has(i))careDone.delete(i);else careDone.add(i);
+  renderCare();
+  if(careDone.has(i)){
+    const items=document.querySelectorAll('.care-item');
+    const rect=items[i].getBoundingClientRect();
+    spawnParticles(rect.left+rect.width/2,rect.top,['✅','💚','✨']);
+  }
+}
+renderCare();
+
+// Music
+const playlists={
+  chill:[{icon:'🌙',name:'Proud',artist:'fellow fellow'},{icon:'🌿',name:'ทางของฝุ่น',artist:'Polycat'},{icon:'🌊',name:'ไม่รู้ทำไม',artist:'-'}],
+  uplift:[{icon:'⭐',name:'เวลาเธอยิ้ม',artist:'Polycat'},{icon:'🌟',name:'DMMA',artist:'-'},{icon:'🎸',name:'baby tee',artist:'-'}],
+  cry:[{icon:'😢',name:'ทางของฝุ่น',artist:'ให้มันออกมาเลยนะอ้วน'},{icon:'💙',name:'Sorry',artist:'ร้องแล้วดีขึ้นนะ'},{icon:'🌧️',name:'pretty girl',artist:'เค้าอยู่ด้วยนะ'}],
+  cute:[{icon:'🌸',name:'baby tee',artist:'หวานๆ เหมือนอ้วน'},{icon:'🍰',name:'pretty girl',artist:'-'},{icon:'💕',name:'Proud',artist:'เพลงที่เค้าชอบเปิดให้อ้วนฟัง'}],
+};
+function selectVibe(v,el){
+  document.querySelectorAll('.vibe-pill').forEach(x=>x.classList.remove('active'));
+  el.classList.add('active'); renderPlaylist(v);
+}
+function renderPlaylist(v='chill'){
+  document.getElementById('playlist-rec').innerHTML=playlists[v].map((s,i)=>`
+    <div class="song-row">
+      <div class="song-num">${i+1}</div>
+      <div class="song-icon">${s.icon}</div>
+      <div class="song-info"><div class="song-name">${s.name}</div><div class="song-artist">${s.artist}</div></div>
+    </div>`).join('');
+}
+renderPlaylist();
+
+// Dice
+const distractions=[
+  '🎨 วาดรูปอะไรก็ได้ที่อยู่รอบๆ ตัว 5 นาที',
+  '📝 เขียน 3 อย่างที่วันนี้ยังดีอยู่บ้าง',
+  '🌿 มองออกไปนอกหน้าต่าง นับสิ่งที่เห็น 5 อย่าง',
+  '🧘 นั่งเงียบๆ 2 นาที ไม่ต้องคิดอะไร',
+  '💬 ส่งข้อความหาเค้าบ้างก็ได้นะ 😘',
+  '🍵 ชงเครื่องดื่มอุ่นๆ ดื่มช้าๆ',
+  '🎵 เปิดเพลงที่ชอบแล้วร้องตาม',
+  '🚶 เดินออกไปข้างนอกสัก 5 นาที',
+  '📚 อ่านหนังสือที่ชอบ 1 หน้า',
+  '😆 ดูวิดีโอแมวตลกๆ 3 คลิป',
+  '✍️ เขียนสิ่งที่อยากทำเมื่ออารมณ์ดีขึ้น',
+  '🤸 ยืดเส้นยืดสายนิดนึง คลายความตึงเครียด',
+];
+function rollDice(){
+  const el=document.getElementById('game-result');
+  const task=distractions[Math.floor(Math.random()*distractions.length)];
+  el.style.opacity=0;
+  setTimeout(()=>{el.innerText=task;el.style.transition='opacity 0.3s';el.style.opacity=1;},200);
+  const d=document.getElementById('dice');
+  d.style.transition='transform 0.5s';d.style.transform='rotate(720deg) scale(0.8)';
+  setTimeout(()=>d.style.transform='',500);
+  spawnParticles(window.innerWidth/2,window.innerHeight/2,['🎲','✨','💜']);
+}
+
+// Big hug
+const bigHugMsgs=[
+  'เค้ากอดอ้วนแน่นมาก รู้สึกได้เลยนะ 🫂💜',
+  'กอดๆๆ ไม่ยอมปล่อยเลย เพราะรักอ้วนมากเกินไป 💕',
+  'กอดยาวๆ บอกว่า "อ้วนไม่ได้คนเดียวนะ" 🌸',
+  'เค้าส่งความอบอุ่นมาเต็มๆ เลย รับไว้นะอ้วน 💖',
+  'กอดหนักๆ แล้วกระซิบ "เก่งมากเลยนะ อ้วน" ✨',
+  'อ้วนรู้มั้ย? เค้าคิดถึงอ้วนตลอดเลยนะ 💜',
+];
+let hugIdx=0;
+function bigHug(){
+  showToast(bigHugMsgs[hugIdx%bigHugMsgs.length]);
+  hugIdx++;
+  confetti({particleCount:120,spread:80,origin:{y:0.5},colors:['#ff80ab','#ce93d8','#fff','#ffd6e0']});
+  spawnParticles(window.innerWidth/2,window.innerHeight*0.5,['🫂','💜','🌸','💕','✨']);
+}
+</script>
+</body>
+</html>
